@@ -1,0 +1,26 @@
+<template name="uploadForm">
+    <div class="uploadForm">
+        <div class="form-group">
+            <label for="">Upload File</label>
+            <input type="file" class="myFileInput"/>
+        </div>
+
+    </div>
+    <div class="uploadedFiles">
+        {{#each files}}
+            {{#if isImage}}
+                <p class="list-group-item">
+                    <code>{{_id}}</code> <br>
+                    <p><img style="max-width:300px" src="{{theImageUrl}}" alt=""/></p>
+                <pre>{{raw}}</pre>
+                </p>
+            {{else}}
+                <p class="list-group-item">
+                    <code>{{_id}}</code> <br>
+                    <p><a href="{{theImageUrl}}" class="btn btn-lg btn-primary">Download File</a></p>
+                <pre>{{raw}}</pre>
+                </p>
+            {{/if}}
+        {{/each}}
+    </div>
+</template>

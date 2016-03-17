@@ -1,0 +1,12 @@
+/* CSS declarations go here */
+img{
+    max-width:100%;
+}
+.uploadForm {
+    background: #E8E8E8;
+    padding: 24px;
+}
+.uploadedFiles {
+    padding: 10px;
+    margin-top: 12px;
+}
