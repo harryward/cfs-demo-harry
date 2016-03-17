@@ -1,6 +1,6 @@
 Template.uploadForm.helpers({
     'files':function(){
-        return Images.find().fetch()
+        return Images.find({},{sort:{'uploadedAt':-1}}).fetch()
     },
     'theImageUrl':function(){
         return Images.findOne(this._id).url();
