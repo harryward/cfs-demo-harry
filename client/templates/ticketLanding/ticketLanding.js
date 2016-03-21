@@ -1,6 +1,6 @@
 Template.ticketLanding.helpers({
 	"tickets": function(){
-		return Session.get('params').ticketId 
+		return Session.get('params').this._id
 		// console.log(this._id)
 	}
 });
