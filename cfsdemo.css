@@ -17,3 +17,15 @@ pre {
     background: #000;
     color: #0F0;
 }
+div#__blaze-root {
+    background: #795548;
+    padding-top: 10px;
+}.jumbotron {
+     background: #583D34;
+     color: #FFF;
+ }.panel-heading {
+      background: #412B23!important;
+      color: #FFF!important;
+  }.panel {
+       border: none!important;
+   }
