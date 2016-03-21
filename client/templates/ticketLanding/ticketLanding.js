@@ -7,19 +7,20 @@ Template.ticketLanding.helpers({
 
 Template.ticketLanding.events({
 	'click .publishMe':function(event,template){
-		if($('#titleInput').val() !== ''){
-			alert( $('#titleInput').val()) 
-			// alert("input.val)";
-
-		} else{
-			console.log("not changed");
+		if($('#titleInput').val() !== ''){;
+			var newtitle= $('#titleInput').val();
+			Tickets.update({_id: this._id}, {$set: {'title': newtitle}});
+		} 
+		else{
+			// console.log("not changed");
 		}
 
-		// if($('#summaryInput').val() !== ''){
-		// 	alert('Input can not be left blank');
-		// } else{
-		// 	console.log("changed");
-		// }
+		if($('#summaryInput').val() !== ''){
+			var newSummary= $('#summaryInput').val();
+			Tickets.update({_id: this._id}, {$set: {'summary': newSummary}});
+		} else{
+			console.log("changed");
+		}
 
 	},
 	'click .cancelMe':function(event,template){
