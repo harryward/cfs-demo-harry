@@ -10,6 +10,7 @@ Template.ticketLanding.events({
 		if($('#titleInput').val() !== ''){;
 			var newtitle= $('#titleInput').val();
 			Tickets.update({_id: this._id}, {$set: {'title': newtitle}});
+			$('#titleInput').val('');
 		} 
 		else{
 			return false;
@@ -18,6 +19,7 @@ Template.ticketLanding.events({
 		if($('#summaryInput').val() !== ''){
 			var newSummary= $('#summaryInput').val();
 			Tickets.update({_id: this._id}, {$set: {'summary': newSummary}});
+			$('#summaryInput').val('');
 		} else{
 			return false;
 		}
