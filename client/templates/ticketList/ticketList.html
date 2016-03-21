@@ -8,7 +8,7 @@
                 <div class="well">
                     <h6>Files:</h6>
                     {{#each files}}
-                        <code>{{theFile}}</code>
+                        <a href="{{theFile}}" class="list-group-item" target="_blank">{{theFileMeta.original.name}}</a>
                     {{/each}}
                 </div>
                 <h6>RAW DATA:</h6>

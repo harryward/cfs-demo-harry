@@ -7,6 +7,11 @@ Template.ticketList.helpers({
         return Docs.findOne(this.toString()).url()
         }
     },
+    'theFileMeta':function(){
+        if(Docs.findOne(this.toString())){
+            return Docs.findOne(this.toString())
+        }
+    },
     'raw':function(){
         return EJSON.stringify(this,{'indent':true})
     },

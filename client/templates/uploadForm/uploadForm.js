@@ -1,16 +1,28 @@
 Template.uploadForm.helpers({
-
+    'files':function(){
+        return Session.get('files')
+    },
+    'thisFile':function(){
+        return Docs.findOne(this.toString())
+    }
 });
 
 Template.uploadForm.events({
     'change .myFileInput': function(event, template) {
         var files = event.target.files;
         for (var i = 0, ln = files.length; i < ln; i++) {
+            if(files.length){
             Docs.insert(files[i], function (err, fileObj) {
                 console.log('fileObj',fileObj);
-                Session.set('docId',fileObj._id)
+                var fileArray = Session.get('files') || [];
+                fileArray.push(fileObj._id)
+                $(event.target).val('');
+                Session.set('files',fileArray)
+                Session.set('docId',fileObj._id);
+
                 // Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
             });
+            }
         }
     },
     'submit .ticketCreator':function(event,template){
@@ -23,7 +35,7 @@ Template.uploadForm.events({
             }
         });
         ticketObj.date = new Date();
-        ticketObj.files = [Session.get('docId')]
+        ticketObj.files = Session.get('files')
         console.log('ticket object',ticketObj);
         if(!Session.get('docId')) {
             alert('you must attach a file!')
@@ -34,7 +46,9 @@ Template.uploadForm.events({
                     console.log('new ticket created',resp);
                     alert('success!');
                     $('input,textarea').val('');
-                    Session.set('lastTicket',resp)
+                    Session.set('lastTicket',resp);
+                    Session.set('docId',false);
+                    Session.set('files',false)
 
                 }else{
                     console.error('error creating ticket',err)

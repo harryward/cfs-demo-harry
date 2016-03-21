@@ -3,8 +3,26 @@
         <form  class="ticketCreator">
 
             <div class="form-group">
-                <label for="">Upload File</label>
+                <label for="">Upload File(s)</label>
                 <input type="file" class="myFileInput"/>
+
+            </div>
+            <div class="form-group">
+                {{#if files}}
+                    <div class="well">
+                        <div class="list-group">
+                            {{#each files}}
+                                <div class="list-group-item">
+                                    {{thisFile.original.name}}
+                                </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                {{else}}
+                    <div class="alert alert-danger">
+                        No files added...
+                    </div>
+                {{/if}}
             </div>
 
             <div class="form-group">
