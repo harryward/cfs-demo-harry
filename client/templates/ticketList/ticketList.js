@@ -3,7 +3,9 @@ Template.ticketList.helpers({
         return Tickets.find({},{sort:{'date':-1}}).fetch()
     },
     'theFile':function(){
+        if(Images.findOne(this.toString())){
         return Images.findOne(this.toString()).url()
+        }
     },
     'raw':function(){
         return EJSON.stringify(this,{'indent':true})
