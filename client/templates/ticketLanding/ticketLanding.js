@@ -12,9 +12,6 @@ Template.ticketLanding.events({
 			Tickets.update({_id: this._id}, {$set: {'title': newtitle}});
 			$('#titleInput').val('');
 		} 
-		else{
-			return false;
-		}
 
 		if($('#summaryInput').val() !== ''){
 			var newSummary= $('#summaryInput').val();
