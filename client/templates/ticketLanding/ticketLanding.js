@@ -7,17 +7,19 @@ Template.ticketLanding.helpers({
 
 Template.ticketLanding.events({
 	'click .publishMe':function(event,template){
-		if($('#titleInput').val() == ''){
-			alert('Input can not be left blank');
+		if($('#titleInput').val() !== ''){
+			alert( $('#titleInput').val()) 
+			// alert("input.val)";
+
 		} else{
-			console.log("changed")
+			console.log("not changed");
 		}
 
-		if($('#summaryInput').val() == ''){
-			alert('Input can not be left blank');
-		} else{
-			console.log("changed")
-		}
+		// if($('#summaryInput').val() !== ''){
+		// 	alert('Input can not be left blank');
+		// } else{
+		// 	console.log("changed");
+		// }
 
 	},
 	'click .cancelMe':function(event,template){
