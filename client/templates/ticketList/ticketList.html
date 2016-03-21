@@ -2,6 +2,7 @@
     <div class="list-group">
         {{#each tickets}}
             <div class="{{#if isLast}}lastTicket{{/if}} list-group-item">
+                
                 <code>ticketID: {{_id}}</code>
                 <h4>{{title}}</h4>
                 <p><small class="text-muted">{{summary}}</small></p>
@@ -13,6 +14,7 @@
                 </div>
                 <h6>RAW DATA:</h6>
                 <pre>{{raw}}</pre>
+                <a href="/edit/ticket/{{_id}}" class="btn editMe btn-warning">Edit</a>
             </div>
         {{/each}}
     </div>

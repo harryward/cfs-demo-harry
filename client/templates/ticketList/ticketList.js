@@ -23,7 +23,10 @@ Template.ticketList.helpers({
 });
 
 Template.ticketList.events({
-    //add your events here
+    'click .editMe':function(event,template){
+        event.preventDefault();
+        alert('make this button go to a route that lets you edit the files, title and summary')
+    }
 });
 
 Template.ticketList.onCreated(function () {
