@@ -12,12 +12,14 @@ Template.ticketLanding.events({
 			var newtitle= $('#titleInput').val();
 			Tickets.update({_id: this._id}, {$set: {'title': newtitle}});
 			$('#titleInput').val('');
+			$(".alert-success").show();
 		} 
 
 		if($('#summaryInput').val() !== ''){
 			var newSummary= $('#summaryInput').val();
 			Tickets.update({_id: this._id}, {$set: {'summary': newSummary}});
-			$('#summaryInput').val('');		
+			$('#summaryInput').val('');
+			$(".alert-success").show();	
 		} 
 		else{
 			alert("No changes made.");
