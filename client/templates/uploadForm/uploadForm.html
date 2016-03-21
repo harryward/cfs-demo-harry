@@ -1,26 +1,28 @@
 <template name="uploadForm">
     <div class="uploadForm">
-        <div class="form-group">
-            <label for="">Upload File</label>
-            <input type="file" class="myFileInput"/>
-        </div>
+        <form  class="ticketCreator">
 
-    </div>
-    <div class="uploadedFiles">
-        {{#each files}}
-            {{#if isImage}}
-                <p class="list-group-item">
-                    <code>{{_id}}</code> <br>
-                    <p><img style="max-width:300px" src="{{theImageUrl}}" alt=""/></p>
-                <pre>{{raw}}</pre>
-                </p>
-            {{else}}
-                <p class="list-group-item">
-                    <code>{{_id}}</code> <br>
-                    <p><a href="{{theImageUrl}}" class="btn btn-lg btn-primary">Download File</a></p>
-                <pre>{{raw}}</pre>
-                </p>
-            {{/if}}
-        {{/each}}
+            <div class="form-group">
+                <label for="">Upload File</label>
+                <input type="file" class="myFileInput"/>
+            </div>
+
+            <div class="form-group">
+                <label>Title</label>
+                <input placeholder="give this document a name..." type="text" name="title" class="form-control"/>
+            </div>
+
+            <div class="form-group">
+                <label>Summary</label>
+                <textarea placeholder="short description of this file..." name="summary" class="form-control"></textarea>
+            </div>
+
+
+
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Publish</button>
+            </div>
+
+        </form>
     </div>
 </template>

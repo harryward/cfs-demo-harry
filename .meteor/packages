@@ -22,3 +22,5 @@ cfs:standard-packages
 cfs:filesystem
 ejson
 twbs:bootstrap
+kadira:flow-router
+kadira:blaze-layout

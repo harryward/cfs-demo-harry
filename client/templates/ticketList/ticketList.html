@@ -1,0 +1,17 @@
+<template name="ticketList">
+    <div class="list-group">
+        {{#each tickets}}
+            <div class="{{#if isLast}}lastTicket{{/if}} list-group-item">
+                <code>ticketID: {{_id}}</code>
+                <h4>{{title}}</h4>
+                <p><small class="text-muted">{{summary}}</small></p>
+                <div class="well">
+                    {{#each files}}
+                        <code>{{theFile}}</code>
+                    {{/each}}
+                </div>
+                <pre>{{raw}}</pre>
+            </div>
+        {{/each}}
+    </div>
+</template>

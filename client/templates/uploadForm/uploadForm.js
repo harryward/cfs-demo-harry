@@ -1,16 +1,5 @@
 Template.uploadForm.helpers({
-    'files':function(){
-        return Images.find({},{sort:{'uploadedAt':-1}}).fetch()
-    },
-    'theImageUrl':function(){
-        return Images.findOne(this._id).url();
-    },
-    'isImage':function(){
-        return Images.findOne(this._id).isImage()
-    },
-    'raw':function(){
-        return EJSON.stringify(this,{'indent':true})
-    }
+
 });
 
 Template.uploadForm.events({
@@ -19,8 +8,38 @@ Template.uploadForm.events({
         for (var i = 0, ln = files.length; i < ln; i++) {
             Images.insert(files[i], function (err, fileObj) {
                 console.log('fileObj',fileObj);
+                Session.set('docId',fileObj._id)
                 // Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
             });
+        }
+    },
+    'submit .ticketCreator':function(event,template){
+        event.preventDefault();
+        ticketObj = {};
+        formObj = $(event.target).serializeArray();
+        _.each(formObj,function(e,i){
+            if(e.name){
+                ticketObj[e.name] = e.value;
+            }
+        });
+        ticketObj.date = new Date();
+        ticketObj.files = [Session.get('docId')]
+        console.log('ticket object',ticketObj);
+        if(!Session.get('docId')) {
+            alert('you must attach a file!')
+            return false
+        }else{
+            Meteor.call('insertTicket',ticketObj,function(err,resp){
+                if(!err){
+                    console.log('new ticket created',resp);
+                    alert('success!');
+                    $('input,textarea').val('');
+                    Session.set('lastTicket',resp)
+
+                }else{
+                    console.error('error creating ticket',err)
+                }
+            })
         }
     }
 });
