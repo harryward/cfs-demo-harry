@@ -1,3 +1,3 @@
-Images = new FS.Collection("images", {
-    stores: [new FS.Store.FileSystem("images", {path: "~/uploads"})]
+Docs = new FS.Collection("docs", {
+    stores: [new FS.Store.FileSystem("docs", {path: "~/uploads"})]
 });

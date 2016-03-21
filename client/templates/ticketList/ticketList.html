@@ -6,10 +6,12 @@
                 <h4>{{title}}</h4>
                 <p><small class="text-muted">{{summary}}</small></p>
                 <div class="well">
+                    <h6>Files:</h6>
                     {{#each files}}
                         <code>{{theFile}}</code>
                     {{/each}}
                 </div>
+                <h6>RAW DATA:</h6>
                 <pre>{{raw}}</pre>
             </div>
         {{/each}}
