@@ -7,11 +7,18 @@ Template.ticketLanding.helpers({
 
 Template.ticketLanding.events({
 	'click .publishMe':function(event,template){
-		//check for changes in title
-		//check for changes in summary
-		//add insert update
-		//add success message
-		//add routing back home
+		if($('#titleInput').val() == ''){
+			alert('Input can not be left blank');
+		} else{
+			console.log("changed")
+		}
+
+		if($('#summaryInput').val() == ''){
+			alert('Input can not be left blank');
+		} else{
+			console.log("changed")
+		}
+
 	},
 	'click .cancelMe':function(event,template){
 		if(confirm('Are you sure? All unsaved changes will be lost.')){
