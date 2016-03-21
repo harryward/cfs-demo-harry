@@ -21,4 +21,3 @@ FlowRouter.route('/edit/ticket/:ticketId', {
         });
     },
 });
-
