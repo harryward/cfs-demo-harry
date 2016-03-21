@@ -1,7 +1,18 @@
 <template name="ticketLanding">
     {{#each tickets}}
 	<h1>Ticket Landing</h1>
-        <p>{{_id}}</p>
+		<p>{{_id}}</p>
+		<p>Title: {{title}}</p>
+		<p>Summary: {{summary}}</p>
+		<div class="form-group">
+			<label>Title</label>
+			<input placeholder="Edit title: {{title}}" type="text" name="title" class="form-control"/>
+			<label>Summary</label>
+			<input placeholder="Edit Summary: {{summary}}" type="text" name="summary" class="form-control"/>
+        </div>
 
+        <button class="btn btn-primary" type="submit">Publish</button>
+		<button class="btn editMe btn-warning" type="cancel">Cancel</button>
+		<button class="btn removeMe btn-danger" type="delete">Delete</button>
     {{/each}}
 </template>
