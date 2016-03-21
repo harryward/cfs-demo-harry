@@ -18,6 +18,7 @@ Template.ticketLanding.events({
 			Tickets.update({_id: this._id}, {$set: {'summary': newSummary}});
 			$('#summaryInput').val('');
 		} else{
+			alert("No changes made.")
 			return false;
 		}
 
