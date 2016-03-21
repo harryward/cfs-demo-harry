@@ -15,12 +15,12 @@ Template.ticketLanding.events({
 	},
 	'click .cancelMe':function(event,template){
 		if(confirm('Are you sure? All unsaved changes will be lost.')){
-			//route back home
+			FlowRouter.go("/");
 		} else{
 			return false;
-			FlowRouter.go("/");
+
 		}
-		// add else statement to stay on the page
+
 
 
 	},
@@ -29,7 +29,7 @@ Template.ticketLanding.events({
 		if(confirm('Are you sure you want to delete? This cannot be reversed.')){
 			Tickets.remove(this._id)
 			FlowRouter.go("/");
-			// Need to add routing back to home
+
 		} else{
 			return false;
 		}
