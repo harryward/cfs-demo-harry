@@ -7,7 +7,8 @@ Template.ticketLanding.helpers({
 
 Template.ticketLanding.events({
 	'click .publishMe':function(event,template){
-		if($('#titleInput').val() !== ''){;
+
+		if($('#titleInput').val() !== ''){
 			var newtitle= $('#titleInput').val();
 			Tickets.update({_id: this._id}, {$set: {'title': newtitle}});
 			$('#titleInput').val('');
@@ -16,10 +17,12 @@ Template.ticketLanding.events({
 		if($('#summaryInput').val() !== ''){
 			var newSummary= $('#summaryInput').val();
 			Tickets.update({_id: this._id}, {$set: {'summary': newSummary}});
-			$('#summaryInput').val('');
-		} else{
-			alert("No changes made.")
-			return false;
+			$('#summaryInput').val('');		
+		} 
+		else{
+			alert("No changes made.");
+			return false;	
+
 		}
 
 	},
