@@ -20,7 +20,7 @@ pre {
       background: #202D72!important;
       color: #FFF!important;
     border:none;
-  }div#__blaze-root {
+  }div#__blaze-root,body {
        background: #3F51B5;
        padding-top: 10px;
    }.panel{

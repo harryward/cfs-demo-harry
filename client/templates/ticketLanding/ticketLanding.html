@@ -1,5 +1,7 @@
 <template name="ticketLanding">
-	<h1>Hello World!!!</h1>
-	<code>Ticket:{{_id}}</code>
-	<h4>{{title}}</h4>
+    {{#each tickets}}
+	<h1>Ticket Landing</h1>
+        <p>{{_id}}</p>
+
+    {{/each}}
 </template>
