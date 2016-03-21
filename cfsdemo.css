@@ -3,12 +3,8 @@ img{
     max-width:100%;
 }
 .uploadForm {
-    background: #E8E8E8;
+
     padding: 24px;
-}
-.uploadedFiles {
-    padding: 10px;
-    margin-top: 12px;
 }
 .lastTicket.list-group-item {
     background: #D5ECD5;
@@ -16,4 +12,21 @@ img{
 pre {
     background: #000;
     color: #0F0;
+}
+.jumbotron {
+    background: #202D72!important;
+     color: #FFF;
+ }.panel-heading {
+      background: #202D72!important;
+      color: #FFF!important;
+    border:none;
+  }div#__blaze-root {
+       background: #3F51B5;
+       padding-top: 10px;
+   }.panel{
+             border:none;
+         }
+
+.panel-body {
+    background: #F5F5F5;
 }
