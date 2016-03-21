@@ -9,3 +9,15 @@ FlowRouter.route('/', {
         });
     },
 });
+
+FlowRouter.route('/edit/ticket/:ticketId', {
+    // do some action for this route
+    action: function(params, queryParams) {
+        console.log("Params:", params);
+        console.log("Query Params:", queryParams);
+        Session.set('params',params)
+        BlazeLayout.render('globalLayout', {
+            main: "ticketLanding"
+        });
+    },
+});
