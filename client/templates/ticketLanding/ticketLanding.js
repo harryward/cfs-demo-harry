@@ -12,14 +12,14 @@ Template.ticketLanding.events({
 			Tickets.update({_id: this._id}, {$set: {'title': newtitle}});
 		} 
 		else{
-			// console.log("not changed");
+			return false;
 		}
 
 		if($('#summaryInput').val() !== ''){
 			var newSummary= $('#summaryInput').val();
 			Tickets.update({_id: this._id}, {$set: {'summary': newSummary}});
 		} else{
-			console.log("changed");
+			return false;
 		}
 
 	},
