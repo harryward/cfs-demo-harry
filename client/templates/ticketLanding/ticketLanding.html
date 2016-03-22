@@ -1,4 +1,5 @@
 <template name="ticketLanding">
+<<<<<<< HEAD
 	<div class="alert alert-success alert-dismissible" role="alert">
 	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	<strong>Success!</strong>Your changes have been saved.
@@ -14,10 +15,67 @@
 			<input id="titleInput" placeholder="Edit current title: {{title}}" type="text" name="title" class="form-control"/>
 			<label>Summary</label>
 			<input id="summaryInput" placeholder="Edit current summary: {{summary}}" type="text" name="summary" class="form-control"/>
-        </div>
+=======
 
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-title">Ticket Landing </div>
+        </div>
+        <div class="panel-body">
+
+            <div class="ticketInfo">
+                {{#each tickets}}
+
+
+                    {{#if editing}}
+
+                        <form class="editForm">
+
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input placeholder="add a title.." type="text" value="{{title}}" name="title" class="form-control"/>
+                                <label>Summary</label>
+                                <input placeholder="add a summary.." value="{{summary}}" type="text" name="summary" class="form-control"/>
+                            </div>
+
+
+                            <button class="btn btn-primary" type="submit">Save</button>
+                            <button class="btn editMe btn-warning" type="cancel">Cancel</button>
+
+                        </form>
+                    {{else}}
+                        <div class="well">
+                            <p>{{_id}}</p>
+                            <p>Title: {{title}}</p>
+                            <p>Summary: {{summary}}</p>
+                            <h6>Files:</h6>
+                            <div class="list-group">
+                                {{#each files}}
+                                    <a href="{{theFileLink}}" class="list-group-item">{{theFileMeta.original.name}}</a>
+                                {{/each}}
+                            </div>
+                        </div>
+                    {{/if}}
+                    <pre>{{raw}}</pre>
+                {{/each}}
+            </div>
+        </div>
+        <div class="panel-footer">
+
+            {{#if editing}}
+            {{else}}
+                <div class="editMe btn btn-primary">Edit</div>
+            {{/if}}
+
+>>>>>>> master
+        </div>
+    </div>
+
+<<<<<<< HEAD
         <button class="btn btn-primary publishMe" type="submit">Publish</button> 
 		<a href="/" class="btn btn-warning cancelMe" type="cancel">Cancel</a>
 		<button href="/" class="btn removeMe btn-danger" type="delete">Delete</button>
     {{/each}}
+=======
+>>>>>>> master
 </template>

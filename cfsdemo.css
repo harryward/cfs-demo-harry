@@ -30,7 +30,19 @@ pre {
 .panel-body {
     background: #F5F5F5;
 }
+<<<<<<< HEAD
 
 .alert-success{
   display: none;
 }
+=======
+form.ticketCreator {
+    color: #FFF;
+}.editForm {
+     padding: 20px;
+     background: #FFF;
+     border-radius: 5px;
+ }.ticketInfo .well {
+      background: #FFF;
+  }
+>>>>>>> master
