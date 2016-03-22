@@ -1,18 +1,56 @@
 <template name="ticketLanding">
-    {{#each tickets}}
-	<h1>Ticket Landing</h1>
-		<p>{{_id}}</p>
-		<p>Title: {{title}}</p>
-		<p>Summary: {{summary}}</p>
-		<div class="form-group">
-			<label>Title</label>
-			<input placeholder="Edit title: {{title}}" type="text" name="title" class="form-control"/>
-			<label>Summary</label>
-			<input placeholder="Edit Summary: {{summary}}" type="text" name="summary" class="form-control"/>
-        </div>
 
-        <button class="btn btn-primary" type="submit">Publish</button>
-		<button class="btn editMe btn-warning" type="cancel">Cancel</button>
-		<button class="btn removeMe btn-danger" type="delete">Delete</button>
-    {{/each}}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-title">Ticket Landing </div>
+        </div>
+        <div class="panel-body">
+
+            <div class="ticketInfo">
+                {{#each tickets}}
+
+
+                    {{#if editing}}
+
+                        <form class="editForm">
+
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input placeholder="add a title.." type="text" value="{{title}}" name="title" class="form-control"/>
+                                <label>Summary</label>
+                                <input placeholder="add a summary.." value="{{summary}}" type="text" name="summary" class="form-control"/>
+                            </div>
+
+
+                            <button class="btn btn-primary" type="submit">Save</button>
+                            <button class="btn editMe btn-warning" type="cancel">Cancel</button>
+
+                        </form>
+                    {{else}}
+                        <div class="well">
+                            <p>{{_id}}</p>
+                            <p>Title: {{title}}</p>
+                            <p>Summary: {{summary}}</p>
+                            <h6>Files:</h6>
+                            <div class="list-group">
+                                {{#each files}}
+                                    <a href="{{theFileLink}}" class="list-group-item">{{theFileMeta.original.name}}</a>
+                                {{/each}}
+                            </div>
+                        </div>
+                    {{/if}}
+                    <pre>{{raw}}</pre>
+                {{/each}}
+            </div>
+        </div>
+        <div class="panel-footer">
+
+            {{#if editing}}
+            {{else}}
+                <div class="editMe btn btn-primary">Edit</div>
+            {{/if}}
+
+        </div>
+    </div>
+
 </template>

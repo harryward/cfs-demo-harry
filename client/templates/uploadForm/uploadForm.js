@@ -19,7 +19,6 @@ Template.uploadForm.events({
                 $(event.target).val('');
                 Session.set('files',fileArray)
                 Session.set('docId',fileObj._id);
-
                 // Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
             });
             }

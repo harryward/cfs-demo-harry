@@ -1,22 +1,32 @@
 <template name="ticketList">
-    <div class="list-group">
-        {{#each tickets}}
-            <div class="{{#if isLast}}lastTicket{{/if}} list-group-item">
-                
-                <code>ticketID: {{_id}}</code>
-                <h4>{{title}}</h4>
-                <p><small class="text-muted">{{summary}}</small></p>
-                <div class="well">
-                    <h6>Files:</h6>
-                    {{#each files}}
-                        <a href="{{theFile}}" class="list-group-item" target="_blank">{{theFileMeta.original.name}}</a>
-                    {{/each}}
-                </div>
-                <h6>RAW DATA:</h6>
-                <pre>{{raw}}</pre>
-                <a href="/edit/ticket/{{_id}}" class="btn editMe btn-warning">Edit</a>
-                <a href="#" class="btn removeMe btn-danger">Delete</a>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-title">Tickets</div>
+        </div>
+        <div class="panel-body">
+
+            <div class="list-group">
+                {{#each tickets}}
+                    <div class="{{#if isLast}}lastTicket{{/if}} list-group-item">
+
+                        <code>ticketID: {{_id}}</code>
+                        <h4>{{title}}</h4>
+                        <p><small class="text-muted">{{summary}}</small></p>
+                        <div class="well">
+                            <h6>Files:</h6>
+                            {{#each files}}
+                                <a href="{{theFile}}" class="list-group-item" target="_blank">{{theFileMeta.original.name}}</a>
+                            {{/each}}
+                        </div>
+                        <h6>RAW DATA:</h6>
+                        <pre>{{raw}}</pre>
+                        <a href="/edit/ticket/{{_id}}" class="btn editMe btn-warning">Open</a>
+                        <a href="#" class="btn removeMe btn-danger">Delete</a>
+                    </div>
+                {{/each}}
             </div>
-        {{/each}}
+
+        </div>
     </div>
 </template>
