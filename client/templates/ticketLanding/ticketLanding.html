@@ -34,7 +34,11 @@
                             <h6>Files:</h6>
                             <div class="list-group">
                                 {{#each files}}
-                                    <a href="{{theFileLink}}" class="list-group-item">{{theFileMeta.original.name}}</a>
+                                    <a href="{{theFileLink}}" class="list-group-item">
+                                        <h5>{{theFileMeta.metadata.title}}</h5>
+                                        <p><small>{{theFileMeta.metadata.summary}}</small></p>
+                                        <small>{{theFileMeta.original.name}}</small>
+                                    </a>
                                 {{/each}}
                             </div>
                         </div>

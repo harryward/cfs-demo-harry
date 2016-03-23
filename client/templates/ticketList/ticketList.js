@@ -7,6 +7,9 @@ Template.ticketList.helpers({
         return Docs.findOne(this.toString()).url()
         }
     },
+    'totalFiles':function(){
+        return this.files.length
+    },
     'theFileMeta':function(){
         if(Docs.findOne(this.toString())){
             return Docs.findOne(this.toString())

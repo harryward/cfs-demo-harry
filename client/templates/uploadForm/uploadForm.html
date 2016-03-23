@@ -2,7 +2,7 @@
 
     <div class="uploadForm">
         <form  class="ticketCreator">
-
+            <h2>Batch Uploader</h2>
             <div class="form-group">
                 <label for="">Upload File(s)</label>
                 <input type="file" class="myFileInput"/>
@@ -14,7 +14,32 @@
                         <div class="list-group">
                             {{#each files}}
                                 <div class="list-group-item">
-                                    {{thisFile.original.name}}
+
+                                    <p>
+                                    <h4>
+                                        {{#if thisFile.metadata.title}}
+                                            {{thisFile.metadata.title}}
+                                            <small>
+                                                <a href="#" class="text-danger addTitle">edit title</a>
+                                            </small>
+                                        {{else}}
+                                            <a href="#" class="addTitle">add title</a>
+                                        {{/if}}
+                                    </h4>
+                                    </p>
+                                    <p>
+                                    <div class="summaryWell text-muted">
+                                        {{#if thisFile.metadata.summary}}
+                                            {{thisFile.metadata.summary}}
+                                            <small>
+                                                <a href="#" class="text-danger addSummary">edit summary</a>
+                                            </small>
+                                        {{else}}
+                                            <a href="#" class="addSummary">add summary</a>
+                                        {{/if}}
+                                    </div>
+                                    </p>
+                                    <p><small class="text-muted">{{thisFile.original.name}}</small> </p>
                                 </div>
                             {{/each}}
                         </div>
@@ -27,12 +52,12 @@
             </div>
 
             <div class="form-group">
-                <label>Title</label>
+                <label>Batch Title</label>
                 <input placeholder="give this document a name..." type="text" name="title" class="form-control"/>
             </div>
 
             <div class="form-group">
-                <label>Summary</label>
+                <label>Batch Summary</label>
                 <textarea placeholder="short description of this file..." name="summary" class="form-control"></textarea>
             </div>
 

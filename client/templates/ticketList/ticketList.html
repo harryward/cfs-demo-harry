@@ -8,11 +8,11 @@
 
             <div class="list-group">
                 {{#each tickets}}
-                    <div class="{{#if isLast}}lastTicket{{/if}} list-group-item">
-
-                        <code>ticketID: {{_id}}</code>
-                        <h4>{{title}}</h4>
+                    <a href="/edit/ticket/{{_id}}" class="{{#if isLast}}lastTicket{{/if}} list-group-item">
+                        <span class="badge">{{totalFiles}}</span>
+                        <h5>{{title}}</h5>
                         <p><small class="text-muted">{{summary}}</small></p>
+
                         <!--<div class="well">-->
                             <!--<h6>Files:</h6>-->
                             <!--{{#each files}}-->
@@ -21,9 +21,7 @@
                         <!--</div>-->
                         <!--<h6>RAW DATA:</h6>-->
                         <!--<pre>{{raw}}</pre>-->
-                        <a href="/edit/ticket/{{_id}}" class="btn btn-lg editMe btn-primary">Open Ticket</a>
-                        <a href="#" class="btn removeMe pull-right btn-danger">Delete</a>
-                    </div>
+                    </a>
                 {{/each}}
             </div>
 
