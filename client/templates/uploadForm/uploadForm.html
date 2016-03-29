@@ -40,8 +40,8 @@
                                     </p>
                                     <p><small class="text-muted">{{thisFile.original.name}}</small> </p>
                                     <div class="progress">
-                                      <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{uploadProg}}" aria-valuemin="0" aria-valuemax="100" style="width: {{uploadProg}}%">
-                                        <span class="sr-only">{{uploadProg}}% Complete</span>
+                                      <div class="progress-bar  {{#if isDone}} progress-bar-success{{else}}progress-bar-warning progress-bar-striped active{{/if}}" role="progressbar" aria-valuenow="{{uploadProg}}" aria-valuemin="0" aria-valuemax="100" style="width: {{uploadProg}}%">
+                                        <span class="bottomlabel">{{uploadProg}}% Complete</span>
                                       </div>
                                     </div>
                                 </div>

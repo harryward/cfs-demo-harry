@@ -7,6 +7,9 @@ Template.uploadForm.helpers({
     },
     'uploadProg':function(){
         return Docs.findOne(this.toString()).uploadProgress()
+    },
+    'isDone':function(){
+        return Docs.findOne(this.toString()).isUploaded()
     }
 });
 
