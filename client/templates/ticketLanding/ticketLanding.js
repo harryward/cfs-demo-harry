@@ -54,6 +54,8 @@ Template.ticketLanding.events({
        })
 
    }
+
+
 });
 
 Template.ticketLanding.onCreated(function () {
@@ -61,7 +63,12 @@ Template.ticketLanding.onCreated(function () {
 });
 
 Template.ticketLanding.onRendered(function () {
-    //add your statement here
+
+// console.log('onRendered');
+    $.each($('.list-group-item'), function (index, value) {
+
+      console.log("hello world")
+    })
 });
 
 Template.ticketLanding.onDestroyed(function () {
