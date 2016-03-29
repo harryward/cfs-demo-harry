@@ -12,6 +12,7 @@
                         <div class="list-group">
                             {{#each files}}
                                 <div class="list-group-item">
+
                                 <div class="btn btn-danger pull-right popFile">cancel</div>
                                     <p>
                                     <h4>
@@ -38,6 +39,9 @@
                                     </div>
                                     </p>
                                     <p><small class="text-muted">{{thisFile.original.name}}</small> </p>
+                                <div class="metaArea text-muted">
+                                    <p class="text-right ">Upload Percent:  {{uploadProg}}% </p>
+                                </div>
                                 </div>
                             {{/each}}
                         </div>

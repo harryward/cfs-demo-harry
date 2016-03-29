@@ -76,3 +76,9 @@ a.col-xs-4 {
 .col-xs-4.disabled{
     opacity:.5;
 }
+.metaArea.text-muted {
+    background: #F5F5F5;
+    padding: 9px;
+    font-size: 11px;
+    padding-bottom: 1px;
+}
