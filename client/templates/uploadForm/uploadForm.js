@@ -8,6 +8,22 @@ Template.uploadForm.helpers({
 });
 
 Template.uploadForm.events({
+    'click .popFile':function(event,template){
+        var self = this.toString();
+        var fileArray = [];
+        if(Session.get('files').length > 1){
+            _.each(Session.get('files'),function(fileId){
+                if(fileId === self){
+
+                }else{
+                    fileArray.push(fileId);
+                    Session.set('files',fileArray || [])
+                }
+            })
+        }else{
+            Session.set('files',[])
+        }
+    },
     'change .myFileInput': function(event, template) {
         var files = event.target.files
         for (var i = 0, ln = files.length; i < ln; i++) {
@@ -17,9 +33,9 @@ Template.uploadForm.events({
                 Docs.insert(newFile, function (err, fileObj) {
                     console.log('fileObj',fileObj);
                     var fileArray = Session.get('files') || [];
-                    fileArray.push(fileObj._id)
+                    fileArray.push(fileObj._id);
                     $(event.target).val('');
-                    Session.set('files',fileArray)
+                    Session.set('files',fileArray);
                     Session.set('docId',fileObj._id);
                     // Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
                 });

@@ -1,14 +1,16 @@
-<template name="ticketList">
+<template name="batchList">
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <div class="panel-title">Tickets</div>
+            <div class="panel-title">File Batches</div>
         </div>
         <div class="panel-body">
-
+        <div class="well searchWell">
+            <input type="text" placeholder="search by title" class="form-control searchInput"/>
+        </div>
             <div class="list-group">
                 {{#each tickets}}
-                    <a href="/edit/ticket/{{_id}}" class="{{#if isLast}}lastTicket{{/if}} list-group-item">
+                    <a href="/edit/batch/{{_id}}" class="{{#if isLast}}lastTicket{{/if}} list-group-item">
                         <span class="badge">{{totalFiles}}</span>
                         <h5>{{title}}</h5>
                         <p><small class="text-muted">{{summary}}</small></p>
