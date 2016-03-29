@@ -1,14 +1,13 @@
-<template name="ticketLanding">
+<template name="batchLanding">
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <div class="panel-title">Ticket Landing </div>
+            <div class="panel-title">Batch Landing </div>
         </div>
         <div class="panel-body">
 
             <div class="ticketInfo">
                 {{#each tickets}}
-
 
                     {{#if editing}}
 
@@ -34,7 +33,7 @@
                             <h6>Files:</h6>
                             <div class="list-group">
                                 {{#each files}}
-                                    <a href="{{theFileLink}}" class="list-group-item">
+                                    <a href="{{theFileLink}}" file="{{theFileLink}}" target="_blank" class="list-group-item">
                                         <h5>{{theFileMeta.metadata.title}}</h5>
                                         <p><small>{{theFileMeta.metadata.summary}}</small></p>
                                         <small>{{theFileMeta.original.name}}</small>

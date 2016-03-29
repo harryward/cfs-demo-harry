@@ -1,12 +1,10 @@
 <template name="uploadForm">
 
     <div class="uploadForm">
-        <form  class="ticketCreator">
-            <h2>Batch Uploader</h2>
+        <form  class="ticketCreator" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="">Upload File(s)</label>
-                <input type="file" class="myFileInput"/>
-
+                <input type="file" class="form-control myFileInput" multiple=""/>
             </div>
             <div class="form-group">
                 {{#if files}}
@@ -15,6 +13,7 @@
                             {{#each files}}
                                 <div class="list-group-item">
 
+                                <div class="btn btn-danger pull-right popFile">cancel</div>
                                     <p>
                                     <h4>
                                         {{#if thisFile.metadata.title}}
@@ -40,6 +39,9 @@
                                     </div>
                                     </p>
                                     <p><small class="text-muted">{{thisFile.original.name}}</small> </p>
+                                <div class="metaArea text-muted">
+                                    <p class="text-right ">Upload Percent:  {{uploadProg}}% </p>
+                                </div>
                                 </div>
                             {{/each}}
                         </div>
@@ -53,7 +55,7 @@
 
             <div class="form-group">
                 <label>Batch Title</label>
-                <input placeholder="give this document a name..." type="text" name="title" class="form-control"/>
+                <input placeholder="give this document a name..."  type="text" name="title" class="form-control"/>
             </div>
 
             <div class="form-group">

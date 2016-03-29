@@ -1,4 +1,4 @@
-Template.ticketLanding.helpers({
+Template.batchLanding.helpers({
     "tickets": function(){
         return Tickets.find(Session.get('params').ticketId).fetch()
 
@@ -23,7 +23,7 @@ Template.ticketLanding.helpers({
 
 
 
-Template.ticketLanding.events({
+Template.batchLanding.events({
     'click .editMe':function(event,template){
         event.preventDefault();
       if(!Session.get('editing')){
@@ -56,15 +56,15 @@ Template.ticketLanding.events({
    }
 });
 
-Template.ticketLanding.onCreated(function () {
+Template.batchLanding.onCreated(function () {
     //add your statement here
 });
 
-Template.ticketLanding.onRendered(function () {
+Template.batchLanding.onRendered(function () {
     //add your statement here
 });
 
-Template.ticketLanding.onDestroyed(function () {
+Template.batchLanding.onDestroyed(function () {
     //add your statement here
 });
 

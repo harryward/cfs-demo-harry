@@ -1,6 +1,10 @@
-Template.ticketList.helpers({
+Template.batchList.helpers({
     'tickets':function(){
-        return Tickets.find({},{sort:{'date':-1}}).fetch()
+        if(Session.get('searchQuery')){
+            return Tickets.find({'title':{$regex:Session.get('searchQuery'),$options:'i'}},{'sort':{'title':1}}).fetch()
+        }else{
+            return Tickets.find({},{'sort':{'type':-1,'title':1}}).fetch()
+        }
     },
     'theFile':function(){
         if(Docs.findOne(this.toString())){
@@ -25,10 +29,13 @@ Template.ticketList.helpers({
     }
 });
 
-Template.ticketList.events({
+Template.batchList.events({
     'click .editMe':function(event,template){
         // event.preventDefault();
         // alert('make this button go to a route that lets you edit the files, title and summary')
+    },
+    'keyup .searchInput':function(event,template){
+        Session.set('searchQuery',event.target.value)
     },
     'click .removeMe':function(event,template){
         event.preventDefault();
@@ -38,15 +45,15 @@ Template.ticketList.events({
     }
 });
 
-Template.ticketList.onCreated(function () {
+Template.batchList.onCreated(function () {
     //add your statement here
 });
 
-Template.ticketList.onRendered(function () {
+Template.batchList.onRendered(function () {
     //add your statement here
 });
 
-Template.ticketList.onDestroyed(function () {
+Template.batchList.onDestroyed(function () {
     //add your statement here
 });
 

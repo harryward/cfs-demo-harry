@@ -1,0 +1,84 @@
+.navbar a, div#bs-example-navbar-collapse-1 .brand {
+    color: #FFF!important;
+}
+a.navbar-brand {
+    text-transform: uppercase;
+    color: #FFF!important;
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    background: #36454f!important;
+}
+.btn {
+    background: #FFF!important;
+    color: #808080;
+    border-radius: 0px;
+    border: solid 1px #D3D3D3!important;
+}
+
+.form-control {
+    border-radius: 0px!important;
+}
+
+label {
+    font-weight: normal!important;
+}
+
+.dropdown-menu {
+    background: #2D383F!important;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    color: #555;
+    background-color: #485B68;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    color: #262626;
+    text-decoration: none;
+    background-color: #485B68;
+}
+
+a.navbar-brand {
+    background: #475864;
+}
+
+form.ticketCreator {
+    padding: 14px;
+    background: #F5F5F5;
+    border: solid 1px #D3D3D3;
+}
+
+pre {
+    margin-top: 16px;
+}
+.btn:hover{
+    background:whitesmoke!important;
+    color:grey!important;
+
+}.homePageGrid.text-center.row .col-xs-4 {
+     background: #F5F5F5;
+     border: solid 1px #FFF;
+     padding: 21px;
+ }
+
+.homePageGrid.text-center.row .col-xs-4:hover {
+    opacity: .7;
+    cursor: pointer;
+    background: #ececec;
+}
+.homePageGrid.text-center.row {
+    margin: 0px;
+}
+
+a.col-xs-4 {
+    color: #36454F;
+}
+.col-xs-4.disabled{
+    opacity:.5;
+}
+.metaArea.text-muted {
+    background: #F5F5F5;
+    padding: 9px;
+    font-size: 11px;
+    padding-bottom: 1px;
+}
