@@ -24,17 +24,17 @@ curl https://install.meteor.com | /bin/sh
 Create a project:
 
 ```bash
-meteor create try-meteor
+meteor create try-meteor //cfs-demo-harry?
 ```
 
 Run it:
 
 ```bash
-cd try-meteor
+cd cfs-demo-harry
 meteor
 ```
 
-Deploy it to the world, for free:
+Deploy it to the world, for free //?
 
 ```bash
 meteor deploy try-meteor.meteor.com
@@ -73,12 +73,11 @@ meteor application, so simply change into the `/docs` directory and launch
 the app:
 
 ```bash
-cd docs/
-../meteor
+meteor run --port 3030
 ```
 
 You'll then be able to read the docs locally in your browser at
-`http://localhost:3000/`.
+`http://localhost:3030/`.
 
 Note that if you run Meteor from a git checkout, you cannot pin apps to specific
 Meteor releases or run using different Meteor releases using `--release`.

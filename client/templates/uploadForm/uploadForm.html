@@ -39,9 +39,11 @@
                                     </div>
                                     </p>
                                     <p><small class="text-muted">{{thisFile.original.name}}</small> </p>
-                                <div class="metaArea text-muted">
-                                    <p class="text-right ">Upload Percent:  {{uploadProg}}% </p>
-                                </div>
+                                    <div class="progress">
+                                      <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{uploadProg}}" aria-valuemin="0" aria-valuemax="100" style="width: {{uploadProg}}%">
+                                        <span class="sr-only">{{uploadProg}}% Complete</span>
+                                      </div>
+                                    </div>
                                 </div>
                             {{/each}}
                         </div>
