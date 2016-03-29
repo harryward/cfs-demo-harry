@@ -24,17 +24,17 @@ curl https://install.meteor.com | /bin/sh
 Create a project:
 
 ```bash
-meteor create try-meteor
+meteor create try-meteor //cfs-demo-harry?
 ```
 
 Run it:
 
 ```bash
-cd try-meteor
+cd cfs-demo-harry
 meteor
 ```
 
-Deploy it to the world, for free:
+Deploy it to the world, for free //?
 
 ```bash
 meteor deploy try-meteor.meteor.com
