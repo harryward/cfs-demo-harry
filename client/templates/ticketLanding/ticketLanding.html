@@ -1,21 +1,4 @@
 <template name="ticketLanding">
-<<<<<<< HEAD
-	<div class="alert alert-success alert-dismissible" role="alert">
-	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	<strong>Success!</strong>Your changes have been saved.
-	</div>
-
-    {{#each tickets}}
-	<h1>Ticket Landing</h1>
-		<p>{{_id}}</p>
-		<p>Title: {{title}}</p>
-		<p>Summary: {{summary}}</p>
-		<div class="form-group">
-			<label>Title</label>
-			<input id="titleInput" placeholder="Edit current title: {{title}}" type="text" name="title" class="form-control"/>
-			<label>Summary</label>
-			<input id="summaryInput" placeholder="Edit current summary: {{summary}}" type="text" name="summary" class="form-control"/>
-=======
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -52,6 +35,7 @@
                             <div class="list-group">
                                 {{#each files}}
                                     <a href="{{theFileLink}}" class="list-group-item">{{theFileMeta.original.name}}</a>
+                                    <button class="btn deleteThis btn-danger">Delete</button>
                                 {{/each}}
                             </div>
                         </div>
@@ -67,15 +51,7 @@
                 <div class="editMe btn btn-primary">Edit</div>
             {{/if}}
 
->>>>>>> master
         </div>
     </div>
 
-<<<<<<< HEAD
-        <button class="btn btn-primary publishMe" type="submit">Publish</button> 
-		<a href="/" class="btn btn-warning cancelMe" type="cancel">Cancel</a>
-		<button href="/" class="btn removeMe btn-danger" type="delete">Delete</button>
-    {{/each}}
-=======
->>>>>>> master
 </template>

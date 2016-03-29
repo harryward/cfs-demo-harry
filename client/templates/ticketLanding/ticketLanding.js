@@ -32,6 +32,11 @@ Template.ticketLanding.events({
           Session.set('editing',false)
       }
     },
+
+    'click .deleteThis':function(event,template){
+      console.log("hi")
+    },
+    
    'submit .editForm':function(event,template){
        event.preventDefault();
        var formObj = {};
@@ -53,6 +58,7 @@ Template.ticketLanding.events({
            }
        })
 
+
    }
 
 
@@ -64,71 +70,9 @@ Template.ticketLanding.onCreated(function () {
 
 Template.ticketLanding.onRendered(function () {
 
-// console.log('onRendered');
-    $.each($('.list-group-item'), function (index, value) {
-
-      console.log("hello world")
-    })
 });
 
 Template.ticketLanding.onDestroyed(function () {
     //add your statement here
 });
 
-<<<<<<< HEAD
-	}
-});
-
-Template.ticketLanding.events({
-	'click .publishMe':function(event,template){
-		
-		if($('#titleInput').val() !== ''){
-			var newtitle= $('#titleInput').val();
-			Tickets.update({_id: this._id}, {$set: {'title': newtitle}});
-			$('#titleInput').val('');
-			$(".alert-success").show();
-		} 
-
-		if($('#summaryInput').val() !== ''){
-			var newSummary= $('#summaryInput').val();
-			Tickets.update({_id: this._id}, {$set: {'summary': newSummary}});
-			$('#summaryInput').val('');
-			$(".alert-success").show();	
-		} 
-		// else if ($('#summaryInput') && $('#summaryInput').val() == ''){
-		// 	alert("No changes made.");
-		// 	// // return false;	
-
-		// }
-		else{
-
-			return false;	
-
-		}
-
-	},
-	'click .cancelMe':function(event,template){
-		if(confirm('Are you sure? All unsaved changes will be lost.')){
-			FlowRouter.go("/");
-		} else{
-			return false;
-
-		}
-
-
-
-	},
-	'click .removeMe':function(event,template){
-		event.preventDefault();
-		if(confirm('Are you sure you want to delete? This cannot be reversed.')){
-			Tickets.remove(this._id)
-			FlowRouter.go("/");
-
-		} else{
-			return false;
-		}
-	}
-
-});
-=======
->>>>>>> master
