@@ -29,3 +29,4 @@ standard-minifier-js
 momentjs:moment
 anti:fake
 msavin:mongol
+typ:accounts-ldap
