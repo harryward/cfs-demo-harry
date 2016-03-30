@@ -5,6 +5,9 @@ Template.filterModule.helpers({
     'searchQuery':function(){
         return Session.get('searchQuery')
     },
+    'advancedFilter':function(){
+        return Session.get('advancedFilter')
+    },
     'searching':function(){
         return Session.get('searching')
     },
@@ -29,7 +32,7 @@ Template.filterModule.helpers({
                         'summary': {
                             $regex: Session.get('searchQuery'), $options: 'i'
                         }
-                    },
+                    }
 
                 ]
 
@@ -49,7 +52,12 @@ Template.filterModule.events({
         Session.set('page', parseInt('0'))
     },
     'click .advancedFilter':function(event,template){
-        alert('coming soon')
+        event.preventDefault();
+        if( Session.get("advancedFilter") ) {
+            Session.set("advancedFilter", false);
+        }else{
+            Session.set("advancedFilter", true);
+        }
     },
 });
 

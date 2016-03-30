@@ -5,9 +5,23 @@ FlowRouter.route('/upload', {
         console.log("Query Params:", queryParams);
         BlazeLayout.render('globalLayout', {
             top: "uploadForm"
+            //main: "mikeTpl"
         });
-    },
+    }
 });
+
+FlowRouter.route('/mike', {
+    // do some action for this route
+    action: function(params, queryParams) {
+        console.log("Params:", params);
+        console.log("Query Params:", queryParams);
+        BlazeLayout.render('globalLayout', {
+            top: "mikeTpl"
+        });
+    }
+});
+
+
 FlowRouter.route('/', {
     // do some action for this route
     action: function(params, queryParams) {
@@ -16,7 +30,7 @@ FlowRouter.route('/', {
         BlazeLayout.render('globalLayout', {
             top: "homePage"
         });
-    },
+    }
 });
 
 
@@ -28,7 +42,7 @@ FlowRouter.route('/files', {
         BlazeLayout.render('globalLayout', {
             main:"batchList"
         });
-    },
+    }
 });
 
 FlowRouter.route('/edit/batch/:ticketId', {
@@ -36,9 +50,9 @@ FlowRouter.route('/edit/batch/:ticketId', {
     action: function(params, queryParams) {
         console.log("Params:", params);
         console.log("Query Params:", queryParams);
-        Session.set('params',params)
+        Session.set('params',params);
         BlazeLayout.render('globalLayout', {
             main: "batchLanding"
         });
-    },
+    }
 });
