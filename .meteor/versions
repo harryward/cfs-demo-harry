@@ -30,6 +30,7 @@ cfs:tempstore@0.1.5
 cfs:upload-http@0.0.20
 cfs:worker@0.1.4
 check@1.1.2
+dburles:mongo-collection-instances@0.3.4
 ddp@1.2.3
 ddp-client@1.2.3
 ddp-common@1.2.3
@@ -52,11 +53,13 @@ insecure@1.0.5
 jquery@1.11.6
 kadira:blaze-layout@2.3.0
 kadira:flow-router@2.11.0
+lai:collection-extensions@0.1.4
 launch-screen@1.0.8
 livedata@1.0.16
 logging@1.0.10
 meteor@1.1.12
 meteor-base@1.0.2
+meteortoys:toykit@2.2.1
 minifier-css@1.1.9
 minifier-js@1.1.9
 minimongo@1.0.12
@@ -68,6 +71,7 @@ momentjs:moment@2.12.0
 mongo@1.1.5
 mongo-id@1.0.2
 mongo-livedata@1.0.10
+msavin:mongol@1.6.2
 npm-mongo@1.4.41
 observe-sequence@1.0.9
 ordered-dict@1.0.5

@@ -2,22 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dcc75558-afad-42d1-b5fb-9ce0ba0ff26b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/pubs/docPubs.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/filterModule/filterModule.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/filterModule/filterModule.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/batchLanding/batchLanding.html" afterPath="$PROJECT_DIR$/client/templates/batchLanding/batchLanding.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/batchLanding/batchLanding.js" afterPath="$PROJECT_DIR$/client/templates/batchLanding/batchLanding.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/batchList/batchList.html" afterPath="$PROJECT_DIR$/client/templates/batchList/batchList.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/batchList/batchList.js" afterPath="$PROJECT_DIR$/client/templates/batchList/batchList.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cfsdemo.css" afterPath="$PROJECT_DIR$/cfsdemo.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cfsdemo.js" afterPath="$PROJECT_DIR$/cfsdemo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/homePage/homePage.html" afterPath="$PROJECT_DIR$/client/homePage/homePage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/modules/navBar.html" afterPath="$PROJECT_DIR$/client/modules/navBar.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/packages" afterPath="$PROJECT_DIR$/.meteor/packages" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/uploadForm/uploadForm.html" afterPath="$PROJECT_DIR$/client/templates/uploadForm/uploadForm.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/uploadForm/uploadForm.js" afterPath="$PROJECT_DIR$/client/templates/uploadForm/uploadForm.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/versions" afterPath="$PROJECT_DIR$/.meteor/versions" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="cfsdemo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -48,20 +35,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cfsdemo.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="cfsdemo.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cfsdemo.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.814815">
-              <caret line="182" column="22" selection-start-line="182" selection-start-column="22" selection-end-line="182" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.30597016">
+              <caret line="179" column="31" selection-start-line="179" selection-start-column="31" selection-end-line="179" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="batchList.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="batchList.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/templates/batchList/batchList.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6052632">
+            <state vertical-scroll-proportion="-7.6666665">
               <caret line="52" column="51" selection-start-line="52" selection-start-column="51" selection-end-line="52" selection-end-column="51" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -124,25 +111,18 @@
         <entry file="file://$PROJECT_DIR$/server/pubs/docPubs.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+              <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="batchLanding.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/templates/batchLanding/batchLanding.html">
+      <file leaf-file-name="packages" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.meteor/packages">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.541666">
-              <caret line="33" column="33" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
-              <folding>
-                <element signature="n#style#0;n#ol#0;n#template#0;n#!!top" expanded="true" />
-                <marker date="1459352830000" expanded="true" signature="53:1527" placeholder="..." />
-                <marker date="1459352830000" expanded="true" signature="261:1514" placeholder="..." />
-                <marker date="1459352830000" expanded="true" signature="1019:1467" placeholder="..." />
-                <marker date="1459352830000" expanded="true" signature="1059:1448" placeholder="..." />
-                <marker date="1459352830000" expanded="true" signature="1229:1397" placeholder="..." />
-              </folding>
+            <state vertical-scroll-proportion="-16.666666">
+              <caret line="30" column="13" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -183,17 +163,17 @@
         <option value="$PROJECT_DIR$/client/homePage/homePage.html" />
         <option value="$PROJECT_DIR$/client/templates/uploadForm/uploadForm.html" />
         <option value="$PROJECT_DIR$/client/modules/navBar.html" />
-        <option value="$PROJECT_DIR$/.meteor/packages" />
         <option value="$PROJECT_DIR$/cfsdemo.js" />
         <option value="$PROJECT_DIR$/client/templates/batchLanding/batchLanding.js" />
         <option value="$PROJECT_DIR$/client/templates/batchLanding/batchLanding.html" />
-        <option value="$PROJECT_DIR$/cfsdemo.css" />
         <option value="$PROJECT_DIR$/client/templates/uploadForm/uploadForm.js" />
         <option value="$PROJECT_DIR$/client/filterModule/filterModule.js" />
         <option value="$PROJECT_DIR$/client/templates/batchList/batchList.js" />
         <option value="$PROJECT_DIR$/server/pubs/docPubs.js" />
         <option value="$PROJECT_DIR$/client/filterModule/filterModule.html" />
         <option value="$PROJECT_DIR$/client/templates/batchList/batchList.html" />
+        <option value="$PROJECT_DIR$/.meteor/packages" />
+        <option value="$PROJECT_DIR$/cfsdemo.css" />
       </list>
     </option>
   </component>
@@ -619,11 +599,11 @@
           <caret line="41" column="34" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
           <folding>
             <element signature="n#style#0;n#ol#0;n#template#0;n#!!top" expanded="true" />
-            <marker date="1459352830000" expanded="true" signature="53:1527" placeholder="..." />
-            <marker date="1459352830000" expanded="true" signature="261:1514" placeholder="..." />
-            <marker date="1459352830000" expanded="true" signature="1019:1467" placeholder="..." />
-            <marker date="1459352830000" expanded="true" signature="1059:1448" placeholder="..." />
-            <marker date="1459352830000" expanded="true" signature="1229:1397" placeholder="..." />
+            <marker date="1459352830000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1459352830000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1459352830000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1459352830000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1459352830000" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -710,11 +690,11 @@
           <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
           <folding>
             <element signature="n#style#0;n#ol#0;n#template#0;n#!!top" expanded="true" />
-            <marker date="1459352830000" expanded="true" signature="53:1527" placeholder="..." />
-            <marker date="1459352830000" expanded="true" signature="261:1514" placeholder="..." />
-            <marker date="1459352830000" expanded="true" signature="1019:1467" placeholder="..." />
-            <marker date="1459352830000" expanded="true" signature="1059:1448" placeholder="..." />
-            <marker date="1459352830000" expanded="true" signature="1229:1397" placeholder="..." />
+            <marker date="1459352830000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1459352830000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1459352830000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1459352830000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1459352830000" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -867,14 +847,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.meteor/packages">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.444445">
-          <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cfsdemo.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.875">
@@ -897,20 +869,12 @@
           <caret line="33" column="33" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
           <folding>
             <element signature="n#style#0;n#ol#0;n#template#0;n#!!top" expanded="true" />
-            <marker date="1459352830000" expanded="true" signature="53:1527" placeholder="..." />
-            <marker date="1459352830000" expanded="true" signature="261:1514" placeholder="..." />
-            <marker date="1459352830000" expanded="true" signature="1019:1467" placeholder="..." />
-            <marker date="1459352830000" expanded="true" signature="1059:1448" placeholder="..." />
-            <marker date="1459352830000" expanded="true" signature="1229:1397" placeholder="..." />
+            <marker date="1459352830000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1459352830000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1459352830000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1459352830000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1459352830000" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cfsdemo.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.814815">
-          <caret line="182" column="22" selection-start-line="182" selection-start-column="22" selection-end-line="182" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -954,14 +918,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/pubs/docPubs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/filterModule/filterModule.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.25">
@@ -972,11 +928,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/templates/batchList/batchList.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6052632">
+        <state vertical-scroll-proportion="-7.6666665">
           <caret line="52" column="51" selection-start-line="52" selection-start-column="51" selection-end-line="52" selection-end-column="51" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/pubs/docPubs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.meteor/packages">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.666666">
+          <caret line="30" column="13" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cfsdemo.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30597016">
+          <caret line="179" column="31" selection-start-line="179" selection-start-column="31" selection-end-line="179" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
