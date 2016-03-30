@@ -28,7 +28,9 @@ Template.mikeTpl.events({
 });
 
 Template.mikeTpl.onCreated(function () {
-    //add your statement here
+    Deps.autorun(function(){
+        Meteor.subscribe('advancedFilter',Session.get('filterQuery'))
+    })
 });
 
 Template.mikeTpl.onRendered(function () {

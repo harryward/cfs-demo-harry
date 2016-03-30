@@ -41,9 +41,42 @@
                 {{/each}}
             {{/if}}
         {{else}}
-            <div class="nothingFound">
-                <div class="text-muted"><i class="fa fa-warning"></i> No docs found with "{{searchQuery}}"..</div>
-            </div>
+            {{#if advancedResults}}
+                {{#each advancedResults}}
+                    <div class=" singlerecord">
+                        <p> ADVANCED RESULT <br>
+                            <a href="/edit/batch/{{_id}}" class="fileTitle">{{title}}</a></p>
+
+                        <p class="filelink">
+                            /edit/batch/{{_id}}
+                            <span class="text-muted">({{date}})</span>
+                        </p>
+
+                        <p class="caption text-muted">
+                            <small>{{summary}}</small>
+                        </p>
+                        {{#if tags}}
+                            <div class="fileStuff">
+                                <a href="#" class="mini-title">
+                                    <b>
+                                        <i class="fa fa-tag"></i> tags:
+                                    </b>
+                                </a>
+                                {{#each tags}}
+                                    <a class="mini-title">
+                                        {{this}}
+                                    </a>
+                                {{/each}}
+                            </div>
+                        {{/if}}
+
+                    </div>
+                {{/each}}
+            {{else}}
+                <div class="nothingFound">
+                    <div class="text-muted"><i class="fa fa-warning"></i> No docs found with "{{searchQuery}}"..</div>
+                </div>
+            {{/if}}
         {{/if}}
 
     </div>

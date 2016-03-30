@@ -212,3 +212,6 @@ pre {
 .fileMeta.text-muted {
     margin-top: 3px;
 }
+button.btn:active,button.btn:focus {
+    color: #808080!important;
+}

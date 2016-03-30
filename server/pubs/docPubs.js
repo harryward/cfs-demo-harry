@@ -29,6 +29,37 @@ Meteor.publish('docs',function(searchQuery,skipAmount){
     }
 })
 
+Meteor.publish('advancedFilter',function(filterObj){
+    if(filterObj){
+        return Tickets.find({
+                $or: [
+                    {
+                        'title': {
+                            $regex: filterObj.title, $options: 'i'
+                        }
+                    },
+                    //{
+                    //    'tags': {
+                    //        $regex: searchQuery, $options: 'i'
+                    //    }
+                    //},
+                    //{
+                    //    'summary': {
+                    //        $regex: searchQuery, $options: 'i'
+                    //    }
+                    //},
+
+                ]
+
+            },
+            {'sort': {'date': -1},limit:100}
+        )
+
+    }else{
+        return Tickets.find({}, {'sort': {'date': -1},limit:100})
+    }
+})
+
 Meteor.publish('singleTicket',function(ticketId){
     return Tickets.find({'_id':ticketId})
 
