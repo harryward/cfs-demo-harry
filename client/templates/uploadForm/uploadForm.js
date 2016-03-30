@@ -43,8 +43,10 @@ Template.uploadForm.events({
                     $(event.target).val('');
                     Session.set('files',fileArray);
                     Session.set('docId',fileObj._id);
+                    Meteor.subscribe('singleDoc',fileObj._id);
                     // Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
                 });
+
             }
         }
     },
@@ -83,6 +85,8 @@ Template.uploadForm.events({
         });
         ticketObj.date = new Date();
         ticketObj.files = Session.get('files');
+        ticketObj.tagString = ticketObj.tags;
+        ticketObj.tags = ticketObj.tags.split(',');
         console.log('ticket object',ticketObj);
         if(!Session.get('docId')) {
             alert('you must attach a file!')
@@ -95,8 +99,9 @@ Template.uploadForm.events({
                     $('input,textarea').val('');
                     Session.set('lastTicket',resp);
                     Session.set('docId',false);
-                    Session.set('files',false)
-
+                    Session.set('files',false);
+                    Session.set('searchQuery',ticketObj.title)
+                    FlowRouter.go('/files');
                 }else{
                     console.error('error creating ticket',err)
                 }

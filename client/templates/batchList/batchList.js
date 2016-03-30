@@ -1,48 +1,80 @@
 Template.batchList.helpers({
-    'tickets':function(){
-        if(Session.get('searchQuery')){
-            return Tickets.find({'title':{$regex:Session.get('searchQuery'),$options:'i'}},{'sort':{'title':1}}).fetch()
-        }else{
-            return Tickets.find({},{'sort':{'type':-1,'title':1}}).fetch()
+    'tickets': function () {
+        if (Session.get('searchQuery')) {
+            return Tickets.find({
+                $or: [
+                    {
+                        'title': {
+                            $regex: Session.get('searchQuery'), $options: 'i'
+                        }
+                    },
+                    {
+                        'tags': {
+                            $regex: Session.get('searchQuery'), $options: 'i'
+                        }
+                    },
+                    {
+                        'summary': {
+                            $regex: Session.get('searchQuery'), $options: 'i'
+                        }
+                    },
+
+                ]
+
+            }, {
+                'sort': {
+                    'date': -1
+                },
+                'skip': Session.get('skip'),
+                'limit': 10,
+            }).fetch()
+        } else {
+            return Tickets.find({}, {
+                'sort': {
+                    'date': -1
+                },
+                //'skip': Session.get('skip'),
+                'limit': 10,
+            }).fetch()
         }
     },
-    'theFile':function(){
-        if(Docs.findOne(this.toString())){
-        return Docs.findOne(this.toString()).url()
-        }
+    'date': function () {
+        return moment(this.date).fromNow();
     },
-    'totalFiles':function(){
-        return this.files.length
+    'searchQuery':function(){
+        return Session.get('searchQuery')
     },
-    'theFileMeta':function(){
-        if(Docs.findOne(this.toString())){
-            return Docs.findOne(this.toString())
-        }
+    'raw': function () {
+        return EJSON.stringify(this, {'indent': true})
     },
-    'raw':function(){
-        return EJSON.stringify(this,{'indent':true})
-    },
-    'isLast':function(){
-        if(this._id === Session.get('lastTicket')){
+    'isLast': function () {
+        if (this._id === Session.get('lastTicket')) {
             return true
         }
     }
 });
 
 Template.batchList.events({
-    'click .editMe':function(event,template){
+    'click .editMe': function (event, template) {
         // event.preventDefault();
         // alert('make this button go to a route that lets you edit the files, title and summary')
     },
-    'keyup .searchInput':function(event,template){
-        Session.set('searchQuery',event.target.value)
-    },
-    'click .removeMe':function(event,template){
+
+    'click .removeMe': function (event, template) {
         event.preventDefault();
-        if(confirm('are you sure? this cannot be reversed')){
-        Tickets.remove(this._id)
+        if (confirm('are you sure? this cannot be reversed')) {
+            Tickets.remove(this._id)
         }
-    }
+    },
+    'click .pagination li':function(event,template){
+        event.preventDefault();
+        var pagNum = $(event.target).text();
+
+        Session.set('skip', pagNum * 10 )
+        Session.set('page', pagNum )
+        $('.batchList-container').scrollTop(0)
+    },
+
 });
 
 Template.batchList.onCreated(function () {

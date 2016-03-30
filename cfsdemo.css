@@ -64,7 +64,7 @@ pre {
 .homePageGrid.text-center.row .col-xs-4:hover {
     opacity: .7;
     cursor: pointer;
-    background: #ececec;
+    background: gainsboro;
 }
 .homePageGrid.text-center.row {
     margin: 0px;
@@ -81,4 +81,128 @@ a.col-xs-4 {
     padding: 9px;
     font-size: 11px;
     padding-bottom: 1px;
+}
+nav.navbar.navbar-default.navbar-xs .navbar-toggle {
+    border: solid 1px #808080;
+}
+.navbar-default {
+    background-color: #384650;
+    border-color: #475864;
+}
+a.singlerecord {
+    display: block;
+    padding: 7px;
+    background: #F5F5F5;
+    margin-bottom: 7px;
+}
+.jumbotron {
+    border-radius: 0px!important;
+    padding: 21px!important;
+}
+.container .jumbotron, .container-fluid .jumbotron {
+    padding-right: 15px;
+    padding-left: 15px;
+    border-radius: 6px;
+    background: #FFF;
+}.navbar {
+     border-radius: 0px!important;
+     margin-top: 5px;
+ }
+
+.batchList-container {
+    background: #FFF;
+    padding: 16px;
+    max-height:60vh;
+    overflow:scroll;
+    margin-top:-29px;
+}
+a.singlerecord {
+    display: block;
+    padding: 7px;
+    background: #FFF;
+    margin-bottom: 7px;
+    border-bottom: solid 1px #D3D3D3;
+}a.fileTitle {
+     display: block;
+     font-size: 17px;
+ }p.filelink {
+      color: #008000;
+  }.singlerecord p {
+       line-height: 1;
+   }p.caption.text-muted {
+        font-size: 19px;
+        position: relative;
+        top: -6px;
+    }
+.fileStuff {
+    position: relative;
+    top: -12px;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-style: normal;
+}a.mini-title {
+     margin-right: 3px;
+     border-radius: solid 1px lightgrey!important;
+     display: block;
+     display: inline-table;
+ }.singlerecord {
+      margin-bottom: 21px;
+  }
+p.caption.text-muted {
+    margin-bottom: 12px!important;
+    font-size: 17px;
+}p.filelink {
+     color: #006621;
+ }a {
+      color: #1a0dab;
+      text-decoration: none;
+  }.jumbotron {
+       background: #F5F5F5!important;
+       margin-top: -20px;
+   }
+a.fileTitle {
+    display: block;
+    font-size: 17px;
+    margin-bottom: -6px!important;
+    display: block;
+}.batchList-container {
+     border: solid 1px #F5F5F5;
+     margin-top: -30px;
+ }
+p.pagtitle {
+    position: relative;
+    top: 22px;
+}
+.nothingFound {
+    padding: 6px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    /* color: #F00!important; */
+}
+.fileMeta.text-muted {
+    text-align: right;
+    margin-top: -1px;
+}body {
+     background: #253037;
+ }p.pagtitle {
+      color: #FFF;
+      text-transform: uppercase;
+  }li a {
+       color: #2317AE!important;
+   }.navbar {
+        border-radius: 0px!important;
+        margin-top: 17px;
+    }.ticketInfo {
+         padding: 10px;
+         background: #FFF;
+     }
+
+ol.breadcrumb a {
+    color: #36454F!important;
+}.thePanel {
+     margin-bottom: 12px;
+ }
+pre {
+    background: #000;
+    color: #0F0;
 }

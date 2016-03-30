@@ -1,32 +1,64 @@
 <template name="batchList">
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <div class="panel-title">File Batches</div>
-        </div>
-        <div class="panel-body">
-        <div class="well searchWell">
-            <input type="text" placeholder="search by title" class="form-control searchInput"/>
-        </div>
-            <div class="list-group">
+    {{>filterModule}}
+
+    <div class="batchList-container">
+        {{#if tickets}}
+            {{#if searching}}
+                <div class="searching" style="padding:30px">
+                    <p class="text-muted"><i class="fa fa-spin fa-spinner"></i> searching for "{{searchQuery}}"</p>
+                </div>
+            {{else}}
                 {{#each tickets}}
-                    <a href="/edit/batch/{{_id}}" class="{{#if isLast}}lastTicket{{/if}} list-group-item">
-                        <span class="badge">{{totalFiles}}</span>
-                        <h5>{{title}}</h5>
-                        <p><small class="text-muted">{{summary}}</small></p>
+                    <div class=" singlerecord">
+                        <p>
+                            <a href="/edit/batch/{{_id}}" class="fileTitle">{{title}}</a></p>
 
-                        <!--<div class="well">-->
-                            <!--<h6>Files:</h6>-->
-                            <!--{{#each files}}-->
-                                <!--<a href="{{theFile}}" class="list-group-item" target="_blank">{{theFileMeta.original.name}}</a>-->
-                            <!--{{/each}}-->
-                        <!--</div>-->
-                        <!--<h6>RAW DATA:</h6>-->
-                        <!--<pre>{{raw}}</pre>-->
-                    </a>
+                        <p class="filelink">
+                            /edit/batch/{{_id}}
+                            <span class="text-muted">({{date}})</span>
+                        </p>
+
+                        <p class="caption text-muted">
+                            <small>{{summary}}</small>
+                        </p>
+                        {{#if tags}}
+                            <div class="fileStuff">
+                                <a href="#" class="mini-title">
+                                    <b>
+                                        <i class="fa fa-tag"></i> tags:
+                                    </b>
+                                </a>
+                                {{#each tags}}
+                                    <a class="mini-title">
+                                        {{this}}
+                                    </a>
+                                {{/each}}
+                            </div>
+                        {{/if}}
+
+                    </div>
                 {{/each}}
+            {{/if}}
+        {{else}}
+            <div class="nothingFound">
+                <div class="text-muted"><i class="fa fa-warning"></i> No docs found with "{{searchQuery}}"..</div>
             </div>
+        {{/if}}
 
-        </div>
     </div>
+    {{#with tickets}}
+        <div class="text-center pagBar">
+            <p class="pagtitle">Pages (not dynamic yet)</p>
+            <!--#todo make dynamic based on data-->
+            <ul class="pagination pagination-sm">
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+            </ul>
+        </div>
+    {{/with}}
+
 </template>

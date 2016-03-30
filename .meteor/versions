@@ -1,5 +1,5 @@
 allow-deny@1.0.2
-autopublish@1.0.5
+anti:fake@0.4.1
 autoupdate@1.2.6
 babel-compiler@6.5.2
 babel-runtime@0.1.6
@@ -64,6 +64,7 @@ mobile-experience@1.0.2
 mobile-status-bar@1.0.10
 modules@0.5.1
 modules-runtime@0.6.1
+momentjs:moment@2.12.0
 mongo@1.1.5
 mongo-id@1.0.2
 mongo-livedata@1.0.10
