@@ -1,21 +1,30 @@
 <template name="filterModule">
-    <form  class="searchForm">
+    <form class="searchForm">
         <div class="jumbotron">
             <div class="row searchRow">
                 <div class="col-sm-8">
                     <div class="form-row">
-                        <input type="text" value="{{searchQuery}}" placeholder="search..." class="form-control searchInput"/>
+                        <input type="text" value="{{searchQuery}}" placeholder="search..."
+                               class="form-control searchInput"/>
                     </div>
                     <div class="fileMeta text-muted">
-                        <div class="btn btn-default btn-xs advancedFilter"><i class="fa fa-filter"></i> Advanced Filter</div>
-
+                        <div class="btn btn-default btn-xs advancedFilter"><i class="fa fa-filter"></i>
+                            {{#if advancedFilter}}
+                                Close Filters
+                            {{else}}
+                                Advanced Filter
+                            {{/if}}
+                        </div>
                     </div>
+                    {{#if advancedFilter}}
+                         {{>mikeTpl}}
+                     {{/if}}
                 </div>
                 <div class="col-sm-4">
                     {{#if searching}}
                         ...
                     {{else}}
-                        <small>displaying {{skip ticketCount}} results </small>
+                        <small>displaying {{skip ticketCount}} results</small>
                     {{/if}}
                 </div>
             </div>
