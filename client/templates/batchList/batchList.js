@@ -43,7 +43,11 @@ Template.batchList.helpers({
 
             // IF ADVANCED FILTER
 
-            return false
+            return Tickets.find({},{
+                'sort': {
+                'date': -1
+            }}
+        ).fetch()
         }
     },
     'advancedResults':function(){
