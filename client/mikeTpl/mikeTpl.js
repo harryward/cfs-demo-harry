@@ -1,36 +1,51 @@
 Template.mikeTpl.helpers({
     //add you helpers here
     'rawFilter': function(){
-        return EJSON.stringify( Session.get('filterQuery'), {'indent':true } );
-    }
+        return EJSON.stringify( Session.get('docSearchQuery'), {'indent':true } );
+    },
+    'docSearchQuery':function(){
+        return Session.get('docSearchQuery')
+    },
+    'formBuilderObj':function(){
+        return Session.get('formBuilderObj')
+    },
 
 });
 
 Template.mikeTpl.events({
     'submit .advancedFilterForm': function(event, template){
         event.preventDefault();
-        var formObj = {};
-        var fields = template.findAll('.form-control');
-        _.each(fields, function(e, i){
-            if(e.name) {
-                formObj[e.name] = e.value;
+        searchQuery = {};
+        searchQuery.$or = [];
+        fields = template.findAll('.form-control');
+        _.each(fields,function(e){
+
+            if(e.name && e.value){
+                theField = {};
+                theField[e.name] = {
+
+                    $regex: e.value, $options: 'i'
+
+                }
+
+
+                console.info('theField',theField);
+
+                searchQuery.$or.push(theField);
+
             }
         })
-        console.log("form data: ", formObj);
 
-        formObj.date = new Date();
-        if(Session.get('searchQuery')){
-            formObj.s_query = Session.get('searchQuery');
-        }
 
-        Session.set('filterQuery', formObj);
+
+        Session.set('docSearchQuery',searchQuery);
     }
 });
 
 Template.mikeTpl.onCreated(function () {
-    Deps.autorun(function(){
-        Meteor.subscribe('advancedFilter',Session.get('filterQuery'))
-    })
+    //Deps.autorun(function(){
+    //    Meteor.subscribe('advancedFilter',Session.get('filterQuery'))
+    //})
 });
 
 Template.mikeTpl.onRendered(function () {

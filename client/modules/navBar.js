@@ -3,7 +3,10 @@ Template.navBar.helpers({
 });
 
 Template.navBar.events({
-    //add your events here
+    'click .logOut':function(event,template){
+        event.preventDefault();
+        Meteor.logout();
+    }
 });
 
 Template.navBar.onCreated(function () {

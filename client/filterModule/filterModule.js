@@ -46,10 +46,40 @@ Template.filterModule.helpers({
 Template.filterModule.events({
     'submit .searchForm': function (event, template) {
         event.preventDefault();
-        var searchTerm = $(event.target).find('.searchInput').val();
-        Session.set('searchQuery', searchTerm)
-        Session.set('skip', parseInt('0'))
-        Session.set('page', parseInt('0'))
+        filterObj = {};
+        filterObj.term = $(event.target).find('.searchInput').val();
+        searchColumns = ["title","summary","tags","date"];
+        searchQuery = {};
+        searchQuery.$or = []
+
+        //QUERY ARGS
+        queryArgs = {};
+        //queryArgs.limit = 1;
+        queryArgs.sort = {date: 1}
+        formBObj = [];
+        _.each(searchColumns,function(e){
+
+            // build the query
+            var fieldObj = {};
+            fieldObj[e] ={$regex:filterObj.term,$options:"i"}
+
+            searchQuery.$or.push(fieldObj)
+
+            //BUILD THE FORM
+            formBObj.push({
+                'name':e,
+                'value':filterObj.term
+            })
+
+
+        })
+        console.log('searchQuery',searchQuery)
+        Session.set('searchQuery',filterObj.term)
+        Session.set('formBuilderObj',formBObj)
+        Session.set('docSearchQuery', searchQuery);
+        Session.set('queryArgs', queryArgs);
+
+
     },
     'click .advancedFilter':function(event,template){
         event.preventDefault();
@@ -67,10 +97,13 @@ Template.filterModule.onCreated(function () {
     Session.set('skip', parseInt('0'))
     Session.set('page', parseInt('1'))
 
-    Deps.autorun(function(){
-        Meteor.subscribe('docs',Session.get('searchQuery'),Session.get('skip'))
-    })
+    //Deps.autorun(function(){
+    //    Meteor.subscribe('docs',Session.get('searchQuery'),Session.get('skip'))
+    //})
 
+    Deps.autorun(function(){
+        Meteor.subscribe('docSearch',Session.get('docSearchQuery'),Session.get('queryArgs'))
+    })
 
 
 });
