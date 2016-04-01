@@ -54,8 +54,10 @@ Template.filterModule.events({
     'click .advancedFilter':function(event,template){
         event.preventDefault();
         if( Session.get("advancedFilter") ) {
+            Session.set('useQuery',false);
             Session.set("advancedFilter", false);
         }else{
+            Session.set('useQuery',true);
             Session.set("advancedFilter", true);
         }
     },
@@ -64,9 +66,13 @@ Template.filterModule.events({
 Template.filterModule.onCreated(function () {
     Session.set('skip', parseInt('0'))
     Session.set('page', parseInt('1'))
+
     Deps.autorun(function(){
         Meteor.subscribe('docs',Session.get('searchQuery'),Session.get('skip'))
     })
+
+
+
 });
 
 Template.filterModule.onRendered(function () {
