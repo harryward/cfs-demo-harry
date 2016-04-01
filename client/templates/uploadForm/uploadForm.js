@@ -88,6 +88,9 @@ Template.uploadForm.events({
         ticketObj.tagString = ticketObj.tags;
         ticketObj.tags = ticketObj.tags.split(',');
         console.log('ticket object',ticketObj);
+        ticketObj.user = Meteor.user()._id;
+        ticketObj.userObj = Meteor.user();
+
         if(!Session.get('docId')) {
             alert('you must attach a file!')
             return false
