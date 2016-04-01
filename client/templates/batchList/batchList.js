@@ -66,7 +66,7 @@ Template.batchList.helpers({
                 //},
                 //{
                 //    'summary': {
-                //        $regex: searchQuery, $options: 'i'
+                //        $regex: searchQuery, $options: 'i' dd
                 //    }
                 //},
 
