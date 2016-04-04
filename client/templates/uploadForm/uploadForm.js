@@ -12,6 +12,7 @@ Template.uploadForm.helpers({
         return Docs.findOne(this.toString()).isUploaded()
     }
 });
+// test
 
 Template.uploadForm.events({
     'click .popFile':function(event,template){
