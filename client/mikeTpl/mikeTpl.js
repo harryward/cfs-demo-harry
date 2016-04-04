@@ -31,7 +31,7 @@ Template.mikeTpl.events({
                 }else{
                     theField[e.name] = {
 
-                        $gte: new Date(e.value)
+                        $gte: new Date(moment(e.value).format())
 
                     }
                 }
