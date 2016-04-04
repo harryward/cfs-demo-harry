@@ -3,6 +3,9 @@ Template.mikeTpl.helpers({
     'rawFilter': function(){
         return EJSON.stringify( Session.get('docSearchQuery'), {'indent':true } );
     },
+    'rawForm': function(){
+        return EJSON.stringify( Session.get('formBuilderObj'), {'indent':true } );
+    },
     'docSearchQuery':function(){
         return Session.get('docSearchQuery')
     },
