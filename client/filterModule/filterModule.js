@@ -85,7 +85,7 @@ Template.filterModule.events({
                 label:'Creator',
                 field_type:'active_lookup',
                 inherit_search:false,
-                default_value: filterObj.term || ''
+                default_value: ''
             }
         ];
 

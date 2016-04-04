@@ -37,7 +37,7 @@
         <entry file="file://$PROJECT_DIR$/client/mikeTpl/mikeTpl.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-2.0588236">
-              <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+              <caret line="7" column="56" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -46,7 +46,7 @@
       <file leaf-file-name="filterModule.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/filterModule/filterModule.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.67839193">
+            <state vertical-scroll-proportion="0.30150753">
               <caret line="87" column="31" selection-start-line="87" selection-start-column="31" selection-end-line="87" selection-end-column="31" />
               <folding />
             </state>
@@ -116,8 +116,8 @@
       <file leaf-file-name="filterModule.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/filterModule/filterModule.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.294118">
-              <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="41" selection-end-column="26" />
+            <state vertical-scroll-proportion="-8.529411">
+              <caret line="29" column="27" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -926,14 +926,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/filterModule/filterModule.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.294118">
-          <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="41" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/mikeTpl/mikeTpl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -958,17 +950,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/filterModule/filterModule.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.529411">
+          <caret line="29" column="27" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/mikeTpl/mikeTpl.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.0588236">
-          <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+          <caret line="7" column="56" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/filterModule/filterModule.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.67839193">
+        <state vertical-scroll-proportion="0.30150753">
           <caret line="87" column="31" selection-start-line="87" selection-start-column="31" selection-end-line="87" selection-end-column="31" />
           <folding />
         </state>
