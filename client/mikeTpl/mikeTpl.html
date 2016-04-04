@@ -4,10 +4,10 @@
             {{#if formBuilderObj}}
             {{#each formBuilderObj}}
                 <div class="form-group">
-                    <input type="text" value="{{value}}" name="{{name}}" class="form-control">
                     <label for="{{name}}">{{name}}</label>
-                </div>
+                    <input type="text" value="{{value}}" name="{{name}}" class="form-control">
 
+                </div>
             {{/each}}
             {{else}}
                 <div class="form-group">
