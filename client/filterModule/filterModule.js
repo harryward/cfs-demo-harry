@@ -76,7 +76,7 @@ Template.filterModule.events({
             {
                 name:'date',
                 label:'Date Created',
-                field_type:'date',
+                field_type:'daterange',
                 inherit_search:false,
                 default_value:moment().format('YYYY-MM-DD')
             },

@@ -33,6 +33,7 @@ cfs:upload-http@0.0.20
 cfs:worker@0.1.4
 check@1.1.2
 coffeescript@1.0.15
+dangrossman:bootstrap-daterangepicker@2.1.13
 dburles:mongo-collection-instances@0.3.4
 ddp@1.2.3
 ddp-client@1.2.3

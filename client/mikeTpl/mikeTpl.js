@@ -19,22 +19,26 @@ Template.mikeTpl.events({
     'submit .advancedFilterForm': function(event, template){
         event.preventDefault();
         searchQuery = {};
-        searchQuery.$or = [];
+        searchQuery.$and = [];
         fields = template.findAll('.form-control');
         _.each(fields,function(e){
 
             if(e.name && e.value){
                 theField = {};
-                if($(e).attr('type')!= 'date'){
+                if($(e).attr('type')!= 'daterange'){
                 theField[e.name] = {
 
                     $regex: e.value, $options: 'i'
 
                 }
                 }else{
+                    var splitDate = e.value.replace(/''/g,'').split('-')
+                    var splitStart = splitDate[0];
+                    var splitEnd = splitDate[1];
                     theField[e.name] = {
 
-                        $gte: new Date(moment(e.value).format())
+                        $gte: new Date(moment(splitStart).format()),
+                        $lte: new Date(moment(splitEnd).format())
 
                     }
                 }
@@ -42,7 +46,7 @@ Template.mikeTpl.events({
 
                 console.info('theField',theField);
 
-                searchQuery.$or.push(theField);
+                searchQuery.$and.push(theField);
 
             }
         })
@@ -54,6 +58,7 @@ Template.mikeTpl.events({
 });
 
 Template.mikeTpl.onCreated(function () {
+
     //Deps.autorun(function(){
     //    Meteor.subscribe('advancedFilter',Session.get('filterQuery'))
     //})
@@ -61,6 +66,7 @@ Template.mikeTpl.onCreated(function () {
 
 Template.mikeTpl.onRendered(function () {
     //add your statement here
+    $('input[type="daterange"]').daterangepicker();
 });
 
 Template.mikeTpl.onDestroyed(function () {
