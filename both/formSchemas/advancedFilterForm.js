@@ -1,6 +1,7 @@
 if(Meteor.isClient){
 Tracker.autorun(function(){
     if(Session.get('searchQuery')){
+        // var advancedFilters = formFilters.findOne({'_id':'default'})
         var advancedFilters = [
             {
                 name:'title',
