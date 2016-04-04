@@ -22,10 +22,18 @@ Template.mikeTpl.events({
 
             if(e.name && e.value){
                 theField = {};
+                if($(e).attr('type')!= 'date'){
                 theField[e.name] = {
 
                     $regex: e.value, $options: 'i'
 
+                }
+                }else{
+                    theField[e.name] = {
+
+                        $gte: new Date(e.value)
+
+                    }
                 }
 
 
