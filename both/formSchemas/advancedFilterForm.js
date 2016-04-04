@@ -1,6 +1,6 @@
 if(Meteor.isClient){
 Tracker.autorun(function(){
-    if(Session.get('searchQuery') && Session.get('formLayout')){
+    if(Session.get('searchQuery')){
         var advancedFilters = [
             {
                 name:'title',
@@ -38,7 +38,7 @@ Tracker.autorun(function(){
                 default_value: ''
             }
         ];
-
+        Session.set('formLayout',advancedFilters)
         Session.set('formBuilderObj',Session.get('formLayout')); // this builds the advanced filter form
     }
 })
