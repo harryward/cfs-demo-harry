@@ -78,7 +78,7 @@ Template.filterModule.events({
                 label:'Date Created',
                 field_type:'date',
                 inherit_search:false,
-                default_value:moment().format('MM/DD/YYYY')
+                default_value:moment().format('YYYY-MM-DD')
             },
             {
                 name:'creator',
@@ -132,8 +132,12 @@ Template.filterModule.events({
             Session.set('useQuery',false);
             Session.set("advancedFilter", false);
         }else{
+
+
+
             Session.set('useQuery',true);
             Session.set("advancedFilter", true);
+
         }
     },
 });
@@ -141,6 +145,7 @@ Template.filterModule.events({
 Template.filterModule.onCreated(function () {
     Session.set('skip', parseInt('0'))
     Session.set('page', parseInt('1'))
+
 
     //Deps.autorun(function(){
     //    Meteor.subscribe('docs',Session.get('searchQuery'),Session.get('skip'))

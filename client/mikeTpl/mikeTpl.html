@@ -4,27 +4,31 @@
             {{#if formBuilderObj}}
             {{#each formBuilderObj}}
                 <div class="form-group">
-                    <label for="{{name}}">{{name}}</label>
-                    <input type="text" value="{{default_value}}" name="{{name}}" class="form-control">
+                    <label for="{{name}}">{{label}}</label>
+                    <input type="{{field_type}}" value="{{default_value}}" name="{{name}}" class="{{field_type}} form-control">
 
                 </div>
             {{/each}}
             {{else}}
                 <div class="form-group">
-                    <input type="text" name="title" class="form-control">
                     <label for="title">Title</label>
+                    <input type="text" name="title" class="form-control">
+
                 </div>
                 <div class="form-group">
-                    <input type="text" name="tags" class="form-control">
                     <label for="tags">Tags</label>
+                    <input type="text" name="tags" class="form-control">
+
                 </div>
                 <div class="form-group">
-                    <input type="text" name="summary" class="form-control">
                     <label for="summary">Summary</label>
+                    <input type="text" name="summary" class="form-control">
+
                 </div>
                 <div class="form-group">
-                    <input type="text" name="date" class="form-control">
                     <label for="date">Date</label>
+                    <input type="date" name="date" class="form-control">
+
                 </div>
 
             {{/if}}
