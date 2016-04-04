@@ -46,6 +46,43 @@ Template.filterModule.helpers({
 Template.filterModule.events({
     'submit .searchForm': function (event, template) {
         event.preventDefault();
+        advancedFilters = [
+            {
+                name:'title',
+                label:'Title',
+                field_type:'text',
+                inherit_search:true,
+                default_value:''
+            },
+            {
+                name:'summary',
+                label:'Summary',
+                field_type:'text',
+                inherit_search:true,
+                default_value:''
+            },
+            {
+                name:'tags',
+                label:'Tags',
+                field_type:'text',
+                inherit_search:true,
+                default_value:''
+            },
+            {
+                name:'date',
+                label:'Date Created',
+                field_type:'date',
+                inherit_search:false,
+                default_value:new Date()
+            },
+            {
+                name:'creator',
+                label:'Creator',
+                field_type:'active_lookup',
+                inherit_search:false,
+                default_value:''
+            }
+        ];
         filterObj = {};
         filterObj.term = $(event.target).find('.searchInput').val();
         searchColumns = ["title","summary","tags","date"];
