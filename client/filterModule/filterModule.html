@@ -3,6 +3,24 @@
         <div class="jumbotron">
             <div class="row searchRow">
                 <div class="col-sm-8">
+                    <div class="fileMeta text-muted">
+                        <h4>
+                            {{#if advancedFilter}}
+                                <span class="pull-left">Advanced Document Search</span>
+                            {{else}}
+                                <span class="pull-left">Document Search</span>
+                            {{/if}}
+
+                            <div class="btn btn-default btn-xs advancedFilter"><i class="fa fa-filter"></i>
+                                {{#if advancedFilter}}
+                                    Remove Filters
+                                {{else}}
+                                    Advanced Filters
+                                {{/if}}
+                            </div>
+                        </h4>
+
+                    </div>
                     {{#if advancedFilter}}
                     {{else}}
                         <div class="form-row">
@@ -10,23 +28,7 @@
                                    class="form-control searchInput"/>
                         </div>
                     {{/if}}
-                    <div class="fileMeta text-muted">
-                        <h4>
-                            {{#if advancedFilter}}
-                                <span class="pull-left">Advanced Filter</span>
-                            {{else}}
-                            {{/if}}
 
-                            <div class="btn btn-default btn-xs advancedFilter"><i class="fa fa-filter"></i>
-                                {{#if advancedFilter}}
-                                    Close Filters
-                                {{else}}
-                                    Advanced Filter
-                                {{/if}}
-                            </div>
-                        </h4>
-
-                    </div>
                     {{#if advancedFilter}}
                          {{>mikeTpl}}
                      {{/if}}
