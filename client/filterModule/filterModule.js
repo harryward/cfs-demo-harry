@@ -5,6 +5,7 @@ Template.filterModule.helpers({
     'searchQuery':function(){
         return Session.get('searchQuery')
     },
+
     'advancedFilter':function(){
         return Session.get('advancedFilter')
     },
@@ -50,46 +51,6 @@ Template.filterModule.events({
         var filterObj = {};
         filterObj.term = $(event.target).find('.searchInput').val();
 
-
-        var advancedFilters = [
-            {
-                name:'title',
-                label:'Title',
-                field_type:'text',
-                inherit_search:true,
-                default_value:filterObj.term || ''
-            },
-            {
-                name:'summary',
-                label:'Summary',
-                field_type:'text',
-                inherit_search:true,
-                default_value:filterObj.term || ''
-            },
-            {
-                name:'tags',
-                label:'Tags',
-                field_type:'text',
-                inherit_search:true,
-                default_value:filterObj.term || ''
-            },
-            {
-                name:'date',
-                label:'Date Created',
-                field_type:'daterange',
-                inherit_search:false,
-                default_value:moment().format('YYYY-MM-DD')
-            },
-            {
-                name:'creator',
-                label:'Creator',
-                field_type:'active_lookup',
-                inherit_search:false,
-                default_value: ''
-            }
-        ];
-
-
         //searchColumns = ["title","summary","tags","date"];
         searchQuery = {};
         searchQuery.$or = []
@@ -100,7 +61,7 @@ Template.filterModule.events({
         queryArgs.sort = {date: 1}
         //formBObj = [];
 
-        _.each(advancedFilters,function(e){
+        _.each(Session.get('formBuilderObj'),function(e){
 
             // build the query
             var fieldObj = {};
@@ -120,7 +81,7 @@ Template.filterModule.events({
 
         console.log('searchQuery',searchQuery)
         Session.set('searchQuery',filterObj.term);
-        Session.set('formBuilderObj',advancedFilters); // this builds the advanced filter form
+        Session.set('formBuilderObj',Session.get('formBuilderObj')); // this builds the advanced filter form
         Session.set('docSearchQuery', searchQuery);
         Session.set('queryArgs', queryArgs);
 

@@ -221,3 +221,10 @@ button.btn:active,button.btn:focus {
 }label {
      text-transform: capitalize;
  }
+.batchList-container {
+    background: #FFF;
+    padding: 16px;
+    max-height: inherit;
+    overflow: visible;
+    margin-top: -29px;
+}

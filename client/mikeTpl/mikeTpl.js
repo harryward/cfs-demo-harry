@@ -1,10 +1,8 @@
 Template.mikeTpl.helpers({
     //add you helpers here
-    'rawFilter': function(){
-        return EJSON.stringify( Session.get('docSearchQuery'), {'indent':true } );
-    },
-    'rawForm': function(){
-        return EJSON.stringify( Session.get('formBuilderObj'), {'indent':true } );
+
+    'searchQuery':function(){
+        return Session.get('searchQuery')
     },
     'docSearchQuery':function(){
         return Session.get('docSearchQuery')
@@ -50,8 +48,6 @@ Template.mikeTpl.events({
 
             }
         })
-
-
 
         Session.set('docSearchQuery',searchQuery);
     }

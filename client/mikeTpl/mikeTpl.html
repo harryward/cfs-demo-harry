@@ -5,7 +5,7 @@
             {{#each formBuilderObj}}
                 <div class="form-group">
                     <label for="{{name}}">{{label}}</label>
-                    <input type="{{field_type}}" value="{{default_value}}" name="{{name}}" class="{{field_type}} form-control">
+                    <input type="{{field_type}}" placeholder="enter {{label}}..." value="{{#if searchQuery}}{{searchQuery}}{{/if}}" name="{{name}}" class="{{field_type}} form-control">
 
                 </div>
             {{/each}}
@@ -38,16 +38,7 @@
                 </button>
             </div>
         </form>
-        <div class="row">
-            <div class="col-xs-6">
-        <pre>// query object
-            {{rawFilter}}</pre>
-            </div>
-            <div class="col-xs-6">
-<pre>// form object
-{{rawForm}}</pre>
-            </div>
-        </div>
+
 
     </div>
 

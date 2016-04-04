@@ -1,84 +1,104 @@
 <template name="batchList">
 
     {{>filterModule}}
-
     <div class="batchList-container">
-        {{#if tickets}}
-            {{#if searching}}
-                <div class="searching" style="padding:30px">
-                    <p class="text-muted"><i class="fa fa-spin fa-spinner"></i> searching for "{{searchQuery}}"</p>
-                </div>
-            {{else}}
-                {{#each tickets}}
-                    <div class=" singlerecord">
-                        <p>
-                            <a href="/edit/batch/{{_id}}" class="fileTitle">{{title}}</a></p>
+        <h3 class="lead">Results:</h3>
+    <div class="row ">
+        <div class="col-sm-8">
+            <div class="batches">
+                {{#if tickets}}
+                    {{#if searching}}
+                        <div class="searching" style="padding:30px">
+                            <p class="text-muted"><i class="fa fa-spin fa-spinner"></i> searching for "{{searchQuery}}"
+                            </p>
+                        </div>
+                    {{else}}
+                        {{#each tickets}}
+                            <div class=" singlerecord">
+                                <p>
+                                    <a href="/edit/batch/{{_id}}" class="fileTitle">{{title}}</a></p>
 
-                        <p class="filelink">
-                            /edit/batch/{{_id}}
-                            <span class="text-muted">({{date}})</span>
-                        </p>
+                                <p class="filelink">
+                                    /edit/batch/{{_id}}
+                                    <span class="text-muted">({{date}})</span>
+                                </p>
 
-                        <p class="caption text-muted">
-                            <small>{{summary}}</small>
-                        </p>
-                        {{#if tags}}
-                            <div class="fileStuff">
-                                <a href="#" class="mini-title">
-                                    <b>
-                                        <i class="fa fa-tag"></i> tags:
-                                    </b>
-                                </a>
-                                {{#each tags}}
-                                    <a class="mini-title">
-                                        {{this}}
-                                    </a>
-                                {{/each}}
+                                <p class="caption text-muted">
+                                    <small>{{summary}}</small>
+                                </p>
+                                {{#if tags}}
+                                    <div class="fileStuff">
+                                        <a href="#" class="mini-title">
+                                            <b>
+                                                <i class="fa fa-tag"></i> tags:
+                                            </b>
+                                        </a>
+                                        {{#each tags}}
+                                            <a class="mini-title">
+                                                {{this}}
+                                            </a>
+                                        {{/each}}
+                                    </div>
+                                {{/if}}
+
                             </div>
-                        {{/if}}
+                        {{/each}}
+                    {{/if}}
+                {{else}}
+                    {{#if advancedResults}}
+                        {{#each advancedResults}}
+                            <div class=" singlerecord">
+                                <p> ADVANCED RESULT <br>
+                                    <a href="/edit/batch/{{_id}}" class="fileTitle">{{title}}</a></p>
 
-                    </div>
-                {{/each}}
-            {{/if}}
-        {{else}}
-            {{#if advancedResults}}
-                {{#each advancedResults}}
-                    <div class=" singlerecord">
-                        <p> ADVANCED RESULT <br>
-                            <a href="/edit/batch/{{_id}}" class="fileTitle">{{title}}</a></p>
+                                <p class="filelink">
+                                    /edit/batch/{{_id}}
+                                    <span class="text-muted">({{date}})</span>
+                                </p>
 
-                        <p class="filelink">
-                            /edit/batch/{{_id}}
-                            <span class="text-muted">({{date}})</span>
-                        </p>
+                                <p class="caption text-muted">
+                                    <small>{{summary}}</small>
+                                </p>
+                                {{#if tags}}
+                                    <div class="fileStuff">
+                                        <a href="#" class="mini-title">
+                                            <b>
+                                                <i class="fa fa-tag"></i> tags:
+                                            </b>
+                                        </a>
+                                        {{#each tags}}
+                                            <a class="mini-title">
+                                                {{this}}
+                                            </a>
+                                        {{/each}}
+                                    </div>
+                                {{/if}}
 
-                        <p class="caption text-muted">
-                            <small>{{summary}}</small>
-                        </p>
-                        {{#if tags}}
-                            <div class="fileStuff">
-                                <a href="#" class="mini-title">
-                                    <b>
-                                        <i class="fa fa-tag"></i> tags:
-                                    </b>
-                                </a>
-                                {{#each tags}}
-                                    <a class="mini-title">
-                                        {{this}}
-                                    </a>
-                                {{/each}}
                             </div>
-                        {{/if}}
+                        {{/each}}
+                    {{else}}
+                        <div class="nothingFound">
+                            <div class="text-muted"><i class="fa fa-warning"></i> No docs found with "{{searchQuery}}"..
+                            </div>
+                        </div>
+                    {{/if}}
+                {{/if}}
 
-                    </div>
-                {{/each}}
-            {{else}}
-                <div class="nothingFound">
-                    <div class="text-muted"><i class="fa fa-warning"></i> No docs found with "{{searchQuery}}"..</div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col-xs-12">
+<pre>// query object
+{{rawFilter}}</pre>
                 </div>
-            {{/if}}
-        {{/if}}
-
+                <div class="col-xs-12">
+<pre>// form object
+{{rawForm}}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
     {{#with tickets}}
         <div class="text-center pagBar">

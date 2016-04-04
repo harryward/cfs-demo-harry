@@ -21,8 +21,11 @@ Template.batchList.helpers({
     'searchQuery': function () {
         return Session.get('searchQuery')
     },
-    'raw': function () {
-        return EJSON.stringify(this, {'indent': true})
+    'rawFilter': function(){
+        return EJSON.stringify( Session.get('docSearchQuery'), {'indent':true } );
+    },
+    'rawForm': function(){
+        return EJSON.stringify( Session.get('formBuilderObj'), {'indent':true } );
     },
     'isLast': function () {
         if (this._id === Session.get('lastTicket')) {
