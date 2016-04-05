@@ -62,6 +62,7 @@ Template.mikeTpl.onCreated(function () {
 
 Template.mikeTpl.onRendered(function () {
     //add your statement here
+
     $('input[type="daterange"]').daterangepicker();
 });
 

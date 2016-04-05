@@ -14,6 +14,12 @@ Template.batchLanding.helpers({
             return Docs.findOne(this.toString())
         }
     },
+    'extension':function(){
+        return Docs.findOne(this.toString()).getExtension()
+    },
+    'date':function(){
+        return moment(this.date).format('MM/DD/YYYY hh:mm a')
+    },
     'editing': function () {
         return Session.get('editing')
     },
@@ -53,7 +59,12 @@ Template.batchLanding.events({
             }
         })
 
-    }
+    },
+    'click .downloadAll':function(event,template){
+       //Meteor.call('makeZip',Docs.findOne().url(),function(err,resp){
+       //    console.log('response',resp)
+       //})
+    },
 });
 
 Template.batchLanding.onCreated(function () {

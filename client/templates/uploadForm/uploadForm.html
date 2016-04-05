@@ -3,8 +3,9 @@
     <div class="uploadForm">
         <form class="ticketCreator" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="">Upload File(s)</label>
-                <input type="file" class="form-control myFileInput" multiple=""/>
+                <!--<label for="">Upload File(s)</label>-->
+                <input type="file" class="form-control hidden myFileInput" multiple=""/>
+                <div class="btn btn-lg btn-primary uploadButton btn-block"><i class="fa fa-upload"></i> UPLOAD FILES</div>
             </div>
             <div class="form-group">
                 {{#if files}}
@@ -68,7 +69,8 @@
             <div class="form-group">
                 <label>Batch Summary</label>
                 <textarea placeholder="short description of this file..." name="summary"
-                          class="form-control"></textarea>
+                          class="form-control summernote"></textarea>
+                <!--<div class="summernote"></div>-->
             </div>
 
             <div class="form-group">

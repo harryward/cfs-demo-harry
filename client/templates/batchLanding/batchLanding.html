@@ -5,7 +5,7 @@
     {{#each tickets}}
 
         <ol class="breadcrumb" style="margin-bottom: 5px;">
-            <li><a href="/files">Documents</a></li>
+            <li><a href="/files"><i class="fa fa-caret-left"> </i> Documents</a></li>
             <li class="active">{{title}}</li>
         </ol>
 
@@ -13,33 +13,85 @@
 
 
             <div class="thePanel">
-                <p><code>{{_id}}</code></p>
-                <h1>{{title}}</h1>
-                <p class="lead">Summary: {{summary}}</p>
-                <h6>Files:</h6>
+                <div class="batchInfo">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h2 class="page-header text-center">{{title}}</h2>
+
+                            <p class="text-muted text-center userInfo">
+                            {{#if userObj}}<i class="fa fa-user"></i> {{userObj.profile.name}}{{/if}}
+                                <span class="theDate"><i class="fa fa-calendar"></i> {{date}}</span>
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <p class="lefty"><i class="fa fa-category"></i> Category:</p>
+                        </div>
+                        <div class="col-sm-10">
+                            <a href="#" class="mini-title">
+                                Test
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <p class="lefty"><i class="fa fa-tag"></i> Tags:</p>
+                        </div>
+                        <div class="col-sm-10">
+                            {{#each tags}}
+                                <a href="#" class="mini-title">
+                                    {{this}}
+                                </a>
+                            {{/each}}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <p class="lefty">Summary:</p>
+                        </div>
+                        <div class="col-sm-10">
+                            {{{summary}}}
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+
+                <div class="text-right downLoadAll text-right">
+                    <p>
+                    <div class="btn btn-sm btn-primary downloadAll"><i class="fa fa-file-archive-o"></i> Download All</div>
+                    </p>
+                </div>
                 <div class="text-left">
                     {{#each files}}
-                        <a href="{{theFileLink}}" file="{{theFileLink}}" download class="list-group-item">
-                            <div><b>{{theFileMeta.metadata.title}}</b></div>
-                            <div><small>{{theFileMeta.metadata.summary}}</small></div>
-                            <small>{{theFileMeta.original.name}}</small>
-                        </a>
+                        <div class="list-group-item">
+                        <div class="row">
+                            <div class="col-sm-1">
+                                <img src="/icons/{{extension}}.png" style="width:100%" alt=""/>
+                            </div>
+                            <div class="col-sm-7">
+                                <a href="{{theFileLink}}" file="{{theFileLink}}" download class="">
+                                    <div><b>{{theFileMeta.metadata.title}}</b></div>
+                                    <small>{{theFileMeta.original.name}}</small>
+                                </a>
+                                <div>
+                                    {{theFileMeta.metadata.summary}}
+                                </div>
+                                <div class="text-muted"><small>Category: Marketing</small></div>
+                            </div>
+                            <div class="col-sm-4 text-right">
+
+                                <a href="{{theFileLink}}" file="{{theFileLink}}"  class="btn btn-xs btn-primary"><i class="fa fa-download"></i> Download</a>
+                            </div>
+                        </div>
+                        </div>
+
                     {{/each}}
                 </div>
 
-
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="text-muted ticketMeta">
-                        <a class="mini-title"><i class="fa fa-tag"></i></a>
-                        {{#each tags}}
-                            <a href="#" class="mini-title">
-                                {{this}}
-                            </a>
-                        {{/each}}
-                    </div>
-                </div>
             </div>
 
             <pre>{{raw}}</pre>

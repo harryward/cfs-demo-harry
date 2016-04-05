@@ -34,3 +34,5 @@ accounts-password
 useraccounts:core
 useraccounts:bootstrap
 dangrossman:bootstrap-daterangepicker
+summernote:summernote
+udondan:jszip

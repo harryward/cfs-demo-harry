@@ -31,6 +31,9 @@ Template.uploadForm.events({
             Session.set('files',[])
         }
     },
+    'click .uploadButton':function(event,template){
+        $('.myFileInput').click();
+    },
     'change .myFileInput': function(event, template) {
         var files = event.target.files
         for (var i = 0, ln = files.length; i < ln; i++) {
@@ -119,7 +122,7 @@ Template.uploadForm.onCreated(function () {
 });
 
 Template.uploadForm.onRendered(function () {
-    //add your statement here
+    $('.summernote').summernote();
 });
 
 Template.uploadForm.onDestroyed(function () {

@@ -228,3 +228,47 @@ button.btn:active,button.btn:focus {
     overflow: visible;
     margin-top: -29px;
 }
+.btn.btn-lg.btn-primary.uploadButton.btn-block {
+    padding: 26px;
+    /* background: #E3E3E3!important; */
+}.fileStuff {
+     position: relative;
+     top: -9px;
+     text-transform: uppercase;
+     font-size: 11px;
+     font-style: normal;
+ }.thePanel {
+      padding: 5em;
+  }
+.thePanel h1.text-center {
+    padding-bottom: 2em;
+    padding-top: 1em;
+}
+.batchInfo {
+    padding: 30px;
+}
+.text-center.jumbotron {
+    background: #FFF!important;
+    text-align: left!important;
+}.thePanel {
+     padding-top: 1px;
+ }
+p.lefty {
+    text-align: right;
+}h2.page-header.text-center {
+     padding-bottom: 22px;
+ }ol.breadcrumb {
+      border-radius: 0px;
+      margin-bottom: 0px!important;
+      background: #F5F5F5;
+  }
+
+span.theDate {
+    margin-left: 18px;
+}p.text-muted.text-center.userInfo {
+     position: relative;
+     top: -9px;
+ }
+h2.page-header.text-center {
+    padding-bottom: 8px;
+}
