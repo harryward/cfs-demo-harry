@@ -1,7 +1,6 @@
 <template name="mikeTpl">
     <div class="filterModule">
         <form class="advancedFilterForm">
-            {{#if formBuilderObj}}
             {{#each formBuilderObj}}
                 <div class="form-group">
                     <label for="{{name}}">{{label}}</label>
@@ -9,34 +8,13 @@
 
                 </div>
             {{/each}}
-            {{else}}
-
-                <div data="foo" class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" name="title" class="form-control">
-                </div>
-
-                <div class="form-group">
-                    <label for="tags">Tags</label>
-                    <input type="text" name="tags" class="form-control">
-                </div>
-
-                <div class="form-group">
-                    <label for="summary">Summary</label>
-                    <input type="text" name="summary" class="form-control">
-
-                </div>
-
-                <div class="form-group">
-                    <label for="date">Date</label>
-                    <input type="date" name="date" class="form-control">
-                </div>
-
-            {{/if}}
 
             <div class="form-group">
                 <button class="btn btn-primary btn-lg" type="submit">
                     Filter
+                </button>
+                <button class="btn btn-primary btn-lg pull-right" type="clear">
+                    Clear Form
                 </button>
             </div>
 
