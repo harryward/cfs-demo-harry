@@ -112,7 +112,8 @@ Template.uploadForm.events({
                     Session.set('lastTicket',resp);
                     Session.set('docId',false);
                     Session.set('files',false);
-                    Session.set('searchQuery',ticketObj.title)
+                    Session.set('fileArray',false);
+                    //Session.set('searchQuery',ticketObj.title)
                     FlowRouter.go('/files');
                 }else{
                     console.error('error creating ticket',err)
