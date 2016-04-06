@@ -14,33 +14,6 @@ Template.filterModule.helpers({
     },
     'skip': function (totes) {
         return Session.get('skip') + ' - ' + (Session.get('skip') + 10) + ' of ' + totes + ' '
-    },
-    'ticketCount': function () {
-        if (Session.get('searchQuery')) {
-            return Tickets.find({
-                $or: [
-                    {
-                        'title': {
-                            $regex: Session.get('searchQuery'), $options: 'i'
-                        }
-                    },
-                    {
-                        'tags': {
-                            $regex: Session.get('searchQuery'), $options: 'i'
-                        }
-                    },
-                    {
-                        'summary': {
-                            $regex: Session.get('searchQuery'), $options: 'i'
-                        }
-                    }
-
-                ]
-
-            }).count()
-        } else {
-            return Tickets.find({}).count()
-        }
     }
 });
 
