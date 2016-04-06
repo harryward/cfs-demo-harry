@@ -91,7 +91,7 @@ Template.uploadForm.events({
             }
         });
         ticketObj.date = new Date();
-        ticketObj.summary = $('.summernote').html();
+        ticketObj.summary = $('.summernote').val();
         ticketObj.files = Session.get('files');
         ticketObj.fileTypes = Session.get('fileTypes');
         ticketObj.tagString = ticketObj.tags;
