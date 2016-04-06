@@ -37,7 +37,11 @@ Template.filterModule.events({
         _.each(Session.get('formBuilderObj'),function(e){
             // build the query
             var fieldObj = {};
-            fieldObj[e.name] ={$regex:filterObj.term,$options:"i"}
+            if(e.q_type === 'regex' ) {
+                fieldObj[e.name] = {$regex: filterObj.term, $options: "i"};
+            }else{ //literal
+                fieldObj[e.name] = filterObj.term;
+            }
             if(e.inherit_search){
             searchQuery.$or.push(fieldObj)
             }
