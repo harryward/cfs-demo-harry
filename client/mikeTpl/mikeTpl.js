@@ -10,10 +10,24 @@ Template.mikeTpl.helpers({
     'formBuilderObj':function(){
         return Session.get('formBuilderObj')
     },
+    'creators':function(){
+        return Meteor.users.find().fetch();
+    },
+    'fileTypeFilter':function(){
+        return Session.get('fileTypeFilter')
+    },
+    'creatorDrop':function(){
+        if(this.field_type === "active_lookup"){
+            return true
+        }else{
+            return false
+        }
+    },
 
 });
 
 Template.mikeTpl.events({
+
     'submit .advancedFilterForm': function(event, template){
         event.preventDefault();
         searchQuery = {};
@@ -55,17 +69,13 @@ Template.mikeTpl.events({
 
 Template.mikeTpl.onCreated(function () {
 
-    //Deps.autorun(function(){
-    //    Meteor.subscribe('advancedFilter',Session.get('filterQuery'))
-    //})
-
+    Meteor.subscribe('userMeta');
 
 });
 
 Template.mikeTpl.onRendered(function () {
     //add your statement here
 
-    $('input[type="daterange"]').daterangepicker();
 });
 
 Template.mikeTpl.onDestroyed(function () {

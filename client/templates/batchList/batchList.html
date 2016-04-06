@@ -2,7 +2,7 @@
 
     {{>filterModule}}
     <div class="batchList-container">
-        <h3 class="lead">Results:</h3>
+        <h3 class="lead">Results: <div class="btn btn-default pull-right fileTypeFilter">Show Files</div></h3>
     <div class="row ">
         <div class="col-sm-8">
             <div class="batches">
@@ -14,6 +14,7 @@
                         </div>
                     {{else}}
                         {{#each tickets}}
+
                             <div class=" singlerecord">
                                 <p>
                                     <a href="/edit/batch/{{_id}}" class="fileTitle">{{title}}</a></p>
@@ -21,7 +22,11 @@
                                 <p class="filelink">
                                     /edit/batch/{{_id}}
                                     <span class="text-muted">({{date}})</span>
+                                    {{#if user}}
+                                    <span class="text-muted"><i class="fa fa-user"></i> {{user.profile.name}} </span>
+                                    {{/if}}
                                 </p>
+
 
                                 <p class="caption text-muted">
                                     <!--<small>{{{summary}}}</small>-->
@@ -40,8 +45,34 @@
                                         {{/each}}
                                     </div>
                                 {{/if}}
+                                {{#if showFiles}}
+                                    {{#each files}}
+                                        <div class="list-group-item">
+                                        <div class="row">
+                                            <div class="col-sm-1">
+                                                <img src="/icons/{{extension}}.png" style="width:100%" alt=""/>
+                                            </div>
+                                            <div class="col-sm-7">
+                                                <a href="{{theFileLink}}" file="{{theFileLink}}" download class="">
+                                                    <div><b>{{theFileMeta.metadata.title}}</b></div>
+                                                    <small>{{theFileMeta.original.name}}</small>
+                                                </a>
+                                                <div>
+                                                    {{theFileMeta.metadata.summary}}
+                                                </div>
+                                                <div class="text-muted"><small>Category: Marketing</small></div>
+                                            </div>
+                                            <div class="col-sm-4 text-right">
 
+                                                <a href="{{theFileLink}}" download  file="{{theFileLink}}"  class="btn btn-xs btn-primary"><i class="fa fa-download"></i> Download</a>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                    {{/each}}
+                                {{/if}}
                             </div>
+                                
                         {{/each}}
                     {{/if}}
                 {{else}}

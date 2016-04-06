@@ -1,6 +1,7 @@
 Meteor.methods({
-    'userLookup':function(){
+    'userLookup':function(queryObj){
         var pipeline = [
+            //{$match: queryObj},
             {$group: {_id: "$user"}}
         ];
         var result = Tickets.aggregate(pipeline);

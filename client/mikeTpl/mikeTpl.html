@@ -4,9 +4,18 @@
             {{#if formBuilderObj}}
             {{#each formBuilderObj}}
                 <div class="form-group">
-                    <label for="{{name}}">{{label}}</label>
-                    <input type="{{field_type}}" placeholder="enter {{label}}..." value="{{#if searchQuery}}{{searchQuery}}{{/if}}" name="{{name}}" class="{{field_type}} form-control">
 
+                    {{#if creatorDrop}}
+                        <label for="{{name}}">{{label}}</label>
+                        <select name="{{name}}" id="{{name}}" class="form-control">
+                            {{#each creators}}
+                            {{#if profile.name}}<option value="{{_id}}">{{profile.name}}</option>{{/if}}
+                            {{/each}}
+                        </select>
+                        {{else}}
+                        <label for="{{name}}">{{label}}</label>
+                        <input type="{{field_type}}" placeholder="enter {{label}}..." value="{{#if searchQuery}}{{searchQuery}}{{/if}}" name="{{name}}" class="{{field_type}} form-control">
+                    {{/if}}
                 </div>
             {{/each}}
             {{else}}

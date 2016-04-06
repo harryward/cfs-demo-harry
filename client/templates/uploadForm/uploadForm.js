@@ -43,9 +43,12 @@ Template.uploadForm.events({
                 Docs.insert(newFile, function (err, fileObj) {
                     console.log('fileObj',fileObj);
                     var fileArray = Session.get('files') || [];
+                    var fileTypeArray = Session.get('fileTypes') || [];
                     fileArray.push(fileObj._id);
+                    fileTypeArray.push(fileObj.getExtension())
                     $(event.target).val('');
                     Session.set('files',fileArray);
+                    Session.set('fileTypes',fileTypeArray);
                     Session.set('docId',fileObj._id);
                     Meteor.subscribe('singleDoc',fileObj._id);
                     // Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
@@ -88,7 +91,9 @@ Template.uploadForm.events({
             }
         });
         ticketObj.date = new Date();
+        ticketObj.summary = $('.summernote').html();
         ticketObj.files = Session.get('files');
+        ticketObj.fileTypes = Session.get('fileTypes');
         ticketObj.tagString = ticketObj.tags;
         ticketObj.tags = ticketObj.tags.split(',');
         console.log('ticket object',ticketObj);
