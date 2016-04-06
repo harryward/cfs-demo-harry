@@ -58,6 +58,8 @@ Template.mikeTpl.onCreated(function () {
     //Deps.autorun(function(){
     //    Meteor.subscribe('advancedFilter',Session.get('filterQuery'))
     //})
+
+
 });
 
 Template.mikeTpl.onRendered(function () {
