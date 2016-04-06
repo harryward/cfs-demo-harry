@@ -62,7 +62,6 @@ Template.filterModule.events({
         //formBObj = [];
 
         _.each(Session.get('formBuilderObj'),function(e){
-
             // build the query
             var fieldObj = {};
             if(e.q_type === 'regex' ) {
