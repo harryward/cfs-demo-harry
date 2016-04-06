@@ -46,9 +46,17 @@ Template.uploadForm.events({
                     var fileTypeArray = Session.get('fileTypes') || [];
                     fileArray.push(fileObj._id);
                     fileTypeArray.push(fileObj.getExtension())
+                    Session.set('fileTypes',fileTypeArray);
+
+                    queryArrayObj.update({'_id':Meteor.user()._id},{
+                        $addToSet:{
+                            'queryTags':fileObj.getExtension()
+                        }
+                    })
+
                     $(event.target).val('');
                     Session.set('files',fileArray);
-                    Session.set('fileTypes',fileTypeArray);
+
                     Session.set('docId',fileObj._id);
                     Meteor.subscribe('singleDoc',fileObj._id);
                     // Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
@@ -100,6 +108,18 @@ Template.uploadForm.events({
         ticketObj.user = Meteor.user()._id;
         ticketObj.userObj = Meteor.user();
 
+        ///ADD THE TAGS TO QUERYARRAY
+        _.each(ticketObj.tags,function(e){
+            queryArrayObj.update({'_id':Meteor.user()._id},{
+                $addToSet:{
+                    'queryTags':e
+                }
+            })
+        })
+
+        ticketObj.queryTags = queryArrayObj.findOne().queryTags
+
+
         if(!Session.get('docId')) {
             alert('you must attach a file!')
             return false
@@ -124,7 +144,7 @@ Template.uploadForm.events({
 });
 
 Template.uploadForm.onCreated(function () {
-    //add your statement here
+    queryArrayObj.insert({'_id':Meteor.user()._id})
 });
 
 Template.uploadForm.onRendered(function () {

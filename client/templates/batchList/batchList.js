@@ -93,6 +93,7 @@ Template.batchList.events({
 
 Template.batchList.onCreated(function () {
     //add your statement here
+    Session.set('showFiles');
 });
 
 Template.batchList.onRendered(function () {

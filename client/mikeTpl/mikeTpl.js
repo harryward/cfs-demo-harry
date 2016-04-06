@@ -27,7 +27,10 @@ Template.mikeTpl.helpers({
 });
 
 Template.mikeTpl.events({
-
+    'click .clearForm':function(event,template){
+        event.preventDefault();
+        $('.form-control').val('');
+    },
     'submit .advancedFilterForm': function(event, template){
         event.preventDefault();
         searchQuery = {};

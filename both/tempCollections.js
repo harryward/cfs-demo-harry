@@ -1,0 +1,1 @@
+queryArrayObj = new Mongo.Collection(null);
