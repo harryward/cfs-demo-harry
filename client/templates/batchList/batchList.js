@@ -45,7 +45,9 @@ Template.batchList.helpers({
         return moment(this.date).fromNow();
     },
     'searchQuery': function () {
+        if(Session.get('searchQuery') && Session.get('searchQuery') != ""){
         return Session.get('searchQuery')
+        }
     },
     'rawFilter': function(){
         return EJSON.stringify( Session.get('docSearchQuery'), {'indent':true } );

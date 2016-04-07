@@ -74,17 +74,18 @@
             </div>
 
             <div class="form-group">
-                <label for="category">Category</label>
-                <select name="category" id="category" class="form-control">
+                <label for="category">Category <small>Temporarily allowing creation of cats.</small></label>
+                <select name="category" id="category" class="hidden catDrop">
+                    <option value="">-- select category --</option>
                     {{#each categories}}
-                        <options>{{n}}</options>
+                        <option>{{name}}</option>
                     {{/each}}
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="tags">Tags (comma seperated)</label>
-                <input type="text" name="tags" class="form-control"/>
+                <label for="tags">Tags</label>
+                <input placeholder="enter tags.." type="text" name="tags" class="tagDrop hidden form-control"/>
             </div>
 
 

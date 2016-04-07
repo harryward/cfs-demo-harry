@@ -2,7 +2,7 @@ Meteor.publish('docSearch', function (searchQuery, queryArgs) {
     if (queryArgs) {
         return Tickets.find(searchQuery, queryArgs)
     } else {
-        return false
+        return Tickets.find({},{sort:{date:1}})
     }
 })
 
