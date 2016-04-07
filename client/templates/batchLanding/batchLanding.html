@@ -51,6 +51,19 @@
 
                     <div class="row">
                         <div class="col-sm-2">
+                            <p class="lefty"><i class="fa fa-tag"></i> queryTags:</p>
+                        </div>
+                        <div class="col-sm-10">
+                            {{#each queryTags}}
+                                <a href="#" class="mini-title">
+                                    {{this}}
+                                </a>
+                            {{/each}}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-2">
                             <p class="lefty">Summary:</p>
                         </div>
                         <div class="col-sm-10">

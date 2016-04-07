@@ -31,11 +31,11 @@
                                 <p class="caption text-muted">
                                     <!--<small>{{{summary}}}</small>-->
                                 </p>
-                                {{#if tags}}
+                                {{#if queryTags}}
                                     <div class="fileStuff">
                                         <a href="#" class="mini-title">
                                             <b>
-                                                <i class="fa fa-tag"></i> tags:
+                                                <i class="fa fa-tag"></i> queryTags:
                                             </b>
                                         </a>
                                         {{#each queryTags}}
@@ -45,6 +45,20 @@
                                         {{/each}}
                                     </div>
                                 {{/if}}
+                                {{#if tags}}
+                                <div class="fileStuff">
+                                    <a href="#" class="mini-title">
+                                        <b>
+                                            <i class="fa fa-tag"></i> tags:
+                                        </b>
+                                    </a>
+                                    {{#each tags}}
+                                        <a class="mini-title">
+                                            {{this}}
+                                        </a>
+                                    {{/each}}
+                                </div>
+                        {{/if}}
                                 {{#if showFiles}}
                                     {{#each files}}
                                         <div class="list-group-item">

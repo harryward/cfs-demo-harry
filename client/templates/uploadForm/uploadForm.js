@@ -90,7 +90,7 @@ Template.uploadForm.events({
         event.preventDefault();
         var self = this;
         var thisDoc = Docs.findOne(this.toString())
-        var theTitle = prompt('File Title...',thisDoc.metadata.title || '');
+        var theTitle = prompt('File Title...',thisDoc.metadata.title || $('.batchTitle').val() || '');
         if(theTitle){
         Docs.update({'_id':self.toString()},{
             $set:{
@@ -135,7 +135,7 @@ Template.uploadForm.events({
                 }
             })
         })
-
+        ticketObj.tags = Session.get('tags');
         ticketObj.queryTags = queryArrayObj.findOne().queryTags
         console.log('ticket object',ticketObj);
 
@@ -201,11 +201,12 @@ Template.uploadForm.onRendered(function () {
             $('select.catDrop').selectize({
                 sortField: 'name',
                 options:Categories.find().fetch(),
+                searchField: ['name'],
                 valueField: 'name',
                 labelField: 'name',
                 create: function(input) {
                      Categories.insert({
-                         '_id':Base58.encode(input.replace(/ /g,'')),
+                         '_id':Base58.encode(input.toLowerCase().replace(/ /g,'')),
                          'name':input
                      })
                     return {
@@ -232,9 +233,11 @@ Template.uploadForm.onRendered(function () {
                 options:Tags.find().fetch(),
                 valueField: 'name',
                 labelField: 'name',
+                searchField: ['name'],
+                maxItems:3,
                 create: function(input) {
                     Tags.insert({
-                        '_id':Base58.encode(input.replace(/ /g,'')),
+                        '_id':Base58.encode(input.toLowerCase().replace(/ /g,'')),
                         'name':input
                     })
                     return {

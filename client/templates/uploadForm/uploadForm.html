@@ -3,6 +3,18 @@
     <div class="uploadForm">
         <form class="ticketCreator" enctype="multipart/form-data">
             <div class="form-group">
+                <label for="title">Batch Title</label>
+                <input placeholder="give this document a name..." type="text" name="title" class="batchTitle form-control"/>
+            </div>
+
+            <div class="form-group">
+                <label for="summary">Batch Summary</label>
+                <textarea placeholder="short description of this file..." name="summary"
+                          class="form-control summernote"></textarea>
+                <!--<div class="summernote"></div>-->
+            </div>
+
+            <div class="form-group">
                 <!--<label for="">Upload File(s)</label>-->
                 <input type="file" class="form-control hidden myFileInput" multiple=""/>
                 <div class="btn btn-lg btn-primary uploadButton btn-block"><i class="fa fa-upload"></i> UPLOAD FILES</div>
@@ -61,20 +73,9 @@
                 {{/if}}
             </div>
 
-            <div class="form-group">
-                <label for="title">Batch Title</label>
-                <input placeholder="give this document a name..." type="text" name="title" class="form-control"/>
-            </div>
 
             <div class="form-group">
-                <label for="summary">Batch Summary</label>
-                <textarea placeholder="short description of this file..." name="summary"
-                          class="form-control summernote"></textarea>
-                <!--<div class="summernote"></div>-->
-            </div>
-
-            <div class="form-group">
-                <label for="category">Category <small>Temporarily allowing creation of cats.</small></label>
+                <label for="category">Category <code>Temporarily allowing creation of cats.</code></label>
                 <select name="category" id="category" class="hidden catDrop">
                     <option value="">-- select category --</option>
                     {{#each categories}}
@@ -84,7 +85,7 @@
             </div>
 
             <div class="form-group">
-                <label for="tags">Tags</label>
+                <label for="tags">Tags <small>(max of 3)</small> <code>Temporarily allowing creation of Tags.</code></label>
                 <input placeholder="enter tags.." type="text" name="tags" class="tagDrop hidden form-control"/>
             </div>
 
