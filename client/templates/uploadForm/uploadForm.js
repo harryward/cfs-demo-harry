@@ -11,12 +11,8 @@ Template.uploadForm.helpers({
     'isDone':function(){
         return Docs.findOne(this.toString()).isUploaded()
     },
-    'trimArr':function(arr){
-        var new_arr = [];
-        _.each(arr,function(str){
-            new_arr.push( str.trim() );
-        });
-        return new_arr;
+    'categories':function(){
+        return [{'n':'Calls'},{'n':'Case Study'},{'n':'Documentation'},{'n':'Marketing'},{'n':'Sales Material'},{'n':'Training'}];
     }
 
 });
@@ -114,9 +110,11 @@ Template.uploadForm.events({
         ticketObj.tags = ticketObj.tags.split(',');
         console.log('ticket object',ticketObj);
         ticketObj.user = Meteor.user()._id;
-        ticketObj.tags.push( Meteor.user().profile.name );
         ticketObj.userObj = Meteor.user();
 
+        ticketObj.tags.push( Meteor.user().profile.name );
+        ticketObj.tags.push( ticketObj.date.getFullYear() );
+        ticketObj.tags.push( ticketObj.category );
         ticketObj.tags = Template.instance().cleanTags( ticketObj.tags );
 
         ///ADD THE TAGS TO QUERYARRAY
@@ -157,13 +155,17 @@ Template.uploadForm.events({
 Template.uploadForm.onCreated(function () {
     queryArrayObj.insert({'_id':Meteor.user()._id});
     this.cleanTags = function(arr){ //clean whitespace, duplicates, force lowercase
-        var new_arr = [];
-        _.each(arr,function(str){
-            var s = str.trim().toLocaleLowerCase();
-            if (new_arr.indexOf( s ) === -1)
-                new_arr.push( s );
-        });
-        return new_arr;
+        if (typeof arr !== 'undefined' && arr.length > 0) {
+            var new_arr = [];
+            _.each(arr, function (str) {
+                var s = str.trim().toLocaleLowerCase();
+                if (new_arr.indexOf(s) === -1 && s !== '')
+                    new_arr.push(s);
+            });
+            return new_arr;
+        }else{
+            return arr;
+        }
     }
 });
 

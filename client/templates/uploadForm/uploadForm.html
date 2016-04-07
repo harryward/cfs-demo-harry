@@ -62,19 +62,28 @@
             </div>
 
             <div class="form-group">
-                <label>Batch Title</label>
+                <label for="title">Batch Title</label>
                 <input placeholder="give this document a name..." type="text" name="title" class="form-control"/>
             </div>
 
             <div class="form-group">
-                <label>Batch Summary</label>
+                <label for="summary">Batch Summary</label>
                 <textarea placeholder="short description of this file..." name="summary"
                           class="form-control summernote"></textarea>
                 <!--<div class="summernote"></div>-->
             </div>
 
             <div class="form-group">
-                <label>Tags (comma seperated)</label>
+                <label for="category">Category</label>
+                <select name="category" id="category" class="form-control">
+                    {{#each categories}}
+                        <options>{{n}}</options>
+                    {{/each}}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="tags">Tags (comma seperated)</label>
                 <input type="text" name="tags" class="form-control"/>
             </div>
 
