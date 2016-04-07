@@ -44,7 +44,7 @@ Template.filterModule.events({
             if(e.q_type === 'regex' ) {
                 fieldObj[e.name] = {$regex: filterObj.term, $options: "i"};
             }else{ //literal
-                fieldObj[e.name] = {$regex: "", $options: "i"};
+                fieldObj[e.name] = {$regex: filterObj.term, $options: "i"};
             }
             if(e.inherit_search){
             searchQuery.$or.push(fieldObj)

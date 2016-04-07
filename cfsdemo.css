@@ -272,3 +272,11 @@ span.theDate {
 h2.page-header.text-center {
     padding-bottom: 8px;
 }
+.batchInfo a.mini-title {
+    background: #F5F5F5;
+    padding-left: 6px;
+    padding-right: 6px;
+    color: #000;
+    text-transform: uppercase;
+    font-size: 12px;
+}
