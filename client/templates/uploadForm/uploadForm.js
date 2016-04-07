@@ -10,7 +10,15 @@ Template.uploadForm.helpers({
     },
     'isDone':function(){
         return Docs.findOne(this.toString()).isUploaded()
+    },
+    'trimArr':function(arr){
+        var new_arr = [];
+        _.each(arr,function(str){
+            new_arr.push( str.trim() );
+        });
+        return new_arr;
     }
+
 });
 // test d
 
@@ -45,7 +53,7 @@ Template.uploadForm.events({
                     var fileArray = Session.get('files') || [];
                     var fileTypeArray = Session.get('fileTypes') || [];
                     fileArray.push(fileObj._id);
-                    fileTypeArray.push(fileObj.getExtension())
+                    fileTypeArray.push( fileObj.getExtension().toLocaleLowerCase() );
                     Session.set('fileTypes',fileTypeArray);
 
                     queryArrayObj.update({'_id':Meteor.user()._id},{
@@ -106,7 +114,10 @@ Template.uploadForm.events({
         ticketObj.tags = ticketObj.tags.split(',');
         console.log('ticket object',ticketObj);
         ticketObj.user = Meteor.user()._id;
+        ticketObj.tags.push( Meteor.user().profile.name );
         ticketObj.userObj = Meteor.user();
+
+        ticketObj.tags = Template.instance().cleanTags( ticketObj.tags );
 
         ///ADD THE TAGS TO QUERYARRAY
         _.each(ticketObj.tags,function(e){
@@ -144,7 +155,16 @@ Template.uploadForm.events({
 });
 
 Template.uploadForm.onCreated(function () {
-    queryArrayObj.insert({'_id':Meteor.user()._id})
+    queryArrayObj.insert({'_id':Meteor.user()._id});
+    this.cleanTags = function(arr){ //clean whitespace, duplicates, force lowercase
+        var new_arr = [];
+        _.each(arr,function(str){
+            var s = str.trim().toLocaleLowerCase();
+            if (new_arr.indexOf( s ) === -1)
+                new_arr.push( s );
+        });
+        return new_arr;
+    }
 });
 
 Template.uploadForm.onRendered(function () {

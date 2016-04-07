@@ -9,6 +9,10 @@ Template.filterModule.helpers({
     'advancedFilter':function(){
         return Session.get('advancedFilter')
     },
+    'fileTypes':function(){
+        var types = ['jpeg','jpg','gif','png','doc','docx','xsl','xslx','ppt','pptx','pdf'];
+        return types;
+    },
     'searching':function(){
         return Session.get('searching')
     },
