@@ -13,6 +13,9 @@ Template.uploadForm.helpers({
     },
     'categories':function(){
         return Categories.find({},{sort:{'name':1}}).fetch()
+    },
+    'clients':function(){
+        return Clients.find({},{sort:{'name':1}}).fetch()
     }
 
 });
@@ -121,6 +124,7 @@ Template.uploadForm.events({
         ticketObj.user = Meteor.user()._id;
         ticketObj.userObj = Meteor.user();
         ticketObj.category = $('.catDrop').val();
+        //parse URLs from summary for more machine tagging OR listen for onPaste events in the summary field front-end
 
         ticketObj.tags.push(ticketObj.category);
         ticketObj.tags.push( Meteor.user().profile.name);

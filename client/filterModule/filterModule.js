@@ -24,31 +24,30 @@ Template.filterModule.helpers({
 Template.filterModule.events({
     'submit .searchForm': function (event, template) {
         event.preventDefault();
-
         var filterObj = {};
         filterObj.term = $(event.target).find('.searchInput').val();
+        var terms = filterObj.term.split(' ');
 
         //searchColumns = ["title","summary","tags","date"];
         searchQuery = {};
         searchQuery.$or = []
+        var fieldObj = {};
 
         //QUERY ARGS
         queryArgs = {};
         //queryArgs.limit = 1;
         queryArgs.sort = {date: 1}
         //formBObj = [];
-
         _.each(Session.get('formBuilderObj'),function(e){
             // build the query
-            var fieldObj = {};
-            if(e.q_type === 'regex' ) {
-                fieldObj[e.name] = {$regex: filterObj.term, $options: "i"};
-            }else{ //literal
-                fieldObj[e.name] = {$regex: filterObj.term, $options: "i"};
-            }
-            if(e.inherit_search){
-            searchQuery.$or.push(fieldObj)
-            }
+
+            _.each(terms, function(t){
+                var cor = {};
+                cor[ e.name ] = {$regex: t, $options: "i"};
+                searchQuery.$or.push( cor );
+                //fieldObj[e.name] = {$regex: t, $options: "i"};
+            });
+
 
             ////BUILD THE FORM
             //formBObj.push({
@@ -58,6 +57,7 @@ Template.filterModule.events({
 
 
         })
+        console.log('searchQuery.$or:'+JSON.stringify(searchQuery.$or));
 
         console.log('searchQuery',searchQuery)
         Session.set('searchQuery',filterObj.term);

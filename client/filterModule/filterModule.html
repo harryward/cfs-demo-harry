@@ -5,33 +5,26 @@
                 <div class="col-sm-8">
                     <div class="fileMeta text-muted">
                         <h4>
-                            {{#if advancedFilter}}
-                                <span class="pull-left">Advanced Document Search</span>
-                            {{else}}
-                                <span class="pull-left">Document Search</span>
-                            {{/if}}
+                            <span class="pull-left">Document Search</span>
 
                             <div class="btn btn-default btn-xs advancedFilter"><i class="fa fa-filter"></i>
                                 {{#if advancedFilter}}
-                                    Remove Filters
+                                    Remove Date Range
                                 {{else}}
-                                    Advanced Filters
+                                    Show Date Range
                                 {{/if}}
                             </div>
                         </h4>
 
                     </div>
                     {{#if advancedFilter}}
+                        {{>mikeTpl}}
                     {{else}}
                         <div class="form-row">
-                            <input type="text" value="{{searchQuery}}" placeholder="search..."
+                            <input name="q" type="text" value="{{searchQuery}}" placeholder="search..."
                                    class="form-control searchInput"/>
                         </div>
                     {{/if}}
-
-                    {{#if advancedFilter}}
-                         {{>mikeTpl}}
-                     {{/if}}
                 </div>
                 <div class="col-sm-4">
 
