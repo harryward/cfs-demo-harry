@@ -29,15 +29,32 @@ Template.filterModule.events({
         var terms = filterObj.term.split(' ');
 
         //searchColumns = ["title","summary","tags","date"];
-        searchQuery = {};
-        searchQuery.$or = []
+        searchQuery = [];
+        searchQuery = [{ "$text": { $search: filterObj.term } }, { score: { $meta: "textScore" } }];
+        //searchQuery.$or = []
         var fieldObj = {};
 
         //QUERY ARGS
         queryArgs = {};
         //queryArgs.limit = 1;
-        queryArgs.sort = {date: 1}
+        queryArgs = {
+            fields: {
+                score: { "$meta": "textScore" }
+            },
+            sort: {
+                date: 1,
+                score: { "$meta": "textScore" }
+            }
+        };
+
+        //queryArgs.sort = {date: 1, score: { "$meta": "textScore" } };
         //formBObj = [];
+
+        //db.prod_gravity_2015capex_pr_423.find(
+        //    { "$text": { $search: "outlook phase" } },
+        //    { score: { $meta: "textScore" } }
+        //).sort( { ISOdate: 1, score: { $meta: "textScore" } } )
+/*
         _.each(Session.get('formBuilderObj'),function(e){
             // build the query
 
@@ -57,9 +74,11 @@ Template.filterModule.events({
 
 
         })
-        console.log('searchQuery.$or:'+JSON.stringify(searchQuery.$or));
+        */
+        //console.log('searchQuery:'+JSON.stringify(searchQuery));
 
         console.log('searchQuery',searchQuery)
+        console.log('queryArgs',queryArgs)
         Session.set('searchQuery',filterObj.term);
         Session.set('formBuilderObj',Session.get('formBuilderObj')); // this builds the advanced filter form
         Session.set('docSearchQuery', searchQuery);
