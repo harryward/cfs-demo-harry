@@ -29,8 +29,9 @@ Template.filterModule.events({
         var terms = filterObj.term.split(' ');
 
         //searchColumns = ["title","summary","tags","date"];
-        searchQuery = [];
-        searchQuery = [{ "$text": { $search: filterObj.term } }, { score: { $meta: "textScore" } }];
+        //https://themeteorchef.com/snippets/mongodb-queries-and-projections/
+        searchQuery = {};
+        searchQuery = { "$text": { $search: filterObj.term } }; //, score: { $meta: "textScore" }
         //searchQuery.$or = []
         var fieldObj = {};
 
@@ -42,8 +43,8 @@ Template.filterModule.events({
                 score: { "$meta": "textScore" }
             },
             sort: {
-                date: 1,
                 score: { "$meta": "textScore" }
+                //date: -1
             }
         };
 

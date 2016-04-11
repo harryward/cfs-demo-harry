@@ -15,7 +15,7 @@
                     {{else}}
                         {{#each tickets}}
 
-                            <div class=" singlerecord">
+                            <div class="mikew singlerecord">
                                 <p>
                                     <a href="/edit/batch/{{_id}}" class="fileTitle">{{title}}</a></p>
 
@@ -130,12 +130,24 @@
                 {{/if}}
 
             </div>
+            <div class="row">
+                <div class="col-xs-12">
+<pre>// rawTickets
+    {{rawTickets}}</pre>
+                </div>
+
+
+            </div>
         </div>
         <div class="col-sm-4">
             <div class="row">
                 <div class="col-xs-12">
 <pre>// query rawFilter docSearchQuery
-{{rawFilter}}</pre>
+    {{rawFilter}}</pre>
+                </div>
+                <div class="col-xs-12">
+<pre>// query rawProjection queryArgs
+    {{rawProjection}}</pre>
                 </div>
                 <div class="col-xs-12">
 <pre>// form rawForm formBuilderObj
