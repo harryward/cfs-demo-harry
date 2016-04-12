@@ -34,6 +34,7 @@ if (Meteor.isClient) {
 
     Tracker.autorun(function () {
         if (Session.get('searchQuery')) {
+            console.log('testing')
             // var advancedFilters = formFilters.findOne({'_id':'default'})
             var advancedFilters = formSchemas.find().fetch();
             Session.set('formLayout', advancedFilters)

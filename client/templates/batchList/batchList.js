@@ -3,9 +3,12 @@ Template.batchList.helpers({
         return Session.get('showFiles')
     },
     'tickets': function () {
-        var sort = (Session.get('searchQuery') && Session.get('searchQuery') != "") ?
-        {} : {'sort':{'date': -1}};
-        return Tickets.find({}, sort).fetch();
+        //var sort = (Session.get('searchQuery') && Session.get('searchQuery') != "") ?
+        //{} : {'sort':{'date': -1}};
+        return Tickets.find({}, {'sort':{'date': -1}}).fetch();
+    },
+    'rounder':function(theNum){
+        return numeral(theNum).format('00.00')
     },
     'user':function(){
         var userData = Meteor.users.findOne(this.user);
@@ -43,9 +46,11 @@ Template.batchList.helpers({
         return moment(this.date).fromNow();
     },
     'searchQuery': function () {
-        //if(Session.get('searchQuery') && Session.get('searchQuery') != ""){
-        return Session.get('searchQuery')
-        //}
+        if(Session.get('searchQuery') && Session.get('searchQuery') != ""){
+            return Session.get('searchQuery')
+        }else{
+            return false
+        }
     },
     'rawFilter': function(){
         return EJSON.stringify( Session.get('docSearchQuery'), {'indent':true } );

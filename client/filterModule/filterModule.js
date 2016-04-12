@@ -24,32 +24,45 @@ Template.filterModule.helpers({
 Template.filterModule.events({
     'submit .searchForm': function (event, template) {
         event.preventDefault();
+
         //neeed to reset the session vars
         delete Session.keys['searchQuery'];
         delete Session.keys['queryArgs'];
+
         var filterObj = {};
         filterObj.term = $(event.target).find('.searchInput').val();
+
         var terms = filterObj.term.split(' ');
 
         //searchColumns = ["title","summary","tags","date"];
         //https://themeteorchef.com/snippets/mongodb-queries-and-projections/
-        searchQuery = {};
-        searchQuery = { "$text": { $search: filterObj.term } }; //, score: { $meta: "textScore" }
-        //searchQuery.$or = []
+
+        var searchQuery = {};
+
         var fieldObj = {};
 
         //QUERY ARGS
-        queryArgs = {};
-        //queryArgs.limit = 1;
-        queryArgs = {
-            fields: {
-                score: { "$meta": "textScore" }
-            },
-            sort: {
-                score: { "$meta": "textScore" }
-                //date: -1
-            }
-        };
+        var queryArgs = {};
+
+        if(filterObj.term && filterObj.term != "") {
+            searchQuery = {"$text": {$search: filterObj.term}}; //, score: { $meta: "textScore" }
+            //queryArgs.limit = 1;
+            queryArgs = {
+                fields: {
+                    score: { "$meta": "textScore" }
+                },
+                sort: {
+                    score: { "$meta": "textScore" }
+                    //date: -1
+                }
+            };
+        }else{
+            // show latest posts
+        }
+
+        //searchQuery.$or = []
+
+
 
         //queryArgs.sort = {date: 1, score: { "$meta": "textScore" } };
         //formBObj = [];
@@ -85,7 +98,7 @@ Template.filterModule.events({
         console.log('queryArgs',queryArgs)
         Session.set('searchQuery',filterObj.term);
         Session.set('formBuilderObj',Session.get('formBuilderObj')); // this builds the advanced filter form
-        Session.set('docSearchQuery', searchQuery);
+        Session.set('docSearchQuery', searchQuery || {});
         Session.set('queryArgs', queryArgs);
 
 

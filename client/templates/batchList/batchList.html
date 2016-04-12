@@ -2,155 +2,264 @@
 
     {{>filterModule}}
     <div class="batchList-container">
-        <h3 class="lead">Showing {{tickets.length}} {{#if searchQuery}} Results for '{{searchQuery}}'{{else}}Records{{/if}}: <div class="btn btn-default pull-right fileTypeFilter">Show Files</div></h3>
-    <div class="row ">
-        <div class="col-sm-8">
-            <div class="batches">
-                {{#if tickets}}
-                    {{#if searching}}
-                        <div class="searching" style="padding:30px">
-                            <p class="text-muted"><i class="fa fa-spin fa-spinner"></i> searching for "{{searchQuery}}"
-                            </p>
-                        </div>
-                    {{else}}
-                        {{#each tickets}}
+       {{#if searchQuery}}
+        <h3 class="lead">{{tickets.length}}  posts found that contain <b> '{{searchQuery}}' </b>:</h3>
+            {{else}}
+           <h3 class="lead">Showing Latest Posts</h3>
+       {{/if}}
+            <div class="btn btn-default pull-right fileTypeFilter">Show Files</div>
 
-                            <div class="mikew singlerecord">
-                                <p>
-                                    <a href="/edit/batch/{{_id}}" class="fileTitle">{{score}} :: {{title}}</a>
+        <div class="row ">
+            <div class="col-sm-8">
+                <div class="batches">
+                    {{#if tickets}}
+                        {{#if searching}}
+                            <div class="searching" style="padding:30px">
+                                <p class="text-muted"><i class="fa fa-spin fa-spinner"></i> searching for
+                                    "{{searchQuery}}"
                                 </p>
-                                <p class="filelink">
-                                    /edit/batch/{{_id}}
-                                    <span class="text-muted">({{date}})</span>
-                                    {{#if user}}
-                                    <span class="text-muted"><i class="fa fa-user"></i> {{user.profile.name}} </span>
-                                    {{/if}}
-                                </p>
+                            </div>
+                        {{else}}
+
+                            {{#if searchQuery}}
+                                {{#each tickets}}
+                                    {{#if score}}
+                                        <div class="mikew singlerecord">
+                                            <p>
+                                                <a href="/edit/batch/{{_id}}" class="fileTitle">
+                                                    <span class="badge">{{rounder score}}</span>
+                                                    :: {{title}}</a>
+                                            </p>
+
+                                            <p class="filelink">
+                                                /edit/batch/{{_id}}
+                                                <span class="text-muted">({{date}})</span>
+                                                {{#if user}}
+                                                    <span class="text-muted"><i
+                                                            class="fa fa-user"></i> {{user.profile.name}} </span>
+                                                {{/if}}
+                                            </p>
 
 
-                                <p class="caption text-muted">
-                                    <!--<small>{{{summary}}}</small>-->
-                                </p>
-                                {{#if queryTags}}
-                                    <div class="fileStuff">
-                                        <a href="#" class="mini-title">
-                                            <b>
-                                                <i class="fa fa-tag"></i> queryTags:
-                                            </b>
-                                        </a>
-                                        {{#each queryTags}}
-                                            <a class="mini-title">
-                                                {{this}}
-                                            </a>
-                                        {{/each}}
-                                    </div>
-                                {{/if}}
-                                {{#if tags}}
-                                <div class="fileStuff">
-                                    <a href="#" class="mini-title">
-                                        <b>
-                                            <i class="fa fa-tag"></i> tags:
-                                        </b>
-                                    </a>
-                                    {{#each tags}}
-                                        <a class="mini-title">
-                                            {{this}}
-                                        </a>
-                                    {{/each}}
-                                </div>
-                        {{/if}}
-                                {{#if showFiles}}
-                                    {{#each files}}
-                                        <div class="list-group-item">
-                                        <div class="row">
-                                            <div class="col-sm-1">
-                                                <img src="/icons/{{extension}}.png" style="width:100%" alt=""/>
-                                            </div>
-                                            <div class="col-sm-7">
-                                                <a href="{{theFileLink}}" file="{{theFileLink}}" download class="">
-                                                    <div><b>{{theFileMeta.metadata.title}}</b></div>
-                                                    <small>{{theFileMeta.original.name}}</small>
-                                                </a>
-                                                <div>
-                                                    {{theFileMeta.metadata.summary}}
+                                            <p class="caption text-muted">
+                                                <!--<small>{{{summary}}}</small>-->
+                                            </p>
+                                            {{#if queryTags}}
+                                                <div class="fileStuff">
+                                                    <a href="#" class="mini-title">
+                                                        <b>
+                                                            <i class="fa fa-tag"></i> queryTags:
+                                                        </b>
+                                                    </a>
+                                                    {{#each queryTags}}
+                                                        <a class="mini-title">
+                                                            {{this}}
+                                                        </a>
+                                                    {{/each}}
                                                 </div>
-                                                <div class="text-muted"><small>Category: Marketing</small></div>
-                                            </div>
-                                            <div class="col-sm-4 text-right">
+                                            {{/if}}
+                                            {{#if tags}}
+                                                <div class="fileStuff">
+                                                    <a href="#" class="mini-title">
+                                                        <b>
+                                                            <i class="fa fa-tag"></i> tags:
+                                                        </b>
+                                                    </a>
+                                                    {{#each tags}}
+                                                        <a class="mini-title">
+                                                            {{this}}
+                                                        </a>
+                                                    {{/each}}
+                                                </div>
+                                            {{/if}}
+                                            {{#if showFiles}}
+                                                {{#each files}}
+                                                    <div class="list-group-item">
+                                                        <div class="row">
+                                                            <div class="col-sm-1">
+                                                                <img src="/icons/{{extension}}.png" style="width:100%"
+                                                                     alt=""/>
+                                                            </div>
+                                                            <div class="col-sm-7">
+                                                                <a href="{{theFileLink}}" file="{{theFileLink}}"
+                                                                   download class="">
+                                                                    <div><b>{{theFileMeta.metadata.title}}</b></div>
+                                                                    <small>{{theFileMeta.original.name}}</small>
+                                                                </a>
 
-                                                <a href="{{theFileLink}}" download  file="{{theFileLink}}"  class="btn btn-xs btn-primary"><i class="fa fa-download"></i> Download</a>
-                                            </div>
+                                                                <div>
+                                                                    {{theFileMeta.metadata.summary}}
+                                                                </div>
+                                                                <div class="text-muted">
+                                                                    <small>Category: Marketing</small>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-4 text-right">
+
+                                                                <a href="{{theFileLink}}" download
+                                                                   file="{{theFileLink}}"
+                                                                   class="btn btn-xs btn-primary"><i
+                                                                        class="fa fa-download"></i> Download</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                {{/each}}
+                                            {{/if}}
                                         </div>
-                                        </div>
+                                    {{/if}}
+                                {{/each}}
+                            {{else}}
 
-                                    {{/each}}
-                                {{/if}}
-                            </div>
-                                
-                        {{/each}}
-                    {{/if}}
-                {{else}}
-                    {{#if advancedResults}}
-                        {{#each advancedResults}}
-                            <div class=" singlerecord">
-                                <p> ADVANCED RESULT <br>
-                                    <a href="/edit/batch/{{_id}}" class="fileTitle">{{title}}</a></p>
+                                {{#each tickets}}
 
-                                <p class="filelink">
-                                    /edit/batch/{{_id}}
-                                    <span class="text-muted">({{date}})</span>
-                                </p>
+                                    <div class="mikew singlerecord">
+                                        <p>
+                                            <a href="/edit/batch/{{_id}}" class="fileTitle">{{title}}</a>
+                                        </p>
 
-                                <p class="caption text-muted">
-                                    <small>{{summary}}</small>
-                                </p>
-                                {{#if tags}}
-                                    <div class="fileStuff">
-                                        <a href="#" class="mini-title">
-                                            <b>
-                                                <i class="fa fa-tag"></i> tags:
-                                            </b>
-                                        </a>
-                                        {{#each tags}}
-                                            <a class="mini-title">
-                                                {{this}}
-                                            </a>
-                                        {{/each}}
+                                        <p class="filelink">
+                                            /edit/batch/{{_id}}
+                                            <span class="text-muted">({{date}})</span>
+                                            {{#if user}}
+                                                <span class="text-muted"><i
+                                                        class="fa fa-user"></i> {{user.profile.name}} </span>
+                                            {{/if}}
+                                        </p>
+
+
+                                        <p class="caption text-muted">
+                                            <!--<small>{{{summary}}}</small>-->
+                                        </p>
+                                        {{#if queryTags}}
+                                            <div class="fileStuff">
+                                                <a href="#" class="mini-title">
+                                                    <b>
+                                                        <i class="fa fa-tag"></i> queryTags:
+                                                    </b>
+                                                </a>
+                                                {{#each queryTags}}
+                                                    <a class="mini-title">
+                                                        {{this}}
+                                                    </a>
+                                                {{/each}}
+                                            </div>
+                                        {{/if}}
+                                        {{#if tags}}
+                                            <div class="fileStuff">
+                                                <a href="#" class="mini-title">
+                                                    <b>
+                                                        <i class="fa fa-tag"></i> tags:
+                                                    </b>
+                                                </a>
+                                                {{#each tags}}
+                                                    <a class="mini-title">
+                                                        {{this}}
+                                                    </a>
+                                                {{/each}}
+                                            </div>
+                                        {{/if}}
+                                        {{#if showFiles}}
+                                            {{#each files}}
+                                                <div class="list-group-item">
+                                                    <div class="row">
+                                                        <div class="col-sm-1">
+                                                            <img src="/icons/{{extension}}.png" style="width:100%"
+                                                                 alt=""/>
+                                                        </div>
+                                                        <div class="col-sm-7">
+                                                            <a href="{{theFileLink}}" file="{{theFileLink}}" download
+                                                               class="">
+                                                                <div><b>{{theFileMeta.metadata.title}}</b></div>
+                                                                <small>{{theFileMeta.original.name}}</small>
+                                                            </a>
+
+                                                            <div>
+                                                                {{theFileMeta.metadata.summary}}
+                                                            </div>
+                                                            <div class="text-muted">
+                                                                <small>Category: Marketing</small>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4 text-right">
+
+                                                            <a href="{{theFileLink}}" download file="{{theFileLink}}"
+                                                               class="btn btn-xs btn-primary"><i
+                                                                    class="fa fa-download"></i> Download</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            {{/each}}
+                                        {{/if}}
                                     </div>
-                                {{/if}}
 
-                            </div>
-                        {{/each}}
-                     {{/if}}
-                {{/if}}
+                                {{/each}}
 
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
+                            {{/if}}
+                        {{/if}}
+                    {{else}}
+                        {{#if advancedResults}}
+                            {{#each advancedResults}}
+                                <div class=" singlerecord">
+                                    <p> ADVANCED RESULT <br>
+                                        <a href="/edit/batch/{{_id}}" class="fileTitle">{{title}}</a></p>
+
+                                    <p class="filelink">
+                                        /edit/batch/{{_id}}
+                                        <span class="text-muted">({{date}})</span>
+                                    </p>
+
+                                    <p class="caption text-muted">
+                                        <small>{{summary}}</small>
+                                    </p>
+                                    {{#if tags}}
+                                        <div class="fileStuff">
+                                            <a href="#" class="mini-title">
+                                                <b>
+                                                    <i class="fa fa-tag"></i> tags:
+                                                </b>
+                                            </a>
+                                            {{#each tags}}
+                                                <a class="mini-title">
+                                                    {{this}}
+                                                </a>
+                                            {{/each}}
+                                        </div>
+                                    {{/if}}
+
+                                </div>
+                            {{/each}}
+                        {{/if}}
+                    {{/if}}
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
 <pre>// rawTickets
     {{rawTickets}}</pre>
+                    </div>
+
+
                 </div>
-
-
             </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="row">
-                <div class="col-xs-12">
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-xs-12">
 <pre>// query rawFilter docSearchQuery
     {{rawFilter}}</pre>
-                </div>
-                <div class="col-xs-12">
+                    </div>
+                    <div class="col-xs-12">
 <pre>// query rawProjection queryArgs
     {{rawProjection}}</pre>
-                </div>
-                <div class="col-xs-12">
+                    </div>
+                    <div class="col-xs-12">
 <pre>// form rawForm formBuilderObj
-{{rawForm}}</pre>
+    {{rawForm}}</pre>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     {{#with tickets}}
         <div class="text-center pagBar">
