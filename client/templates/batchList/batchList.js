@@ -110,5 +110,9 @@ Template.batchList.onRendered(function () {
 Template.batchList.onDestroyed(function () {
     //add your statement here
     //Session.set('showFiles' ,{});
+    //Session.set('queryArgs' ,{});
+    delete Session.keys['showFiles']
+    delete Session.keys['queryArgs']
+    //
 });
 

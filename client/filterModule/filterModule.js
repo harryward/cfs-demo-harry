@@ -24,6 +24,9 @@ Template.filterModule.helpers({
 Template.filterModule.events({
     'submit .searchForm': function (event, template) {
         event.preventDefault();
+        //neeed to reset the session vars
+        delete Session.keys['searchQuery'];
+        delete Session.keys['queryArgs'];
         var filterObj = {};
         filterObj.term = $(event.target).find('.searchInput').val();
         var terms = filterObj.term.split(' ');

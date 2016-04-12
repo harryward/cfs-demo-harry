@@ -2,7 +2,7 @@
 
     {{>filterModule}}
     <div class="batchList-container">
-        <h3 class="lead">Results: <div class="btn btn-default pull-right fileTypeFilter">Show Files</div></h3>
+        <h3 class="lead">Showing {{tickets.length}} {{#if searchQuery}} Results for '{{searchQuery}}'{{else}}Records{{/if}}: <div class="btn btn-default pull-right fileTypeFilter">Show Files</div></h3>
     <div class="row ">
         <div class="col-sm-8">
             <div class="batches">
@@ -17,8 +17,8 @@
 
                             <div class="mikew singlerecord">
                                 <p>
-                                    <a href="/edit/batch/{{_id}}" class="fileTitle">{{title}}</a></p>
-
+                                    <a href="/edit/batch/{{_id}}" class="fileTitle">{{score}} :: {{title}}</a>
+                                </p>
                                 <p class="filelink">
                                     /edit/batch/{{_id}}
                                     <span class="text-muted">({{date}})</span>
@@ -121,12 +121,7 @@
 
                             </div>
                         {{/each}}
-                    {{else}}
-                        <div class="nothingFound">
-                            <div class="text-muted"><i class="fa fa-warning"></i> No docs found with "{{searchQuery}}"..
-                            </div>
-                        </div>
-                    {{/if}}
+                     {{/if}}
                 {{/if}}
 
             </div>

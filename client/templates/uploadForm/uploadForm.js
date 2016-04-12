@@ -129,6 +129,7 @@ Template.uploadForm.events({
         ticketObj.tags.push(ticketObj.category);
         ticketObj.tags.push( Meteor.user().profile.name);
         ticketObj.tags.push( moment().format('YYYY'));
+        ticketObj.tags.push( moment().format('MMMM'));
         ticketObj.tags.push( ticketObj.category);
 
         ///ADD THE TAGS TO QUERYARRAY

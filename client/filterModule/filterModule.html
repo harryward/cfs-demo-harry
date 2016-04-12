@@ -17,12 +17,21 @@
                         </h4>
 
                     </div>
+                    <div class="form-row">
+                        <input name="q" type="text" value="{{searchQuery}}" placeholder="search..."
+                               class="form-control searchInput"/>
+                    </div>
                     {{#if advancedFilter}}
-                        {{>mikeTpl}}
-                    {{else}}
                         <div class="form-row">
-                            <input name="q" type="text" value="{{searchQuery}}" placeholder="search..."
-                                   class="form-control searchInput"/>
+                            <label for="pubdate">Search documents from </label>
+                            <select name="pubdate" class="form-control daterange">
+                                <option value="0">the beginning of this tool's existence</option>
+                                <option value="1">a week ago</option>
+                                <option value="2">a month ago</option>
+                                <option value="3">three months ago</option>
+                                <option value="4">this year</option>
+                                <option value="5">last year</option>
+                            </select>
                         </div>
                     {{/if}}
                 </div>
