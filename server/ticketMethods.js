@@ -8,7 +8,7 @@ Meteor.methods({
         searchDoc.body = ticketObj.queryTags.toString(); + ' '+ticketObj.summary + ' ' + ticketObj.title
         searchDoc.batchMeta = ticketObj
 
-        Meteor.call('addRecord',searchDoc)
+        Meteor.call('addRecord',searchDoc,ticketObj._id)
 
         return Tickets.insert(ticketObj)
     },
