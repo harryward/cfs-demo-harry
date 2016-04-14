@@ -3,14 +3,14 @@ Meteor.methods({
         console.log('creating ticket...');
 
         var searchDoc = {};
+        var ticketId =  Tickets.insert(ticketObj)
         searchDoc.title = ticketObj.title
-        searchDoc.ticketId = ticketObj._id
+        searchDoc.ticketId = ticketId
         searchDoc.body = ticketObj.queryTags.toString(); + ' '+ticketObj.summary + ' ' + ticketObj.title
         searchDoc.batchMeta = ticketObj
+        Meteor.call('addRecord',searchDoc,ticketObj._id);
+        return ticketId
 
-        Meteor.call('addRecord',searchDoc,ticketObj._id)
-
-        return Tickets.insert(ticketObj)
     },
     'updateTicket':function(ticketId,ticketObj){
         console.log('updating ticket..');
