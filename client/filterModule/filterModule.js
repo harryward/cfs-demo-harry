@@ -9,6 +9,7 @@ Template.filterModule.helpers({
     'advancedFilter':function(){
         return Session.get('advancedFilter')
     },
+
     'fileTypes':function(){
         var types = ['jpeg','jpg','gif','png','doc','docx','xsl','xslx','ppt','pptx','pdf'];
         return types;
@@ -24,7 +25,7 @@ Template.filterModule.helpers({
 Template.filterModule.events({
     'submit .searchForm': function (event, template) {
         event.preventDefault();
-
+        Session.set('elasticResp',false);
         //neeed to reset the session vars
 
         delete Session.keys['searchQuery'];
@@ -48,6 +49,12 @@ Template.filterModule.events({
         var queryArgs = {};
 
         if(filterObj.term && filterObj.term != "") {
+
+            Meteor.call('searchElastic',filterObj.term,function(err,resp){
+                Session.set('elasticResp',resp);
+                console.log(resp)
+            });
+
             searchQuery = {"$text": {$search: filterObj.term}}; //, score: { $meta: "textScore" }
             //queryArgs.limit = 1;
 
@@ -98,6 +105,8 @@ Template.filterModule.events({
         })
         */
         //console.log('searchQuery:'+JSON.stringify(searchQuery));
+
+
 
         console.log('searchQuery',searchQuery)
         console.log('queryArgs',queryArgs)
