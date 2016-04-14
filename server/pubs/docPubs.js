@@ -4,9 +4,6 @@ Meteor.publish('docSearch', function (searchQuery, queryArgs) {
     } else {
         return Tickets.find({},{sort:{date:1}})
     }
-
-
-
 })
 
 Meteor.publish('singleTicket', function (ticketId) {

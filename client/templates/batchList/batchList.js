@@ -59,6 +59,18 @@ Template.batchList.helpers({
         return EJSON.stringify(
             Tickets.find({}).fetch(), {'indent':true } );
     },
+    'elasticResults':function(){
+        return Session.get('elasticResp')
+    },
+    'thisBatch':function(){
+        console.log(this._source.ticketId)
+        return Tickets.findOne({'_id':this._source.ticketId});
+        //return this._source.ticketId
+    },
+    'rawElastic':function(){
+        return EJSON.stringify(
+            Session.get('elasticResp'), {'indent':true } );
+    },
     'rawProjection': function(){
         return EJSON.stringify( Session.get('queryArgs'), {'indent':true } );
     },
