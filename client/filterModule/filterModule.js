@@ -26,11 +26,14 @@ Template.filterModule.events({
         event.preventDefault();
 
         //neeed to reset the session vars
+
         delete Session.keys['searchQuery'];
         delete Session.keys['queryArgs'];
 
         var filterObj = {};
+
         filterObj.term = $(event.target).find('.searchInput').val();
+        //filterObj.term = event.target.value;
 
         var terms = filterObj.term.split(' ');
 
@@ -47,6 +50,7 @@ Template.filterModule.events({
         if(filterObj.term && filterObj.term != "") {
             searchQuery = {"$text": {$search: filterObj.term}}; //, score: { $meta: "textScore" }
             //queryArgs.limit = 1;
+
             queryArgs = {
                 fields: {
                     score: { "$meta": "textScore" }
@@ -56,6 +60,7 @@ Template.filterModule.events({
                     //date: -1
                 }
             };
+
         }else{
             // show latest posts
         }
@@ -120,13 +125,8 @@ Template.filterModule.events({
 });
 
 Template.filterModule.onCreated(function () {
-    Session.set('skip', parseInt('0'))
-    Session.set('page', parseInt('1'))
-
-
-    //Deps.autorun(function(){
-    //    Meteor.subscribe('docs',Session.get('searchQuery'),Session.get('skip'))
-    //})
+    Session.set('skip', parseInt('0'));
+    Session.set('page', parseInt('1'));
 
     Deps.autorun(function(){
         Meteor.subscribe('docSearch',Session.get('docSearchQuery'),Session.get('queryArgs'))
