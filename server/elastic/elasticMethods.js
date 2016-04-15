@@ -1,4 +1,4 @@
-Meteor.methods({
+ Meteor.methods({
     'addRecord': function (theBody, theId) {
 
         var elasticsearch = Npm.require('elasticsearch');

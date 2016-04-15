@@ -281,3 +281,9 @@ h2.page-header.text-center {
     text-transform: uppercase;
     font-size: 12px;
 }
+.truncate {
+    width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

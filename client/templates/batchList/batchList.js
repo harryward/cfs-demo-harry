@@ -63,7 +63,7 @@ Template.batchList.helpers({
         return Session.get('elasticResp')
     },
     'thisBatch':function(){
-        console.log(this._source.ticketId)
+        //console.log(this._source.ticketId)
         return Tickets.findOne({'_id':this._source.ticketId});
         //return this._source.ticketId
     },
@@ -91,7 +91,7 @@ Template.batchList.events({
                 Meteor.subscribe('singleDoc', file);
             })
         });
-        Session.set('showFiles',true)
+        Session.set('showFiles', !Session.get('showFiles') );
     },
     'click .editMe': function (event, template) {
         // event.preventDefault();
@@ -114,6 +114,12 @@ Template.batchList.events({
     },
 
 });
+
+function stripHTML(string){
+    s = string.replace(/(<([^>]+)>)/ig, '');
+    return s;
+}
+Template.registerHelper('stripHTML', stripHTML)
 
 Template.batchList.onCreated(function () {
     //add your statement here
