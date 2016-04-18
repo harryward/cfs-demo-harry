@@ -73,15 +73,19 @@
                 {{/if}}
             </div>
 
-
             <div class="form-group">
-                <label for="category">Client <code>Temporarily allowing creation of Clients.</code></label>
-                <select name="client" id="client" class="hidden catDrop">
-                    <option value="">-- select Client --</option>
-                    {{#each clients}}
-                        <option>{{name}}</option>
+                <label for="market" data-u-mkt="{{currUser.priofile.market}}">Market</label>
+                <select name="market" id="market">
+                    <option value="">-- No Market --</option>
+                    {{#each markets}}
+                        <option>{{Facility}}</option>
                     {{/each}}
                 </select>
+            </div>
+
+            <div class="form-group">
+                <label for="client">Client <code>Temporarily allowing creation of Client.</code></label>
+                <input placeholder="enter client.." type="text" name="client" class="clientDrop hidden form-control"/>
             </div>
 
             <div class="form-group">

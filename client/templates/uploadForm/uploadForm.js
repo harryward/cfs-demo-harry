@@ -11,11 +11,17 @@ Template.uploadForm.helpers({
     'isDone':function(){
         return Docs.findOne(this.toString()).isUploaded()
     },
+    'markets':function(){
+        return Markets.find({},{sort:{'Facility':1}}).fetch()
+    },
     'categories':function(){
         return Categories.find({},{sort:{'name':1}}).fetch()
     },
     'clients':function(){
         return Clients.find({},{sort:{'name':1}}).fetch()
+    },
+    'currUser':function(){
+        return Meteor.user();
     }
 
 });
@@ -159,7 +165,7 @@ Template.uploadForm.events({
                 if(!err){
                     console.log('new ticket created',resp);
                     alert('success!');
-                    var clearSessions = ['lastTicket','docId','files','fileArray','tags','totalCats','totalTags']
+                    var clearSessions = ['lastTicket','docId','files','fileArray','tags','totalCats','totalClients','totalTags']
                     _.each(clearSessions,function(e){
                         Session.set(e,false)
                     })
@@ -194,6 +200,7 @@ Template.uploadForm.onCreated(function () {
 
     Meteor.subscribe('cats'); // subscribe to categories
     Meteor.subscribe('tags'); // subscribe to tags
+    Meteor.subscribe('markets'); // subscribe to markets
 });
 
 Template.uploadForm.onRendered(function () {
@@ -217,10 +224,10 @@ Template.uploadForm.onRendered(function () {
                 valueField: 'name',
                 labelField: 'name',
                 create: function(input) {
-                     Categories.insert({
-                         '_id':Base58.encode(input.toLowerCase().replace(/ /g,'')),
-                         'name':input
-                     })
+                    Categories.insert({
+                        '_id':Base58.encode(input.toLowerCase().replace(/ /g,'')),
+                        'name':input
+                    })
                     return {
                         name:input
                     }
@@ -230,7 +237,43 @@ Template.uploadForm.onRendered(function () {
         }
     })
 
-   // TAGS SELECTIZE
+    // Client SELECTIZE
+    Meteor.call('totalClients',function(err,resp){
+        Session.set('totalClients',resp)
+    })
+    var clientRendered = false
+    Tracker.autorun(function(){
+        if(Clients.find().count() === Session.get('totalClients') && !clientRendered){
+            clientRendered = true
+            console.log('rendering client selectize');
+            $('.clientDrop.hidden').removeClass('hidden form-control');
+            $('.clientDrop').selectize({
+                sortField: 'name',
+                options:Clients.find().fetch(),
+                valueField: 'name',
+                labelField: 'name',
+                searchField: ['name'],
+                maxItems:1,
+                create: function(input) {
+                    Client.insert({
+                        '_id':Base58.encode(input.toLowerCase().replace(/ /g,'')),
+                        'name':input
+                    })
+                    return {
+                        name:input
+                    }
+                },
+                onChange: function(value) {
+                    Session.set('tags',value.split(','));
+                    console.log('tags',Session.get('tags'))
+                }
+
+            });
+        }
+    })
+
+
+    // TAGS SELECTIZE
     Meteor.call('totalTags',function(err,resp){
         Session.set('totalTags',resp)
     })
@@ -238,7 +281,7 @@ Template.uploadForm.onRendered(function () {
     Tracker.autorun(function(){
         if(Tags.find().count() === Session.get('totalTags') && !tagRendered){
             catRendered = true
-            console.log('rendering category selectize');
+            console.log('rendering tags selectize');
             $('.tagDrop.hidden').removeClass('hidden form-control');
             $('.tagDrop').selectize({
                 sortField: 'name',
