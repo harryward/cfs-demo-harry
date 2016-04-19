@@ -171,6 +171,7 @@ Template.uploadForm.events({
                         Session.set(e,false)
                     })
                     $('input,textarea').val('');
+                    Meteor.call('autoCompleteTags');
                     FlowRouter.go('/files');
                 }else{
                     console.error('error creating ticket',err)
