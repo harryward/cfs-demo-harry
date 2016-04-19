@@ -130,7 +130,7 @@ Template.uploadForm.events({
         ticketObj.tags = Session.get('tags');
         ticketObj.user = Meteor.user()._id;
         ticketObj.userObj = Meteor.user();
-        ticketObj.category = $('.catDrop').val();
+        //ticketObj.category = $('.catDrop').val();
         //parse URLs from summary for more machine tagging OR listen for onPaste events in the summary field front-end
         var titleWords = ticketObj.title.split(' ');
         _.each(titleWords,function(e,i){
@@ -139,9 +139,10 @@ Template.uploadForm.events({
                 ticketObj.tags.push( e );
             }
         })
-        ticketObj.tags.push(ticketObj.category);
+        ticketObj.tags.push( ticketObj.category );
         ticketObj.tags.push( Meteor.user().profile.name);
-        ticketObj.tags.push( moment().format('YYYY'));
+        ticketObj.tags.push( ticketObj.client );
+        ticketObj.tags.push( ticketObj.market );
         ticketObj.tags.push( moment().format('MMMM'));
         ticketObj.tags.push( ticketObj.category);
 
@@ -201,6 +202,7 @@ Template.uploadForm.onCreated(function () {
     Meteor.subscribe('cats'); // subscribe to categories
     Meteor.subscribe('tags'); // subscribe to tags
     Meteor.subscribe('markets'); // subscribe to markets
+    Meteor.subscribe('clients'); // subscribe to clients
 });
 
 Template.uploadForm.onRendered(function () {
@@ -255,7 +257,7 @@ Template.uploadForm.onRendered(function () {
                 searchField: ['name'],
                 maxItems:1,
                 create: function(input) {
-                    Client.insert({
+                    Clients.insert({
                         '_id':Base58.encode(input.toLowerCase().replace(/ /g,'')),
                         'name':input
                     })
