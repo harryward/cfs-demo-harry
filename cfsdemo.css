@@ -287,3 +287,41 @@ h2.page-header.text-center {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+
+form.searchForm {
+    position: relative;
+    top: 7px;
+}
+
+form.autoComplete {
+    position: relative;
+    top: 8px;
+}
+.navbar .col-sm-3.col-md-3 {
+    position: relative;
+    padding: 0px;
+    position: relative;
+    left: 13px;
+}
+.list-group.autoResults {
+    position: absolute;
+    z-index: 33;
+    width: 100%;
+    top: 41px;
+    padding: 4px;
+    background: rgba(37, 48, 55, 0.71);
+    box-shadow: 0px 1px 6px #423F3F;
+}
+.autoResults .list-group-item {
+    padding: 6px;
+}
+a.autoTerm.list-group-item {
+    background: #FFF;
+    border: solid 1px #808080;
+    color: #253037!important;
+    border-radius: 0px;
+    border: none;
+    border-bottom: solid 1px #61696E!important;
+    margin-bottom: 1px;
+}

@@ -9,10 +9,10 @@ Meteor.publish('docSearch', function (searchQuery, queryArgs) {
 Meteor.publish('singleTicket', function (ticketId) {
     return Tickets.find({'_id': ticketId})
 
-})
+});
 
 Meteor.publish('singleDoc', function (fileId) {
     return Docs.find({'_id': fileId})
 
-})
+});
 
