@@ -267,8 +267,8 @@ Template.uploadForm.onRendered(function () {
                     }
                 },
                 onChange: function(value) {
-                    Session.set('tags',value.split(','));
-                    console.log('tags',Session.get('tags'))
+                    Session.set('client',value.split(','));
+                    console.log('client',Session.get('client'))
                 }
 
             });

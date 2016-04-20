@@ -6,6 +6,10 @@ Template.navBar.events({
     'click .logOut':function(event,template){
         event.preventDefault();
         Meteor.logout();
+    },
+    'click #uploadClick':function(event,template){
+        event.preventDefault();
+        FlowRouter.go('/upload')
     }
 });
 

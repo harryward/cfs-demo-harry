@@ -124,20 +124,53 @@ Template.searchField.onCreated(function () {
 
 
 });
-
+/*
 Template.searchField.onRendered(function () {
+    Session.set('aQuery', '');
+    Session.set('searchQuickSubmit', true);
+
     $('#aq').selectize({
         sortField: 'term',
         searchField: ['term'],
         valueField: 'term',
         labelField: 'term',
+        onItemAdd: function (value, $item) { //called second
+            var item = this.getItem(value)[0].innerHTML;
+            console.log("Add item "+item);
+            Session.set('searchQuickSubmit', false);
+            //Session.set('aQuery', '');
+            //delete Session.keys.aQuery;
+            //this.clear();
+            //this.clearOptions();
+        },
+        onChange: function(passed){ //term added to the list //called third
+            //testing reload
+            console.log('onChange passed '+passed);
+        },
         options: [],
+        onKeyDown: function(z){ //onType
+            console.log("caretPos = "+JSON.stringify(this.caretPos) );
+            console.log("$activeOption = "+JSON.stringify(this.$activeOption) );
+            console.log("$activeItems = "+JSON.stringify(this.$activeItems) );
+            console.log("onKeyDown called z.keyCode="+z.keyCode);
+        },
         persist: false,
-        create: false,
-        load: function (query, callback) {
-            console.log('query', query);
+        maxItems:22,
+        create: function(input) {//called first //creates a new tag not on the list of autocomplete suggestions
+            console.log("create "+input);
+            Session.set('aQuery', '');
+            Session.get('searchQuickSubmit');
+            //return { term:input };
+            if ( Session.get('searchQuickSubmit') && input.indexOf(" ") > -1 ) {
+                FlowRouter.go('/files');
+            } else {
+                return { term:input };
+            }
+        },
+        load: function (query, callback) { //
+            console.log('LOAD query', query);
             Session.set('aQuery', query);
-            if (query.length > 2 && query != "") {
+            if (query.length > 1 && query != "") {
                 callback(autoComplete.find().fetch());
             } else {
                 console.log('no query');
@@ -147,7 +180,7 @@ Template.searchField.onRendered(function () {
 
     });
 });
-
+*/
 Template.searchField.onDestroyed(function () {
     //add your statement here
 });
