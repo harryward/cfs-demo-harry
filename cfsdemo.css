@@ -298,22 +298,22 @@ form.searchForm {
 form.autoComplete {
     position: relative;
     top: 8px;
+    float:right;
 }
 form.autoComplete input {
-    padding-right: 30px;
+    padding:0 26px 0 5px;
     background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJ5JREFUeNpi+P//PwMQMANxERCfAeI/UBrEZwbJQ9WAFR0A4u1AbAnEbFB6O1ScGaawGoi3wHQiYyBYDZKHKbwHxLo4FOqC5GEKf4Ksw6EQ5IyfIDYTkPEUiNUZsAOQ+F9GRkYJEKcFiDficSOIcRjE4QTiY0C8DuRbqAJLKP8/FP9kQArHUiA+jySJjA8w4LAS5KZd0MAHhaccQIABALsMiBZy4YLtAAAAAElFTkSuQmCC");
     background-repeat: no-repeat;
-    background-position: 92% 8px;
+    background-position: 96% 8px;
     line-height: 24px;
-    width: 133%;
+    width: 140px;
 }
 form.autoComplete input:focus, form.autoComplete input.focused {
-    padding-right: 30px;
+    padding:0 26px 0 5px;
 }
 .navbar .col-sm-3.col-md-3 {
     position: relative;
     padding: 0px;
-    position: relative;
     left: 13px;
 }
 .list-group.autoResults {
@@ -371,4 +371,33 @@ a.autoTerm.list-group-item {
     left: 19px;
     position: relative;
     font-size: 23px;
+}
+.searchResults{
+    width:100%;
+}
+.searchResults thead{
+    background: #f3f3f3;
+}
+.searchResults thead th{
+    font-weight:normal;
+}
+.searchResults th a{
+    color:#999;
+}
+.searchResults tr{
+    border-bottom:solid 1px #DDD;
+    cursor:pointer;
+}
+.searchResults tr:hover{
+    background: #f3f3f3;
+}
+.searchResults th, .searchResults td{
+   padding:6px 5px 4px;
+}
+.searchResults th .fa-arrows-v{
+    font-size: 11px;
+}
+.searchResults tr div.badge{
+    width:25px;
+    float:left;
 }

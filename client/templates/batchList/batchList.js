@@ -45,6 +45,9 @@ Template.batchList.helpers({
     'date': function () {
         return moment(this.date).fromNow();
     },
+    'formatDate': function(date) {
+        return moment(date).format("MMM D YYYY");
+    },
     'searchQuery': function () {
         if(Session.get('searchQuery') && Session.get('searchQuery') != ""){
             return Session.get('searchQuery')

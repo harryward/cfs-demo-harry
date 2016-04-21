@@ -7,148 +7,74 @@
 
     <div class="batchList-container">
 
-        <div class="btn btn-default pull-right fileTypeFilter">{{#if showFiles}}Hide{{else}}Show{{/if}} Files</div>
+        <!-- div class="btn btn-default pull-right fileTypeFilter">{{#if showFiles}}Hide{{else}}Show{{/if}} Files</div -->
 
-    {{#if elasticResults}}
-        <h3>{{elasticResults.hits.total}} results found <small>in {{elasticResults.took}} seconds</small></h3>
-    {{else}}
-        <h3 class="lead">Showing Latest Posts</h3>
-    {{/if}}
+        <div class="row">
+            <table class="searchResults">
+                <thead>
+                <th><a>Title <i class="fa fa-arrows-v"></i></a></th>
+                <th><a>Name <i class="fa fa-arrows-v"></i></a></th>
+                <th><a>Date <i class="fa fa-arrows-v"></i></a></th>
+                <th><a>Summary <i class="fa fa-arrows-v"></i></a></th>
+                <th><a>Five <i class="fa fa-arrows-v"></i></a></th>
+                </thead>
+                <tbody>
+                    {{#each elasticResults.hits.hits}}
+                        <tr class="batchList" data-href="/edit/batch/{{thisBatch._id}}?elasticid={{_id}}">
+                            <td><span class="badge">{{rounder _score}}</span></td>
+                            <td colspan="2">
+                                <div>
+                                    {{thisBatch.title}}<br>
+                                    <span class="text-muted">{{thisBatch.userObj.profile.name}} | {{formatDate thisBatch.date}}</span>
+                                </div>
+                            </td>
+                            <td>{{{stripHTML thisBatch.summary}}}</td>
+                            <td>Five</td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+
+            {{#if elasticResults}}
+                <h3>{{elasticResults.hits.total}} results found <small>in {{elasticResults.took}} seconds</small></h3>
+            {{else}}
+                <h3 class="lead">Showing Latest Posts</h3>
+            {{/if}}
+
+        </div>
+
+
+        <!-- end table layout -->
 
     <div class="row ">
         <div class="col-sm-8">
-            <div class="batches">
+            <pre>// rawElastic
+               {{rawElastic}}
+            </pre>
+            <pre>// rawTickets
+                {{rawTickets}}
+            </pre>
 
-                {{#each elasticResults.hits.hits}}
-
-                <div class="singlerecord">
-                    <p>
-                        <a href="/edit/batch/{{thisBatch._id}}?elasticid={{_id}}" class="fileTitle">
-                            <span class="badge">{{rounder _score}}</span>
-                            {{thisBatch.title}}
-                        </a>
-                    </p>
-
-                    <p class="filelink">
-                        /edit/batch/{{thisBatch._id}}
-                        <span class="text-muted">({{thisBatch.date}})</span>
-                        {{#if thisBatch.user}}
-                            <span class="text-muted"><i
-                                    class="fa fa-user"></i> {{thisBatch.userObj.profile.name}} </span>
-                        {{/if}}
-                    </p>
-
-
-                    <p class="caption text-muted truncate">
-                        {{{stripHTML thisBatch.summary}}}
-                    </p>
-
-                    <div class="fileStuff">
-                       <p>Created by {{thisBatch.userObj.profile.name}} on ({{thisBatch.date}}). Contains {{thisBatch.files.length}} files </p>
-                    </div>
-                    {{#if thisBatch.queryTags}}
-                        <div class="fileStuff">
-                            <a href="#" class="mini-title">
-                                <b>
-                                    <i class="fa fa-tag"></i> queryTags:
-                                </b>
-                            </a>
-                            {{#each thisBatch.queryTags}}
-                                <a class="mini-title">
-                                    {{this}}
-                                </a>
-                            {{/each}}
-                        </div>
-                    {{/if}}
-                    {{#if thisBatch.tags}}
-                        <div class="fileStuff">
-                            <a href="#" class="mini-title">
-                                <b>
-                                    <i class="fa fa-tag"></i> tags:
-                                </b>
-                            </a>
-                            {{#each thisBatch.tags}}
-                                <a class="mini-title">
-                                    {{this}}
-                                </a>
-                            {{/each}}
-                        </div>
-                    {{/if}}
-
-                    {{#if showFiles}}
-                        {{#each thisBatch.files}}
-                            <div class="list-group-item">
-                                <div class="row">
-                                    <div class="col-sm-1">
-                                        <img src="/icons/{{extension}}.png" style="width:100%"
-                                             alt=""/>
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <a href="{{theFileLink}}" file="{{theFileLink}}"
-                                           download class="">
-                                            <div><b>{{theFileMeta.metadata.title}}</b></div>
-                                            <small>{{theFileMeta.original.name}}</small>
-                                        </a>
-
-                                        <div>
-                                            {{theFileMeta.metadata.summary}}
-                                        </div>
-                                        <div class="text-muted">
-                                            <small>Category: Marketing</small>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4 text-right">
-
-                                        <a href="{{theFileLink}}" download
-                                           file="{{theFileLink}}"
-                                           class="btn btn-xs btn-primary"><i
-                                                class="fa fa-download"></i> Download</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                        {{/each}}
-                    {{/if}}
-
-                </div>
-                {{/each}}
-
-            </div>
         </div>
 
         <div class="col-sm-4">
             <div class="row">
                 <div class="col-xs-12">
-<pre>// query rawFilter docSearchQuery
-    {{rawFilter}}</pre>
-                </div>
-                <div class="col-xs-12">
-<pre>// query rawProjection queryArgs
-    {{rawProjection}}</pre>
-                </div>
-                <div class="col-xs-12">
-<pre>// form rawForm formBuilderObj
-    {{rawForm}}</pre>
+                    <pre>// query rawFilter docSearchQuery
+                        {{rawFilter}}</pre>
+                                    </div>
+                                    <div class="col-xs-12">
+                    <pre>// query rawProjection queryArgs
+                        {{rawProjection}}</pre>
+                                    </div>
+                                    <div class="col-xs-12">
+                    <pre>// form rawForm formBuilderObj
+                        {{rawForm}}</pre>
                 </div>
             </div>
         </div>
     </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <pre>// rawElastic
-                            {{rawElastic}}
-                        </pre>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-12">
-                        <pre>// rawTickets
-                            {{rawTickets}}
-                        </pre>
-                    </div>
-                </div>
-            </div>
+</div>
 
 
     {{#with tickets}}
