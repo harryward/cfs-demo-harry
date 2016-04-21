@@ -16,20 +16,20 @@
                 <th><a>Name <i class="fa fa-arrows-v"></i></a></th>
                 <th><a>Date <i class="fa fa-arrows-v"></i></a></th>
                 <th><a>Summary <i class="fa fa-arrows-v"></i></a></th>
-                <th><a>Five <i class="fa fa-arrows-v"></i></a></th>
+                <th><a>Category <i class="fa fa-arrows-v"></i></a></th>
                 </thead>
                 <tbody>
                     {{#each elasticResults.hits.hits}}
                         <tr class="batchList" data-href="/edit/batch/{{thisBatch._id}}?elasticid={{_id}}">
                             <td><span class="badge">{{rounder _score}}</span></td>
-                            <td colspan="2">
+                            <td class="title" colspan="2">
                                 <div>
                                     {{thisBatch.title}}<br>
                                     <span class="text-muted">{{thisBatch.userObj.profile.name}} | {{formatDate thisBatch.date}}</span>
                                 </div>
                             </td>
                             <td>{{{stripHTML thisBatch.summary}}}</td>
-                            <td>Five</td>
+                            <td>{{thisBatch.category}}</td>
                         </tr>
                     {{/each}}
                 </tbody>
