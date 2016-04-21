@@ -1,7 +1,7 @@
 <template name="batchList">
 
 
-    {{>filterModule}}
+    <!-- filterModule}} -->
 
 
 
@@ -17,6 +17,7 @@
                 <th><a>Date <i class="fa fa-arrows-v"></i></a></th>
                 <th><a>Summary <i class="fa fa-arrows-v"></i></a></th>
                 <th><a>Category <i class="fa fa-arrows-v"></i></a></th>
+                <th><a><i class="fa fa-star-o"></i> <i class="fa fa-arrows-v"></i></a></th>
                 </thead>
                 <tbody>
                     {{#each elasticResults.hits.hits}}
@@ -30,6 +31,7 @@
                             </td>
                             <td>{{{stripHTML thisBatch.summary}}}</td>
                             <td>{{thisBatch.category}}</td>
+                            <td class="docStar"><i class="fa fa-star-o"></i><i class="fa fa-star"></i></td>
                         </tr>
                     {{/each}}
                 </tbody>

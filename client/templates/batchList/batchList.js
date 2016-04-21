@@ -107,6 +107,12 @@ Template.batchList.events({
             Tickets.remove(this._id)
         }
     },
+    'click tr.batchList': function (event, template) {
+        event.preventDefault();
+        var go = $(event.target).attr('data-href');
+        console.log("go "+go);
+        FlowRouter.go( $(event.target).attr('data-href') );
+    },
     'click .pagination li': function (event, template) {
         event.preventDefault();
         var pagNum = $(event.target).text();
@@ -130,7 +136,12 @@ Template.batchList.onCreated(function () {
 });
 
 Template.batchList.onRendered(function () {
-    //add your statement here
+
+    Tracker.autorun(function() {
+        FlowRouter.watchPathChange();
+        var currentContext = FlowRouter.current();
+        Session.set('searchQuery', '');
+    });
 });
 
 Template.batchList.onDestroyed(function () {

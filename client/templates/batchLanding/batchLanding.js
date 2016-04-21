@@ -25,7 +25,7 @@ Template.batchLanding.helpers({
     },
     'raw': function () {
         return EJSON.stringify(this, {'indent': true})
-    },
+    }
 });
 
 

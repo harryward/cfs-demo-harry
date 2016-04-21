@@ -15,7 +15,7 @@ Template.searchField.events({
     },
     'submit .autoComplete': function (event, template) {
         event.preventDefault();
-        submitSearch($('#aq').val());
+        submitSearch($('#q').val());
         FlowRouter.go('/files')
     },
     'click .autoTerm': function (event, template) {
@@ -124,6 +124,11 @@ Template.searchField.onCreated(function () {
 
 
 });
+
+Template.searchField.onRendered(function () {
+    //put a thing here
+});
+
 /*
 Template.searchField.onRendered(function () {
     Session.set('aQuery', '');

@@ -306,7 +306,7 @@ form.autoComplete input {
     background-repeat: no-repeat;
     background-position: 96% 8px;
     line-height: 24px;
-    width: 140px;
+    width: 193px;
 }
 form.autoComplete input:focus, form.autoComplete input.focused {
     padding:0 26px 0 5px;
@@ -377,6 +377,7 @@ a.autoTerm.list-group-item {
 }
 .searchResults thead{
     background: #f3f3f3;
+    border-bottom:solid 1px #DDD;
 }
 .searchResults thead th{
     font-weight:normal;
@@ -400,4 +401,28 @@ a.autoTerm.list-group-item {
 .searchResults tr div.badge{
     width:25px;
     float:left;
+}
+.docStar .fa-star-o{
+    display:inline-block;
+}
+.docStar .fa-star{
+    display:none;
+}
+.docStar:hover{
+    _color:#FFC;
+}
+.docStar:hover .fa-star-o{
+    display:none;
+}
+.docStar:hover .fa-star{
+    display:inline-block;
+}
+div.profile-pic{
+    height: 48px;
+    width:48px;
+    background:url('/icons/TSM.png');
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+
 }

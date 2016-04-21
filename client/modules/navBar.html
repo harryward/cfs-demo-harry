@@ -14,14 +14,14 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <div class="col-sm-3 col-md-3 ">
+                <div class="col-sm-5 col-md-3 ">
                     {{>searchField}}
                     <div class="profile-pic">
                         <a onclick="alert('coming soon');return false;" href="/settings">{{currentUser.profile.name}}</a>
                     </div>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a onclick="alert('coming soon')" href="/settings">{{currentUser.profile.name}}</a></li>
+                    <!-- li><a onclick="alert('coming soon')" href="/settings">{{currentUser.profile.name}}</a></li-->
                     <!-- li class=""><a href="/upload"><i class="fa fa-plus"></i></a></li -->
                     <!-- li class=""><a href="/settings"><i class="fa fa-gear"></i></a></li -->
                     <li class=""><a href="#" class="text-muted logOut">logout</a></li>
@@ -30,9 +30,5 @@
             </div><!-- /.navbar-collapse -->
         </nav>
     </div>
-    <div id="uploadClick" role="button" class="action-button" aria-hidden="false" data-tooltip="Create new document" aria-label="Create new document" tabindex="0">
-        <div class="docs-homescreen-icon docs-homescreen-icon-medium">
-            <div class="docs-homescreen-img docs-homescreen-add-white-24"><i class="fa fa-plus"></i></div>
-        </div>
-    </div>
+    {{>createFile}}
 </template>
