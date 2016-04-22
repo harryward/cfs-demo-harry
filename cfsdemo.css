@@ -495,7 +495,7 @@ nav .brand-logo.left {
     left: 25vw;
 }
 form.autoComplete {
-    width: 30vw;
+    width: 50vw;
     margin-right: 25px;
 }
 nav .right i {
@@ -576,4 +576,8 @@ li.userProfile {
 }
 div#sidenav-overlay {
     opacity: 0;
+}
+span.badge{
+    position:static;
+    color:#FFF;
 }

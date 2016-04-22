@@ -9,6 +9,10 @@ Template.navBar.events({
         event.preventDefault();
         Meteor.logout();
     },
+    'click .settings':function(event){
+        event.preventDefault();
+        FlowRouter.go('/settings')
+    },
     'keyup #q':function(ev,template){
         console.log("keyup.which: "+ev.which);
         //after a space has been typed, send a query every other keystroke

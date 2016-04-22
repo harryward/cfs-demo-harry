@@ -21,6 +21,16 @@ FlowRouter.route('/mike', {
     }
 });
 
+FlowRouter.route('/settings', {
+    // do some action for this route
+    action: function(params, queryParams) {
+        console.log("Params:", params);
+        console.log("Query Params:", queryParams);
+        BlazeLayout.render('globalLayout', {
+            top: "settings"
+        });
+    }
+});
 
 FlowRouter.route('/', {
     // do some action for this route
