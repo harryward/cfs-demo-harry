@@ -1,34 +1,35 @@
 <template name="navBar">
-    <div class="container">
-        <nav class="navbar navbar-default navbar-xs" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            <a class="navbar-brand" href="/"><i class="fa fa-black-tie"></i></a>
-            </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <div class="col-sm-5 col-md-3 ">
-                    {{>searchField}}
-                    <div class="profile-pic">
-                        <a onclick="alert('coming soon');return false;" href="/settings">{{currentUser.profile.name}}</a>
-                    </div>
+
+    <nav class="navbar-fixed">
+
+
+        <!--SIDEBAR NAVIGATION START-->
+        <ul id="slide-out" class="side-nav">
+            <li class="userProfile">
+                <div class="profilePic">
+                    <img src="http://fpoimg.com/75x75?text=Profile+Pic" class="circle img-circle" alt=""/>
                 </div>
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- li><a onclick="alert('coming soon')" href="/settings">{{currentUser.profile.name}}</a></li-->
-                    <!-- li class=""><a href="/upload"><i class="fa fa-plus"></i></a></li -->
-                    <!-- li class=""><a href="/settings"><i class="fa fa-gear"></i></a></li -->
-                    <li class=""><a href="#" class="text-muted logOut">logout</a></li>
-                </ul>
+                <div class="profileName">{{currentUser.profile.name}}</div>
+                <div class="pull-right right"><i class="material-icons">build</i></div>
+            </li>
+            <li><a href="#!"> <span class="leftRailIcon material-icons">folder_shared</span> My Documents</a></li>
+            <li><a href="#!"><span class="leftRailIcon material-icons">folder_shared</span> Second Sidebar Link</a></li>
+        </ul>
+        <!--SIDEBAR NAVIGATION END-->
 
-            </div><!-- /.navbar-collapse -->
+
+        <ul class="right hide-on-med-and-down">
+
+            <li><a href="#" class="avatar"><img src="/icons/TSM.png" class="img-circle circle" alt=""/></a></li>
+            <li class="searchField">
+                {{>searchField}}
+            </li>
+            <li><i class="material-icons">view_module</i></li>
+            <li><i class="material-icons">more_vert</i></li>
+
+        </ul>
+        <a href="#" data-activates="slide-out" class="brand-logo sideBarToggle"><i class="mdi-navigation-menu"></i></a>
         </nav>
-    </div>
     {{>createFile}}
 </template>

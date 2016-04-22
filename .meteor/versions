@@ -67,6 +67,7 @@ launch-screen@1.0.10
 livedata@1.0.17
 localstorage@1.0.8
 logging@1.0.11
+materialize:materialize@0.97.5
 meteor@1.1.13
 meteor-base@1.0.3
 meteorhacks:aggregate@1.3.0
@@ -90,6 +91,7 @@ numeral:numeral@1.5.3_1
 observe-sequence@1.0.10
 ordered-dict@1.0.6
 percolate:synced-cron@1.3.2
+planettraining:material-design-icons-font@2.2.3
 promise@0.6.6
 raix:eventemitter@0.1.3
 random@1.0.8
@@ -117,7 +119,7 @@ udondan:jszip@2.4.0_1
 ui@1.0.10
 underscore@1.0.7
 url@1.0.8
-useraccounts:bootstrap@1.14.2
 useraccounts:core@1.14.2
+useraccounts:materialize@1.14.2
 webapp@1.2.7
 webapp-hashing@1.0.8

@@ -116,6 +116,21 @@ var submitSearch = function(q){
 }
 
 Template.navBar.onCreated(function () {
+
+    //SIDEBAR
+    setTimeout(function(){
+        $('.sideBarToggle').sideNav({
+                menuWidth: 300, // Default is 240
+                edge: 'left', // Choose the horizontal origin
+                closeOnClick: false // Closes side-nav on <a> clicks, useful for Angular/Meteor
+            }
+        );
+
+        $(".collapsible-header").dropdown();
+
+        console.log('sidebar initiated')
+    },100)
+
     Session.set('skip', parseInt('0'));
     Session.set('page', parseInt('1'));
     Session.set('autoSendSearch',false);

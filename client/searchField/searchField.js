@@ -69,7 +69,7 @@ var submitSearch = function (q) {
         };
 
     }
-
+    $('.sideBarNav').sideNav('hide');
     FlowRouter.go('/files');
 
     //searchQuery.$or = []

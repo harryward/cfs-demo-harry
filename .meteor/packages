@@ -20,7 +20,7 @@ insecure                # Allow all DB writes from clients (for prototyping)
 cfs:standard-packages
 cfs:filesystem
 ejson
-twbs:bootstrap
+#twbs:bootstrap
 kadira:flow-router
 kadira:blaze-layout
 fortawesome:fontawesome
@@ -32,7 +32,7 @@ msavin:mongol
 jeremy:selectize
 accounts-password
 useraccounts:core
-useraccounts:bootstrap
+useraccounts:materialize
 dangrossman:bootstrap-daterangepicker
 summernote:summernote
 udondan:jszip
@@ -41,3 +41,6 @@ gghez:base58
 numeral:numeral
 percolate:synced-cron
 aldeed:tabular
+materialize:materialize
+
+planettraining:material-design-icons-font
