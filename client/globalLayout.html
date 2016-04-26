@@ -1,19 +1,22 @@
 <template name="globalLayout">
-    {{#if currentUser}}
+    <main>
+        <div class="section" id="index-banner">
+        {{#if currentUser}}
 
-        {{>navBar}}
+            {{>navBar}}
 
-        <div class="container-fluid">
+            <div id="main-div" class="container-fluid">
 
-            {{> Template.dynamic template=top}}
+                {{> Template.dynamic template=top}}
 
-            {{> Template.dynamic template=main}}
+                {{> Template.dynamic template=main}}
 
+            </div>
+        {{else}}
+            <div class="container-fluid">
+                {{>atForm}}
+            </div>
+        {{/if}}
         </div>
-    {{else}}
-        <div class="container-fluid">
-            {{>atForm}}
-        </div>
-    {{/if}}
-
+    </main>
 </template>

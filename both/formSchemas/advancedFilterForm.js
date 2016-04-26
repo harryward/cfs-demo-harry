@@ -2,7 +2,7 @@ formSchemas = new Mongo.Collection("formschemas");
 
 if (Meteor.isClient) {
 
-
+/*
     Meteor.startup(function () {
 
         var formQuery = {'form_id': 'master'}
@@ -43,5 +43,5 @@ if (Meteor.isClient) {
         }
     })
 
-
+*/
 }

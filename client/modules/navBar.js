@@ -2,6 +2,10 @@ Template.navBar.helpers({
     'searchQuery':function(){
         return Session.get('searchQuery')
     },
+    'currUser':function(){
+        console.log("user:", Meteor.user());
+        return Meteor.user();
+    }
 });
 
 Template.navBar.events({
@@ -9,12 +13,16 @@ Template.navBar.events({
         event.preventDefault();
         Meteor.logout();
     },
+    'click #sidebar-close':function(event){
+        event.preventDefault();
+        $('.sideBarNav').sideNav('hide');
+    },
     'click .settings':function(event){
         event.preventDefault();
         FlowRouter.go('/settings')
     },
     'keyup #q':function(ev,template){
-        console.log("keyup.which: "+ev.which);
+        //console.log("keyup.which: "+ev.which);
         //after a space has been typed, send a query every other keystroke
         if (ev.which > 31 && ev.which < 123) {
             if (Session.get('autoSendSearch') && Session.get('keyUpSearch')) {
@@ -28,14 +36,21 @@ Template.navBar.events({
             }
         }
     },
-    'submit .searchForm': function (event, template) {
+    'click .queryPlusFilter':function(event,template){
+        event.preventDefault();
+        submitSearch( $(event.target).attr('data-q') );
+        FlowRouter.go('/search');
+    },
+    'submit .autoComplete': function (event, template) {
         event.preventDefault();
         submitSearch( $('#q').val() );
+        FlowRouter.go('/search');
     }
 });
 
 
 var submitSearch = function(q){
+    console.log("submitSearch q: ", q)
     Session.set('elasticResp',false);
     //neeed to reset the session vars
     delete Session.keys['searchQuery'];
@@ -77,6 +92,7 @@ var submitSearch = function(q){
         };
 
     }
+    //$('.sideBarNav').sideNav('hide');
 
     //searchQuery.$or = []
 

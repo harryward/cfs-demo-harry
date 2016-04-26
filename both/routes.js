@@ -10,7 +10,7 @@ FlowRouter.route('/upload', {
     }
 });
 
-FlowRouter.route('/mike', {
+FlowRouter.route('/delete_me', {
     // do some action for this route
     action: function(params, queryParams) {
         console.log("Params:", params);
@@ -38,19 +38,19 @@ FlowRouter.route('/', {
         console.log("Params:", params);
         console.log("Query Params:", queryParams);
         BlazeLayout.render('globalLayout', {
-            top: "homePage"
+            top: "docList"
         });
     }
 });
 
 
-FlowRouter.route('/files', {
+FlowRouter.route('/search', {
     // do some action for this route
     action: function(params, queryParams) {
         console.log("Params:", params);
         console.log("Query Params:", queryParams);
         BlazeLayout.render('globalLayout', {
-            main:"batchList"
+            main:"searchList"
         });
     }
 });

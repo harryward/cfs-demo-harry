@@ -1,37 +1,137 @@
 <template name="navBar">
 
+    <!-- header>
+        <div class="container">
+            <a href="#" data-activates="nav-mobile" class="button-collapse top-nav waves-effect waves-light circle hide-on-large-only"><i class="material-icons">menu</i></a>
+        </div>
+        <ul id="nav-mobile" class="side-nav fixed">
+            <li class="logo"><a id="logo-container" href="http://materializecss.com/" class="brand-logo">
+                <object id="front-page-logo" type="image/svg+xml" data="res/materialize.svg">Your browser does not support SVG</object></a></li>
+            <li class="search">
+                <div class="search-wrapper card">
+                    <input id="search"><i class="material-icons">search</i>
+                    <div class="search-results"></div>
+                </div>
+            </li>
+            <li class="bold"><a href="about.html" class="waves-effect waves-teal">About</a></li>
+            <li class="bold active"><a href="getting-started.html" class="waves-effect waves-teal">Getting Started</a></li>
+            <li class="no-padding">
+                <ul class="collapsible collapsible-accordion">
+                    <li class="bold"><a class="collapsible-header  waves-effect waves-teal">CSS</a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li><a href="color.html">Color</a></li>
+                                <li><a href="grid.html">Grid</a></li>
+                                <li><a href="helpers.html">Helpers</a></li>
+                                <li><a href="media-css.html">Media</a></li>
+                                <li><a href="sass.html">Sass</a></li>
+                                <li><a href="shadow.html">Shadow</a></li>
+                                <li><a href="table.html">Table</a></li>
+                                <li><a href="typography.html">Typography</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bold"><a class="collapsible-header  waves-effect waves-teal">Components</a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li><a href="badges.html">Badges</a></li>
+                                <li><a href="buttons.html">Buttons</a></li>
+                                <li><a href="breadcrumbs.html">Breadcrumbs</a></li>
+                                <li><a href="cards.html">Cards</a></li>
+                                <li><a href="chips.html">Chips</a></li>
+                                <li><a href="collections.html">Collections</a></li>
+                                <li><a href="footer.html">Footer</a></li>
+                                <li><a href="forms.html">Forms</a></li>
+                                <li><a href="icons.html">Icons</a></li>
+                                <li><a href="navbar.html">Navbar</a></li>
+                                <li><a href="pagination.html">Pagination</a></li>
+                                <li><a href="preloader.html">Preloader</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bold"><a class="collapsible-header  waves-effect waves-teal">JavaScript</a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li><a href="collapsible.html">Collapsible</a></li>
+                                <li><a href="dialogs.html">Dialogs</a></li>
+                                <li><a href="dropdown.html">Dropdown</a></li>
+                                <li><a href="media.html">Media</a></li>
+                                <li><a href="modals.html">Modals</a></li>
+                                <li><a href="parallax.html">Parallax</a></li>
+                                <li><a href="pushpin.html">Pushpin</a></li>
+                                <li><a href="scrollfire.html">ScrollFire</a></li>
+                                <li><a href="scrollspy.html">Scrollspy</a></li>
+                                <li><a href="side-nav.html">SideNav</a></li>
+                                <li><a href="tabs.html">Tabs</a></li>
+                                <li><a href="transitions.html">Transitions</a></li>
+                                <li><a href="waves.html">Waves</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li class="bold"><a href="http://materializecss.com/mobile.html" class="waves-effect waves-teal">Mobile</a></li>
+            <li class="bold"><a href="showcase.html" class="waves-effect waves-teal">Showcase</a></li>
+        </ul>
+    </header -->
+
 
     <nav class="navbar-fixed">
 
 
         <!--SIDEBAR NAVIGATION START-->
-        <ul id="slide-out" class="side-nav">
+        <ul id="slide-out" class="side-nav fixed">
             <li class="userProfile">
                 <div class="profilePic">
                     <img src="http://fpoimg.com/75x75?text=Profile+Pic" class="circle img-circle" alt=""/>
                 </div>
                 <div class="profileName">{{currentUser.profile.name}}</div>
-                <div class="pull-right right"><i class="material-icons">build</i></div>
+                <div id="sidebar-close" class="hide-on-large-only pull-right right"><i class="material-icons">close</i></div>
             </li>
-            <li><a href="#!"> <span class="leftRailIcon material-icons">folder_shared</span> My Documents</a></li>
-            <li><a href="#!"><span class="leftRailIcon material-icons">folder_shared</span> Second Sidebar Link</a></li>
+            <li class="documents">
+                <ul class="collapsible collapsible-accordion" >
+                    <li class="bold">
+                        <a class="collapsible-header waves-effect waves-purple active" href="/"><span class="leftRailIcon material-icons">folder_shared</span> Documents</a>
+                        <div class="collapsible-body show">
+                            <ul>
+                                <li><a class="queryPlusFilter" data-q="{{currUser.profile.name}}" data-f="user" href="/search"><span class="leftRailIcon material-icons">folder_shared</span>My Documents</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li class="categories">
+                <ul class="collapsible collapsible-accordion" >
+                    <li class="bold">
+                        <a class="collapsible-header waves-effect waves-purple active" href="/search"><span class="leftRailIcon material-icons">local_offer</span> Categories</a>
+                        <div class="collapsible-body show">
+                            <ul>
+                                <li><a class="queryPlusFilter" data-q="Marketing" data-f="category" href="/search"><span class="leftRailIcon material-icons">local_offer</span>Marketing</a></li>
+                                <li><a class="queryPlusFilter" data-q="Sales Training" data-f="category" href="/search"><span class="leftRailIcon material-icons">local_offer</span>Sales Training</a></li>
+                                <li><a class="queryPlusFilter" data-q="Case Studies" data-f="category" href="/search"><span class="leftRailIcon material-icons">local_offer</span>Case Studies</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
         </ul>
         <!--SIDEBAR NAVIGATION END-->
 
 
-        <ul class="right hide-on-med-and-down">
-
+        <ul class="docMain">
+            <li class="settings"><a href="#"> <i class="material-icons">settings</i></a></li>
+            <li class="avatar hide-on-small-only">
+                <img src="/icons/TSM.png" class="img-circle circle" alt=""/>
+            </li>
             <li class="searchField">
                 {{>searchField}}
             </li>
-            <li class="avatar">
-                <img src="/icons/TSM.png" class="img-circle circle" alt=""/>
-            </li>
             <!-- li><i class="material-icons">view_module</i></li-->
-            <li class="settings"><a href="#" class="avatar"> <i class="material-icons">more_vert</i></a></li>
-
+            <li class="hide-on-large-only">
+                <a href="#" data-activates="slide-out" class="brand-logo sideBarToggle"><i class="mdi-navigation-menu"></i></a>
+            </li>
         </ul>
-        <a href="#" data-activates="slide-out" class="brand-logo sideBarToggle"><i class="mdi-navigation-menu"></i></a>
-        </nav>
+
+    </nav>
     {{>createFile}}
 </template>

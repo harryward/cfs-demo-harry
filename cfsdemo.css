@@ -426,7 +426,9 @@
     /*border-radius: 50%;*/
 
 /*}*/
-
+#main-div{
+    margin-left:305px;
+}
 nav {
     background: rgba(0, 0, 0, 0);
     border: none;
@@ -434,7 +436,8 @@ nav {
     box-shadow: none;
 }
 a.sideBarToggle i {
-    font-size: 43px;
+    font-size: 35px;
+    line-height: 66px;
 }
 
 a.sideBarToggle {
@@ -447,10 +450,7 @@ nav {
     margin-bottom: 26px;
     padding: 10px;
 }
-a.sideBarToggle {
 
-    /* background: #00F; */
-}
 .nav-wrapper form {
     width: 36vw;
     float: right;
@@ -463,27 +463,22 @@ a.sideBarToggle {
 }
 .input-field i {
     color: #000!important;
-}input#q {
-     height: 50px;
-     position: relative;
-     border: solid 1px #D3D3D3;
- }
-input#q {
-    height: 43px;
-    position: relative;
-    border: solid 1px #D3D3D3;
-    padding-bottom: 14px;
+}
+li.searchField form {
+    position:relative;
+}
+li.searchField i.material-icons{
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    cursor: pointer;
 }
 input#q {
-    padding-left: 5px;
-    padding-top:10px;
-    z-index:1;
-}
-input#q {
-    height: 12px;
+    height: 37px;
     position: relative;
     border: solid 1px #D3D3D3;
-    padding-bottom: 14px;
+    padding:0 44px 5px 6px;
+    width:90%;
 }
 nav .brand-logo.left {
     position: absolute;
@@ -548,8 +543,8 @@ li.userProfile {
 .userProfile i.material-icons {
     font-size: 22px;
     position: absolute;
-    top: 78px;
-    right: 3px;
+    top: -11px;
+    right: -6px;
     color: #FFF;
 }
 .leftRailIcon {
@@ -574,10 +569,55 @@ li.userProfile {
     /* display: block; */
     left: 11px;
 }
+#sidebar-close{
+    cursor: pointer;
+}
 div#sidenav-overlay {
+    display:none;
     opacity: 0;
 }
 span.badge{
     position:static;
     color:#FFF;
+}
+table.searchResults th{
+    white-space: nowrap;
+}
+table.searchResults tr{
+    border-bottom:solid 1px #DDD;
+}
+table.searchResults td {
+    color:#888;
+}
+table.searchResults td.title a.title {
+    color:#000;
+}
+.searchResults thead{
+    background: #f3f3f3;
+    border-bottom:solid 1px #DDD;
+}
+.searchResults thead th a{
+    cursor:pointer;
+    color: #999;
+}
+table.searchResults tr{
+    border-bottom:solid 1px #DDD;
+}
+table.searchResults tr:hover{
+    background: #f3f3f3;
+}
+nav ul.docMain li{
+    float:right;
+}
+nav ul.docMain a,
+nav ul.docMain i{
+    color:#555;
+}
+nav ul.docMain a:hover{
+    background: transparent;
+    text-decoration: none;
+}
+nav a.settings{
+    font-size: 50px;
+    line-height: 65px;
 }
