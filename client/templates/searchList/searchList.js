@@ -127,6 +127,8 @@ Template.registerHelper('stripHTML', stripHTML)
 Template.searchList.onCreated(function () {
     //add your statement here
     Session.set('showFiles');
+
+
 });
 
 Template.searchList.onRendered(function () {

@@ -1,9 +1,4 @@
 Template.docList.helpers({
-    'batches': function () {
-        //var sort = (Session.get('searchQuery') && Session.get('searchQuery') != "") ?
-        //{} : {'sort':{'date': -1}};
-        return Tickets.find({}, {'sort':{'date': -1}}).fetch();
-    },
 
 });
 
@@ -13,12 +8,16 @@ Template.docList.events({
 
 
 Template.docList.onCreated(function () {
-
+    Session.set('elasticResp', false);
+    Meteor.call('homeElastic', "", function (err, resp) {
+        Session.set('elasticResp', resp);
+        console.log(resp)
+    });
 
 });
 
 Template.docList.onRendered(function () {
-    //add your statement here
+    Session.set('elasticResp', false);
 });
 
 Template.docList.onDestroyed(function () {

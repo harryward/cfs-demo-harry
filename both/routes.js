@@ -26,6 +26,7 @@ FlowRouter.route('/settings', {
     action: function(params, queryParams) {
         console.log("Params:", params);
         console.log("Query Params:", queryParams);
+
         BlazeLayout.render('globalLayout', {
             top: "settings"
         });
@@ -50,7 +51,7 @@ FlowRouter.route('/search', {
         console.log("Params:", params);
         console.log("Query Params:", queryParams);
         BlazeLayout.render('globalLayout', {
-            main:"searchList"
+            main:"batchList"
         });
     }
 });

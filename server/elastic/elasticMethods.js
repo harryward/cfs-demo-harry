@@ -50,4 +50,19 @@
 
         return theSearch
     },
+     'homeElastic': function (theTerm) {
+
+         var theLatest = Tickets.find({},{sort:{date:-1}}).fetch()
+         var results = {hits:{hits:[]}};
+         _.each(theLatest,function(dirtyResult){
+             var convertedResult = {};
+             convertedResult._source = {};
+             convertedResult._source._id = dirtyResult._id;
+             convertedResult._source.ticketId = dirtyResult._id;
+             convertedResult._source.batchMeta = dirtyResult;
+             results.hits.hits.push(convertedResult);
+         })
+
+         return results
+     },
 })
