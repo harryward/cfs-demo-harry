@@ -429,6 +429,12 @@
 #main-div{
     margin-left:305px;
 }
+@media screen and (max-width: 992px) {
+
+    #main-div{
+        margin-left:0px;
+    }
+}
 nav {
     background: rgba(0, 0, 0, 0);
     border: none;

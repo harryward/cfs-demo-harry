@@ -43,4 +43,8 @@ if (Meteor.isServer) {
     //}, function (err) {
     //    console.log(err.message);
     //});
+
+    Meteor.methods({
+///
+    });
 }

@@ -128,6 +128,8 @@ Template.batchList.onRendered(function () {
 });
 
 Template.batchList.onDestroyed(function () {
+    delete Session.keys['searchQuery'];
+    delete Session.keys['searchField'];
     //add your statement here
 });
 

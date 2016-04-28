@@ -36,10 +36,10 @@ Template.navBar.events({
             }
         }
     },
-    'click .queryPlusFilter':function(event,template){
+    'click .homeQuery':function(event,template){
         event.preventDefault();
-        submitSearch( $(event.target).attr('data-q') );
-        FlowRouter.go('/search');
+        submitSearch( $(event.target).attr('data-q'), $(event.target).attr('data-f') );
+        FlowRouter.go('/');
     },
     'submit .autoComplete': function (event, template) {
         event.preventDefault();
@@ -49,38 +49,46 @@ Template.navBar.events({
 });
 
 
-var submitSearch = function(q){
+var submitSearch = function(q, f){//f is a specific field
     console.log("submitSearch q: ", q)
+    console.log("submitSearch f: ", f)
     Session.set('elasticResp',false);
     //neeed to reset the session vars
     delete Session.keys['searchQuery'];
-    delete Session.keys['queryArgs'];
-    var filterObj = {};
-    filterObj.term = q;
+    delete Session.keys['searchField'];
+    //delete Session.keys['queryArgs'];
+    //var filterObj = {};
+    //filterObj.term = q;
     //filterObj.term = event.target.value;
 
-    var terms = filterObj.term.split(' ');
+    //var terms = filterObj.term.split(' ');
 
     //searchColumns = ["title","summary","tags","date"];
     //https://themeteorchef.com/snippets/mongodb-queries-and-projections/
 
-    var searchQuery = {};
+    //var searchQuery = {};
 
     var fieldObj = {};
 
     //QUERY ARGS
-    var queryArgs = {};
+    //var queryArgs = {};
 
-    if(filterObj.term && filterObj.term != "") {
+    if(q && q != "") {
 
-        Meteor.call('searchElastic',filterObj.term,function(err,resp){
+        var qMethod = (f && f != "") ? 'ticketQuery' : 'searchElastic';
+        var qArgs = {};
+        if (f && f != "") { qArgs[f] = q; } else { qArgs['query'] = q; }
+        console.log('qMethod ',qMethod)
+
+        Meteor.call(qMethod,qArgs,function(err,resp){
             Session.set('elasticResp',resp);
-            console.log(resp)
+            console.log(qMethod+' resp ',resp)
+            console.log('qArgs ',qArgs)
         });
 
-        searchQuery = {"$text": {$search: filterObj.term}}; //, score: { $meta: "textScore" }
+        //searchQuery = {"$text": {$search: filterObj.term} }; //, score: { $meta: "textScore" }
         //queryArgs.limit = 1;
-
+/*
         queryArgs = {
             fields: {
                 score: { "$meta": "textScore" }
@@ -90,7 +98,7 @@ var submitSearch = function(q){
                 //date: -1
             }
         };
-
+*/
     }
     //$('.sideBarNav').sideNav('hide');
 
@@ -127,12 +135,14 @@ var submitSearch = function(q){
      })
      */
     //console.log('searchQuery:'+JSON.stringify(searchQuery));
-    console.log('searchQuery:',searchQuery)
-    console.log('queryArgs:',queryArgs)
-    Session.set('searchQuery',filterObj.term);
-    Session.set('formBuilderObj',Session.get('formBuilderObj')); // this builds the advanced filter form
-    Session.set('docSearchQuery', searchQuery || {});
-    Session.set('queryArgs', queryArgs);
+    //console.log('search q:', q)
+    //console.log('search f:', f)
+    //console.log('queryArgs:',queryArgs)
+    Session.set('searchQuery',q);
+    Session.set('searchField',f);
+    //Session.set('formBuilderObj',Session.get('formBuilderObj')); // this builds the advanced filter form
+    //Session.set('docSearchQuery', searchQuery || {});
+    //Session.set('queryArgs', queryArgs);
 }
 
 Template.navBar.onCreated(function () {

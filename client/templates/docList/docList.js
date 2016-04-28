@@ -9,7 +9,9 @@ Template.docList.events({
 
 Template.docList.onCreated(function () {
     Session.set('elasticResp', false);
-    Meteor.call('homeElastic', "", function (err, resp) {
+    var aArgs = {};
+    aArgs[ Session.get('searchField') ] = Session.get('searchQuery');
+    Meteor.call('ticketQuery', aArgs, function (err, resp) {
         Session.set('elasticResp', resp);
         console.log(resp)
     });

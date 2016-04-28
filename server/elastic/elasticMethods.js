@@ -22,8 +22,9 @@
 
 
     },
-    'searchElastic': function (theTerm) {
-
+    'searchElastic': function (args) {
+        console.log('searchElastic args ', args);
+        //var theTerm = args.q;
         var elasticsearch = Npm.require('elasticsearch');
 
         connectionString = 'https://site:91460979a91648185b808a5059cd13e3@bifur-eu-west-1.searchly.com';
@@ -31,8 +32,7 @@
         var client = new elasticsearch.Client({
             host: connectionString
         });
-
-        theSearch = client.search({
+        var searchParams = {
             index: 'labdocs',
             type: 'document',
             //"more_like_this" : {
@@ -41,8 +41,16 @@
             //    "min_term_freq" : 1,
             //    "max_query_terms" : 12
             //},
-            q: theTerm
-        }).then(function (resp) {
+            body: {
+                query: {
+                    "query_string": args
+                }
+            }
+        };
+
+        theSearch = client.search(
+            searchParams
+        ).then(function (resp) {
             return resp
         }, function (err) {
             console.log(err.message);
@@ -50,13 +58,17 @@
 
         return theSearch
     },
-     'homeElastic': function (theTerm) {
-
-         var theLatest = Tickets.find({},{sort:{date:-1}}).fetch()
-         var results = {hits:{hits:[]}};
+     'ticketQuery': function (args) {
+         var q = args.q;
+         var f = args.f;
+         var qObj = (q) ? {f:q} : {};
+         console.log('ticketQuery args ', args);
+         var theLatest = Tickets.find(qObj,{sort:{date:-1}}).fetch();
+         var results = {hits:{total:theLatest.length, hits:[], f:f, q:q}};
          _.each(theLatest,function(dirtyResult){
              var convertedResult = {};
              convertedResult._source = {};
+             convertedResult._source.flarg = "fwefw";
              convertedResult._source._id = dirtyResult._id;
              convertedResult._source.ticketId = dirtyResult._id;
              convertedResult._source.batchMeta = dirtyResult;
@@ -64,5 +76,6 @@
          })
 
          return results
-     },
-})
+     }
+
+ })
