@@ -1,6 +1,6 @@
-<template name="batchList">
+<template name="folderList">
 
-<div class="batchList-container">
+<div class="folderList-container">
 
     {{#if elasticResults}}
         <h4>{{elasticResults.hits.total}} documents found <small>in {{elasticResults.took}} seconds</small></h4>
@@ -26,12 +26,12 @@
                     <td><span class="badge">{{rounder _score}}</span></td>
                     <td class="title" colspan="3">
                         <div>
-                            <a class="title" href="/edit/batch/{{thisBatch._id}}?elasticid={{_id}}">{{thisBatch.title}}</a><br>
-                            <span class="text-muted">{{thisBatch.userObj.profile.name}} | {{formatDate thisBatch.date}}</span>
+                            <a class="title searchItem" href="/edit/folder/{{thisFolder._id}}?elasticid={{_id}}">{{thisFolder.title}}</a><br>
+                            <span class="text-muted">{{thisFolder.userObj.profile.name}} | {{formatDate thisFolder.date}}</span>
                         </div>
                     </td>
-                    <td>{{{stripHTML thisBatch.summary}}}</td>
-                    <td>{{thisBatch.category}}</td>
+                    <td>{{{stripHTML thisFolder.summary}}}</td>
+                    <td>{{thisFolder.category}}</td>
                     <td><a><i class="material-icons">more_vert</i></a></td>
                     <!-- td class="docStar"><i class="material-icons">star</i> <i class="material-icons">star border</i></td -->
                 </tr>
@@ -49,8 +49,8 @@
             <pre>// rawElastic
                 {{rawElastic}}
             </pre>
-            <pre>// rawTickets
-                {{rawTickets}}
+            <pre>// rawFolders
+                {{rawFolders}}
             </pre>
 
         </div>
@@ -58,7 +58,7 @@
         <div class="col-sm-4">
             <div class="row">
                 <div class="col-xs-12">
-                    <pre>// query rawFilter docSearchQuery
+                    <pre>// query rawFilter folderSearchQuery
                         {{rawFilter}}</pre>
                 </div>
                 <div class="col-xs-12">
@@ -75,7 +75,7 @@
 </div>
 
 
-{{#with tickets}}
+{{#with folders}}
     <div class="text-center pagBar">
         <p class="pagtitle">Pages (not dynamic yet)</p>
         <!--#todo make dynamic based on data-->

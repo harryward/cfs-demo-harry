@@ -7,6 +7,6 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    Tickets._ensureIndex({ "date": -1});
+    Folders._ensureIndex({ "date": -1});
   });
 }

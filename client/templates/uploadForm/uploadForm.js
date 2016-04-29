@@ -99,7 +99,7 @@ Template.uploadForm.events({
         event.preventDefault();
         var self = this;
         var thisDoc = Docs.findOne(this.toString())
-        var theTitle = prompt('File Title...',thisDoc.metadata.title || $('.batchTitle').val() || '');
+        var theTitle = prompt('File Title...',thisDoc.metadata.title || $('.folderTitle').val() || '');
         if(theTitle){
         Docs.update({'_id':self.toString()},{
             $set:{
@@ -162,7 +162,7 @@ Template.uploadForm.events({
         //    alert('you must attach a file!')
         //    return false
         //}else{
-            Meteor.call('insertTicket',ticketObj,function(err,resp){
+            Meteor.call('insertFolder',ticketObj,function(err,resp){
                 if(!err){
                     console.log('new ticket created',resp);
                     alert('success!');

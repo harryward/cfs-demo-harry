@@ -1,23 +1,23 @@
-Template.createFile.helpers({
+Template.createFolder.helpers({
     //add you helpers here
 });
 
-Template.createFile.events({
+Template.createFolder.events({
     'click #uploadClick':function(event,template){
         event.preventDefault();
         FlowRouter.go('/upload')
     }
 });
 
-Template.createFile.onCreated(function () {
+Template.createFolder.onCreated(function () {
     //add your statement here
 });
 
-Template.createFile.onRendered(function () {
+Template.createFolder.onRendered(function () {
     //add your statement here
 });
 
-Template.createFile.onDestroyed(function () {
+Template.createFolder.onDestroyed(function () {
     //add your statement here
 });
 

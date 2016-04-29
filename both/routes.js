@@ -10,17 +10,6 @@ FlowRouter.route('/upload', {
     }
 });
 
-FlowRouter.route('/delete_me', {
-    // do some action for this route
-    action: function(params, queryParams) {
-        console.log("Params:", params);
-        console.log("Query Params:", queryParams);
-        BlazeLayout.render('globalLayout', {
-            top: "mikeTpl"
-        });
-    }
-});
-
 FlowRouter.route('/settings', {
     // do some action for this route
     action: function(params, queryParams) {
@@ -39,7 +28,7 @@ FlowRouter.route('/', {
         console.log("Params:", params);
         console.log("Query Params:", queryParams);
         BlazeLayout.render('globalLayout', {
-            top: "docList"
+            top: "folderList"
         });
     }
 });
@@ -51,19 +40,19 @@ FlowRouter.route('/search', {
         console.log("Params:", params);
         console.log("Query Params:", queryParams);
         BlazeLayout.render('globalLayout', {
-            main:"batchList"
+            main:"folderList"
         });
     }
 });
 
-FlowRouter.route('/edit/batch/:ticketId', {
+FlowRouter.route('/edit/folder/:ticketId', {
     // do some action for this route
     action: function(params, queryParams) {
         console.log("Params:", params);
         console.log("Query Params:", queryParams);
         Session.set('params',params);
         BlazeLayout.render('globalLayout', {
-            main: "batchLanding"
+            main: "folderLanding"
         });
     }
 });

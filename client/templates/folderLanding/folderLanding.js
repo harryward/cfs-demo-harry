@@ -1,7 +1,7 @@
-Template.batchLanding.helpers({
-    "tickets": function () {
-        if(Tickets.find(Session.get('params').ticketId).count()){
-        return Tickets.find(Session.get('params').ticketId).fetch()
+Template.folderLanding.helpers({
+    "folders": function () {
+        if(Folders.find(Session.get('params').ticketId).count()){
+        return Folders.find(Session.get('params').ticketId).fetch()
         }
     },
     'theFileLink': function () {
@@ -29,7 +29,7 @@ Template.batchLanding.helpers({
 });
 
 
-Template.batchLanding.events({
+Template.folderLanding.events({
     'click .editMe': function (event, template) {
         event.preventDefault();
         if (!Session.get('editing')) {
@@ -50,7 +50,7 @@ Template.batchLanding.events({
 
         console.log('updated form Obj', formObj);
 
-        Meteor.call('updateTicket', Session.get('params').ticketId, formObj, function (err, resp) { // server/ticketMethods.js
+        Meteor.call('updateFolder', Session.get('params').ticketId, formObj, function (err, resp) { // server/folderMethods.js
             if (!err) {
                 alert('saved');
             } else {
@@ -67,22 +67,22 @@ Template.batchLanding.events({
     },
 });
 
-Template.batchLanding.onCreated(function () {
-    Meteor.subscribe('singleTicket', Session.get('params').ticketId)
+Template.folderLanding.onCreated(function () {
+    Meteor.subscribe('singleFolder', Session.get('params').ticketId)
     Tracker.autorun(function () {
-        if (Tickets.find({'_id': Session.get('params').ticketId}).count()) {
-            _.each(Tickets.findOne({'_id': Session.get('params').ticketId}).files, function (filer) {
+        if (Folders.find({'_id': Session.get('params').ticketId}).count()) {
+            _.each(Folders.findOne({'_id': Session.get('params').ticketId}).files, function (filer) {
                 Meteor.subscribe('singleDoc', filer)
             })
         }
     })
 });
 
-Template.batchLanding.onRendered(function () {
+Template.folderLanding.onRendered(function () {
     //add your statement here
 });
 
-Template.batchLanding.onDestroyed(function () {
+Template.folderLanding.onDestroyed(function () {
     //add your statement here
 });
 

@@ -4,7 +4,7 @@ Meteor.methods({
             //{$match: queryObj},
             {$group: {_id: "$user"}}
         ];
-        var result = Tickets.aggregate(pipeline);
+        var result = Folders.aggregate(pipeline);
         return result
 
     },

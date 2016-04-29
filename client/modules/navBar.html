@@ -94,7 +94,7 @@
                         <a class="collapsible-header waves-effect waves-purple active" href="/"><span class="leftRailIcon material-icons">folder_shared</span> Documents</a>
                         <div class="collapsible-body show">
                             <ul>
-                                <li><a class="homeQuery" data-q="{{currUser._id}}" data-f="user" href="/search"><span class="leftRailIcon material-icons">folder_shared</span>My Documents</a></li>
+                                <li><a class="homeQuery searchItem" data-q="{{currUser._id}}" data-f="user" href="/search"><span class="leftRailIcon material-icons">folder_shared</span>My Documents</a></li>
                             </ul>
                         </div>
                     </li>
@@ -106,9 +106,9 @@
                         <a class="collapsible-header waves-effect waves-purple active" href="/search"><span class="leftRailIcon material-icons">local_offer</span> Categories</a>
                         <div class="collapsible-body show">
                             <ul>
-                                <li><a class="homeQuery" data-q="Marketing" data-f="category" href="/search"><span class="leftRailIcon material-icons">local_offer</span>Marketing</a></li>
-                                <li><a class="homeQuery" data-q="Sales Training" data-f="category" href="/search"><span class="leftRailIcon material-icons">local_offer</span>Sales Training</a></li>
-                                <li><a class="homeQuery" data-q="Case Studies" data-f="category" href="/search"><span class="leftRailIcon material-icons">local_offer</span>Case Studies</a></li>
+                                <li><a class="homeQuery searchItem" data-q="Marketing" data-f="category" href="/search"><span class="leftRailIcon material-icons">local_offer</span>Marketing</a></li>
+                                <li><a class="homeQuery searchItem" data-q="Sales Training" data-f="category" href="/search"><span class="leftRailIcon material-icons">local_offer</span>Sales Training</a></li>
+                                <li><a class="homeQuery searchItem" data-q="Case Studies" data-f="category" href="/search"><span class="leftRailIcon material-icons">local_offer</span>Case Studies</a></li>
                             </ul>
                         </div>
                     </li>
@@ -124,7 +124,19 @@
                 <img src="/icons/TSM.png" class="img-circle circle" alt=""/>
             </li>
             <li class="searchField">
-                {{>searchField}}
+
+                <form class="autoComplete">
+
+                    <input spellcheck="false"
+                           autocomplete="off"
+                           id="q" name="q" type="text"
+                           placeholder="Search"
+                           class=" searchInput"
+                           value="{{searchQuery}}"
+                    />
+                    <i class="material-icons">search</i>
+                </form>
+
             </li>
             <!-- li><i class="material-icons">view_module</i></li-->
             <li class="hide-on-large-only">
@@ -133,5 +145,5 @@
         </ul>
 
     </nav>
-    {{>createFile}}
+    {{>createFolder}}
 </template>

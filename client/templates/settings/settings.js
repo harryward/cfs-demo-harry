@@ -1,10 +1,10 @@
-Template.filterModule.helpers({
+Template.settings.helpers({
     'page': function () {
         return Session.get('page')
     }
 });
 
-Template.filterModule.events({
+Template.settings.events({
     'keyup #q':function(ev,template){
         console.log("keyup.which: "+ev.which);
         //after a space has been typed, send a query every other keystroke

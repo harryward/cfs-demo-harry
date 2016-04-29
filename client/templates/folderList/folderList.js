@@ -1,11 +1,11 @@
-Template.searchList.helpers({
+Template.folderList.helpers({
     'showFiles':function(){
         return Session.get('showFiles')
     },
-    'tickets': function () {
+    'folders': function () {
         //var sort = (Session.get('searchQuery') && Session.get('searchQuery') != "") ?
         //{} : {'sort':{'date': -1}};
-        return Tickets.find({}, {'sort':{'date': -1}}).fetch();
+        return Folders.find({}, {'sort':{'date': -1}}).fetch();
     },
     'rounder':function(theNum){
         return numeral(theNum).format('00.00')
@@ -13,7 +13,7 @@ Template.searchList.helpers({
     'user':function(){
         var userData = Meteor.users.findOne(this.user);
         if(userData){
-        return userData
+            return userData
         }else{
             return false
         }
@@ -36,7 +36,7 @@ Template.searchList.helpers({
     },
     'advancedResults':function(){
         // MIKE TO MAKE THE ENTIRE QUERY BE A SESSION VARIABLE
-      return Tickets.find({},{
+        return Folders.find({},{
                 'sort': {
                     'date': -1
                 }}
@@ -56,18 +56,18 @@ Template.searchList.helpers({
         }
     },
     'rawFilter': function(){
-        return EJSON.stringify( Session.get('docSearchQuery'), {'indent':true } );
+        return EJSON.stringify( Session.get('folderSearchQuery'), {'indent':true } );
     },
-    'rawTickets': function(){
+    'rawFolders': function(){
         return EJSON.stringify(
-            Tickets.find({}).fetch(), {'indent':true } );
+            Folders.find({}).fetch(), {'indent':true } );
     },
     'elasticResults':function(){
         return Session.get('elasticResp')
     },
-    'thisBatch':function(){
+    'thisFolder':function(){
         //console.log(this._source.ticketId)
-        return Tickets.findOne({'_id':this._source.ticketId});
+        return Folders.findOne({'_id':this._source.ticketId});
         //return this._source.ticketId
     },
     'rawElastic':function(){
@@ -87,9 +87,9 @@ Template.searchList.helpers({
     }
 });
 
-Template.searchList.events({
+Template.folderList.events({
     'click .fileTypeFilter':function(event,template){
-        _.each(Tickets.find().fetch(),function(e){
+        _.each(Folders.find().fetch(),function(e){
             _.each(e.files,function(file){
                 Meteor.subscribe('singleDoc', file);
             })
@@ -104,7 +104,7 @@ Template.searchList.events({
     'click .removeMe': function (event, template) {
         event.preventDefault();
         if (confirm('are you sure? this cannot be reversed')) {
-            Tickets.remove(this._id)
+            Folders.remove(this._id)
         }
     },
     'click .pagination li': function (event, template) {
@@ -113,39 +113,39 @@ Template.searchList.events({
 
         Session.set('skip', pagNum * 10)
         Session.set('page', pagNum)
-        $('.batchList-container').scrollTop(0)
+        $('.folderList-container').scrollTop(0)
     },
+});
+
+
+Template.folderList.onCreated(function () {
+    Session.set('showFiles');///????
+    Session.set('elasticResp', false);
+    var aArgs = {};
+    aArgs[ Session.get('searchField') ] = Session.get('searchQuery');
+    Meteor.call('ticketQuery', aArgs, function (err, resp) {
+        Session.set('elasticResp', resp);
+        console.log(resp)
+    });
 
 });
 
 function stripHTML(string){
-    s = string.replace(/(<([^>]+)>)/ig, '');
-    return s;
+    if (string) {
+        s = string.replace(/(<([^>]+)>)/ig, '');
+        return s;
+    }
+    return string;
 }
 Template.registerHelper('stripHTML', stripHTML)
 
-Template.searchList.onCreated(function () {
-    //add your statement here
-    Session.set('showFiles');
-
-
+Template.folderList.onRendered(function () {
+    Session.set('elasticResp', false);
 });
 
-Template.searchList.onRendered(function () {
-
-    Tracker.autorun(function() {
-        FlowRouter.watchPathChange();
-        var currentContext = FlowRouter.current();
-        Session.set('searchQuery', '');
-    });
-});
-
-Template.searchList.onDestroyed(function () {
+Template.folderList.onDestroyed(function () {
+    //delete Session.keys['searchQuery'];
+    //delete Session.keys['searchField'];
     //add your statement here
-    //Session.set('showFiles' ,{});
-    //Session.set('queryArgs' ,{});
-    delete Session.keys['showFiles']
-    delete Session.keys['queryArgs']
-    //
 });
 

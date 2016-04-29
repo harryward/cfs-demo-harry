@@ -1,4 +1,7 @@
 Template.navBar.helpers({
+    'autoComp': function () {
+        return autoComplete.find({}, {$sort: {'term': 1}}).fetch()
+    },
     'searchQuery':function(){
         return Session.get('searchQuery')
     },
@@ -8,7 +11,12 @@ Template.navBar.helpers({
     }
 });
 
+
 Template.navBar.events({
+    'click .searchItem':function(event,template){
+        event.preventDefault();
+        console.log('click .searchItem');
+    },
     'click .logOut':function(event,template){
         event.preventDefault();
         Meteor.logout();
@@ -141,7 +149,7 @@ var submitSearch = function(q, f){//f is a specific field
     Session.set('searchQuery',q);
     Session.set('searchField',f);
     //Session.set('formBuilderObj',Session.get('formBuilderObj')); // this builds the advanced filter form
-    //Session.set('docSearchQuery', searchQuery || {});
+    //Session.set('folderSearchQuery', searchQuery || {});
     //Session.set('queryArgs', queryArgs);
 }
 
@@ -166,9 +174,15 @@ Template.navBar.onCreated(function () {
     Session.set('autoSendSearch',false);
     Session.set('keyUpSearch',false);
     Deps.autorun(function(){
-        Meteor.subscribe('docSearch',Session.get('docSearchQuery'),Session.get('queryArgs'))
+        Meteor.subscribe('folderSearch',Session.get('folderSearchQuery'),Session.get('queryArgs'))
+    })
+    Deps.autorun(function () {
+        Meteor.subscribe('aComplete', Session.get('aQuery'))
     })
 });
+
+
+
 
 Template.navBar.onRendered(function () {
     //add your statement here

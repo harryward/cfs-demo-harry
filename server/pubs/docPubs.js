@@ -1,13 +1,13 @@
-Meteor.publish('docSearch', function (searchQuery, queryArgs) {
+Meteor.publish('folderSearch', function (searchQuery, queryArgs) {
     if (queryArgs) {
-        return Tickets.find(searchQuery, queryArgs)
+        return Folders.find(searchQuery, queryArgs)
     } else {
-        return Tickets.find({},{sort:{date:1}})
+        return Folders.find({},{sort:{date:1}})
     }
 })
 
-Meteor.publish('singleTicket', function (ticketId) {
-    return Tickets.find({'_id': ticketId})
+Meteor.publish('singleFolder', function (folderId) {
+    return Folders.find({'_id': folderId})
 
 });
 

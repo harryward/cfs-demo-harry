@@ -6,7 +6,7 @@ Meteor.methods({
             {$group: {_id: "$queryTags", frequency: {$sum: 1}}},
         ];
 
-        var result = Tickets.aggregate(pipeline);
+        var result = Folders.aggregate(pipeline);
         //console.log(result);
         //return result
         if (result) {

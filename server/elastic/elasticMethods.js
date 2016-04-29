@@ -63,7 +63,7 @@
          var f = args.f;
          var qObj = (q) ? {f:q} : {};
          console.log('ticketQuery args ', args);
-         var theLatest = Tickets.find(qObj,{sort:{date:-1}}).fetch();
+         var theLatest = Folders.find(qObj,{sort:{date:-1}}).fetch();
          var results = {hits:{total:theLatest.length, hits:[], f:f, q:q}};
          _.each(theLatest,function(dirtyResult){
              var convertedResult = {};
@@ -71,7 +71,7 @@
              convertedResult._source.flarg = "fwefw";
              convertedResult._source._id = dirtyResult._id;
              convertedResult._source.ticketId = dirtyResult._id;
-             convertedResult._source.batchMeta = dirtyResult;
+             convertedResult._source.folderMeta = dirtyResult;
              results.hits.hits.push(convertedResult);
          })
 
