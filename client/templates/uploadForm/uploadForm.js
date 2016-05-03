@@ -1,4 +1,7 @@
 Template.uploadForm.helpers({
+    'showCreateFolder':function(){
+        return Session.get('showCreateFolder')
+    },
     'files':function(){
         return Session.get('files')
     },

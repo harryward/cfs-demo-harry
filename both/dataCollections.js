@@ -1,4 +1,4 @@
-Folders = new Meteor.Collection("tickets"); //will be folders someday
+Folders = new Meteor.Collection("folders");
 
 autoComplete = new Meteor.Collection("autocomplete");
 

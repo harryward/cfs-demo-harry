@@ -1,7 +1,4 @@
 Template.folderList.helpers({
-    'showFiles':function(){
-        return Session.get('showFiles')
-    },
     'folders': function () {
         //var sort = (Session.get('searchQuery') && Session.get('searchQuery') != "") ?
         //{} : {'sort':{'date': -1}};
@@ -34,14 +31,6 @@ Template.folderList.helpers({
             return Docs.findOne(this.toString())
         }
     },
-    'advancedResults':function(){
-        // MIKE TO MAKE THE ENTIRE QUERY BE A SESSION VARIABLE
-        return Folders.find({},{
-                'sort': {
-                    'date': -1
-                }}
-        ).fetch()
-    },
     'date': function () {
         return moment(this.date).fromNow();
     },
@@ -62,8 +51,11 @@ Template.folderList.helpers({
         return EJSON.stringify(
             Folders.find({}).fetch(), {'indent':true } );
     },
-    'elasticResults':function(){
-        return Session.get('elasticResp')
+    'folderList':function(){
+
+
+
+        return Session.get('folderList')
     },
     'thisFolder':function(){
         //console.log(this._source.ticketId)
@@ -72,7 +64,7 @@ Template.folderList.helpers({
     },
     'rawElastic':function(){
         return EJSON.stringify(
-            Session.get('elasticResp'), {'indent':true } );
+            Session.get('folderList'), {'indent':true } );
     },
     'rawProjection': function(){
         return EJSON.stringify( Session.get('queryArgs'), {'indent':true } );
@@ -88,19 +80,56 @@ Template.folderList.helpers({
 });
 
 Template.folderList.events({
-    'click .fileTypeFilter':function(event,template){
+/*    'click .fileTypeFilter':function(event,template){
         _.each(Folders.find().fetch(),function(e){
             _.each(e.files,function(file){
                 Meteor.subscribe('singleDoc', file);
             })
         });
         Session.set('showFiles', !Session.get('showFiles') );
+    }, */
+    'click .showfiles' : function(event, template){
+        var classname = ".files-"+this._source.ticketId;
+        console.log('click .showfiles this', EJSON.stringify(this) );
+        console.log('click .showfiles classname', classname );
+        $('.options').addClass('hide');
+        $(classname).removeClass('hide');
+
+    },
+    'keyup #q':function(ev,template){
+        //console.log("keyup.which: "+ev.which);
+        //after a space has been typed, send a query every other keystroke
+        if (ev.which > 31 && ev.which < 123) {
+            if (Session.get('autoSendSearch') && Session.get('keyUpSearch')) {
+                submitSearch($('#q').val());
+                Session.set('keyUpSearch', false);
+            } else if (ev.which === 32) {
+                Session.set('autoSendSearch', true);
+                Session.set('keyUpSearch', false);
+            } else if (Session.get('autoSendSearch')) {
+                Session.set('keyUpSearch', true);
+            }
+        }
+    },
+    'click .list-cancel' : function(event, template){
+        var tagname = event.target.className;
+        var classname = ".files-"+this._source.ticketId;
+        //console.log('click .list-cancel this', EJSON.stringify(this) );
+        console.log('click .list-cancel tagname', tagname );
+        $(classname).addClass('hide');
+
     },
     'click .editMe': function (event, template) {
         // event.preventDefault();
         // alert('make this button go to a route that lets you edit the files, title and summary')
     },
-
+    'click .searchItem':function(event,template){
+        //event.preventDefault();
+        Session.set('folderList',false);
+        Session.set('searchQuery',false);
+        Session.set('searchField',false);
+        console.log('click .searchItem');
+    },
     'click .removeMe': function (event, template) {
         event.preventDefault();
         if (confirm('are you sure? this cannot be reversed')) {
@@ -117,16 +146,7 @@ Template.folderList.events({
     },
 });
 
-
 Template.folderList.onCreated(function () {
-    Session.set('showFiles');///????
-    Session.set('elasticResp', false);
-    var aArgs = {};
-    aArgs[ Session.get('searchField') ] = Session.get('searchQuery');
-    Meteor.call('ticketQuery', aArgs, function (err, resp) {
-        Session.set('elasticResp', resp);
-        console.log(resp)
-    });
 
 });
 
@@ -140,7 +160,7 @@ function stripHTML(string){
 Template.registerHelper('stripHTML', stripHTML)
 
 Template.folderList.onRendered(function () {
-    Session.set('elasticResp', false);
+    //Session.set('folderList', false);
 });
 
 Template.folderList.onDestroyed(function () {

@@ -21,8 +21,3 @@ Meteor.methods({
         })
     }
 })
-
-//Meteor.call('searchElastic','all the',function(err,resp){
-//    Session.set('elasticResp',resp);
-//    console.log(resp)
-//});

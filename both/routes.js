@@ -1,6 +1,8 @@
 FlowRouter.route('/upload', {
     // do some action for this route
     action: function(params, queryParams) {
+        Session.set('showCreateFolder',false);
+
         console.log("Params:", params);
         console.log("Query Params:", queryParams);
         BlazeLayout.render('globalLayout', {
@@ -13,6 +15,7 @@ FlowRouter.route('/upload', {
 FlowRouter.route('/settings', {
     // do some action for this route
     action: function(params, queryParams) {
+        Session.set('showCreateFolder',true);
         console.log("Params:", params);
         console.log("Query Params:", queryParams);
 
@@ -25,10 +28,11 @@ FlowRouter.route('/settings', {
 FlowRouter.route('/', {
     // do some action for this route
     action: function(params, queryParams) {
+        Session.set('showCreateFolder',true);
         console.log("Params:", params);
         console.log("Query Params:", queryParams);
         BlazeLayout.render('globalLayout', {
-            top: "folderList"
+            main: "folderList"
         });
     }
 });
@@ -37,6 +41,7 @@ FlowRouter.route('/', {
 FlowRouter.route('/search', {
     // do some action for this route
     action: function(params, queryParams) {
+        Session.set('showCreateFolder',true);
         console.log("Params:", params);
         console.log("Query Params:", queryParams);
         BlazeLayout.render('globalLayout', {
@@ -45,9 +50,10 @@ FlowRouter.route('/search', {
     }
 });
 
-FlowRouter.route('/edit/folder/:ticketId', {
+FlowRouter.route('/folder/:ticketId', {
     // do some action for this route
     action: function(params, queryParams) {
+        Session.set('showCreateFolder',true);
         console.log("Params:", params);
         console.log("Query Params:", queryParams);
         Session.set('params',params);

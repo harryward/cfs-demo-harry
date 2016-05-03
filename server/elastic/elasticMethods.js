@@ -58,11 +58,11 @@
 
         return theSearch
     },
-     'ticketQuery': function (args) {
+     'folderQuery': function (args) {
+         console.log('folderQuery args ', args);
          var q = args.q;
          var f = args.f;
          var qObj = (q) ? {f:q} : {};
-         console.log('ticketQuery args ', args);
          var theLatest = Folders.find(qObj,{sort:{date:-1}}).fetch();
          var results = {hits:{total:theLatest.length, hits:[], f:f, q:q}};
          _.each(theLatest,function(dirtyResult){

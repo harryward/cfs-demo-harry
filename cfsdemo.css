@@ -426,6 +426,9 @@
     /*border-radius: 50%;*/
 
 /*}*/
+a{
+    cursor: pointer;
+}
 #main-div{
     margin-left:305px;
 }
@@ -607,10 +610,19 @@ table.searchResults td.title a.title {
     color: #999;
 }
 table.searchResults tr{
-    border-bottom:solid 1px #DDD;
+    border-top:solid 1px #DDD;
 }
-table.searchResults tr:hover{
+table.searchResults tr.options {
+    border-top:0;
+    -webkit-transition: height 1s;
+    transition: height 2s;
+}
+table.searchResults tr.folder:hover,
+table.searchResults tr.options{
     background: #f3f3f3;
+}
+table.searchResults tr.options td{
+    text-align: right;
 }
 nav ul.docMain li{
     float:right;
