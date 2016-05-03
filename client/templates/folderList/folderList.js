@@ -148,6 +148,24 @@ Template.folderList.events({
 
 Template.folderList.onCreated(function () {
 
+    //var fl = Session.get('folderList');
+    var q = Session.get('searchQuery');
+    var f = Session.get('searchField');
+    if(q) {
+        var qMethod = (f) ? 'folderQuery' : 'searchElastic';
+        var qArgs = {};
+        if (f && f != "") {
+            qArgs[f] = q;
+        } else {
+            qArgs['query'] = q;
+        }
+        Meteor.call(qMethod, qArgs, function (err, resp) {
+            Session.set('folderList', resp);
+            console.log(qMethod + ' resp ', resp);
+            console.log('qArgs ', qArgs);
+        });
+    }
+
 });
 
 function stripHTML(string){
