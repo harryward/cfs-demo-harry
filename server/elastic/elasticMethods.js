@@ -35,6 +35,7 @@
         var searchParams = {
             index: 'labdocs',
             type: 'document',
+            size: RESULTS_PAGE_CT,
             //"more_like_this" : {
             //    "fields" : ["title", "body"],
             //    "like" : theTerm,
@@ -59,16 +60,16 @@
         return theSearch
     },
      'folderQuery': function (args) {
-         console.log('folderQuery args ', args);
-         var q = args.q;
-         var f = args.f;
-         var qObj = (q) ? {f:q} : {};
-         var theLatest = Folders.find(qObj,{sort:{date:-1}}).fetch();
-         var results = {hits:{total:theLatest.length, hits:[], f:f, q:q}};
+         //console.log('folderQuery args ', args);
+         //var q = args.q;
+         //var f = args.f;
+         //var qObj = (q) ? {f:q} : {};
+         var theLatest = Folders.find(args,{skip:0, limit:RESULTS_PAGE_CT, sort:{date:-1}}).fetch();
+         var results = {hits:{total:theLatest.length, hits:[], args:args}};
          _.each(theLatest,function(dirtyResult){
              var convertedResult = {};
              convertedResult._source = {};
-             convertedResult._source.flarg = "fwefw";
+             //convertedResult._source.flarg = "fwefw";
              convertedResult._source._id = dirtyResult._id;
              convertedResult._source.ticketId = dirtyResult._id;
              convertedResult._source.folderMeta = dirtyResult;

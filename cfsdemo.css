@@ -470,6 +470,9 @@ nav {
 .nav-wrapper form input {
     background:whitesmoke;
 }
+#create-folder{
+    bottom: 45px; right: 24px;
+}
 .input-field i {
     color: #000!important;
 }

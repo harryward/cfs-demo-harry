@@ -8,6 +8,12 @@ Template.navBar.helpers({
     'currUser':function(){
         console.log("user:", Meteor.user());
         return Meteor.user();
+    },
+    'categories':function(){
+        return Categories.find({},{sort:{'name':1}}).fetch();
+    },
+    'showCreateFolder':function(){
+        return true;
     }
 });
 
@@ -17,17 +23,12 @@ Template.navBar.events({
         event.preventDefault();
         $('#q').focus().select();
     },
-    'click .navigate':function(event,template){
-        //if there are active search terms, clear all params
-        console.log('click .navigate');
-        clearSearchParams();
-    },
-    'click #uploadClick':function(event,template){
+    'click #uploadClick':function(event,template){ ///TODO: remove this
         event.preventDefault();
         clearSearchParams();
         FlowRouter.go('/upload');
     },
-    'click .logOut':function(event,template){
+    'click .logOut':function(event,template){///TODO: remove this or add back the logout link
         event.preventDefault();
         clearSearchParams();
         Meteor.logout();
@@ -36,23 +37,26 @@ Template.navBar.events({
         event.preventDefault();
         $('.sideBarNav').sideNav('hide');
     },
-    'click .settings':function(event){
-        event.preventDefault();
+    'click .navigate':function(event){
+        event.preventDefault(); //navigating away from search results clears search params
+        console.log('click .navigate', event.target.className );
         clearSearchParams();
-        FlowRouter.go('/settings')
+        var href = $(event.target).attr('href');
+        FlowRouter.go(href);
     },
     'click .homeQuery':function(event,template){
         event.preventDefault();
         console.log('click .homeQuery');
-        Session.set('searchQuery', $(event.target).attr('data-q') );
-        Session.set('searchField', $(event.target).attr('data-f') );
+        //Session.set('searchQuery', $(event.target).attr('data-q') );
+        folderFind( $(event.target).attr('data-q'), $(event.target).attr('data-f') );
         FlowRouter.go('/');
     },
     'submit .folderSearch': function (event, template) {
         event.preventDefault();
         console.log('submit .folderSearch');
-        Session.set('searchQuery', $('#q').val() );
-        Session.set('searchField',false);
+        //Session.set('searchQuery', $('#q').val() );
+        //Session.set('searchField',false);
+        folderFind( $('#q').val(), false);
         FlowRouter.go('/search');
     }
 });
@@ -62,6 +66,30 @@ var clearSearchParams = function(){
     Session.set('folderList',false);
     Session.set('searchQuery',false);
     Session.set('searchField',false);
+}
+
+var folderFind = function(q, f){
+    //var fl = Session.get('folderList');
+    var q = q.trim();
+    //var f = Session.get('searchField');
+        var qMethod = (f) ? 'folderQuery' : 'searchElastic';
+        var qArgs = {};
+        if (f && f != "") {
+            qArgs[f] = q;
+        } else if (q && q != "") {
+            qArgs['query'] = q;
+        } else {
+            qMethod = 'folderQuery';
+        }
+        Meteor.call(qMethod, qArgs, function (err, resp) {
+            Session.set('folderList', resp);
+            console.log(qMethod + ' resp ', resp);
+            console.log('qArgs ', qArgs);
+        });
+    //Session.set('folderList',false);
+    Session.set('searchQuery', q);
+    Session.set('searchField', f);
+
 }
 
 Template.navBar.onCreated(function () {
@@ -86,11 +114,11 @@ Template.navBar.onCreated(function () {
     Session.set('page', parseInt('1'));
     Session.set('autoSendSearch',false);
     Session.set('keyUpSearch',false);
-    Deps.autorun(function(){
-        Meteor.subscribe('folderSearch',Session.get('folderSearchQuery'),Session.get('queryArgs'))
-    })
     Deps.autorun(function () {
         Meteor.subscribe('aComplete', Session.get('aQuery'))
+    })
+    Deps.autorun(function () {
+        Meteor.subscribe('cats')
     })
 });
 

@@ -15,6 +15,13 @@ Template.folderList.helpers({
             return false
         }
     },
+    'stripHTML':function (string){
+        if (string) {
+            s = string.replace(/(<([^>]+)>)/ig, '');
+            return s;
+        }
+        return string;
+    },
     'thisFile':function(){
         return Docs.findOne(this.toString())
     },
@@ -47,22 +54,22 @@ Template.folderList.helpers({
     'rawFilter': function(){
         return EJSON.stringify( Session.get('folderSearchQuery'), {'indent':true } );
     },
-    'rawFolders': function(){
-        return EJSON.stringify(
-            Folders.find({}).fetch(), {'indent':true } );
-    },
     'folderList':function(){
-
-
-
-        return Session.get('folderList')
+        var q = Session.get('folderList');
+        if (q) {
+            //console.log('folderList q yes');
+            return Session.get('folderList');
+        } else {
+            //console.log('folderList q false');
+            return Folders.find({},{sort:{date:1}}).fetch();
+        }
     },
     'thisFolder':function(){
         //console.log(this._source.ticketId)
         return Folders.findOne({'_id':this._source.ticketId});
         //return this._source.ticketId
     },
-    'rawElastic':function(){
+    'rawfolderList':function(){
         return EJSON.stringify(
             Session.get('folderList'), {'indent':true } );
     },
@@ -112,16 +119,17 @@ Template.folderList.events({
         }
     },
     'click .list-cancel' : function(event, template){
-        var tagname = event.target.className;
+        //var tagname = event.target.className;
         var classname = ".files-"+this._source.ticketId;
         //console.log('click .list-cancel this', EJSON.stringify(this) );
-        console.log('click .list-cancel tagname', tagname );
+        //console.log('click .list-cancel tagname', tagname );
         $(classname).addClass('hide');
 
     },
-    'click .editMe': function (event, template) {
+    'click .editFolder': function (event, template) {
         // event.preventDefault();
-        // alert('make this button go to a route that lets you edit the files, title and summary')
+        console.log('make this button go to a route that lets you edit the files, title and summary');
+        FlowRouter.go('/edit/folder/'+this._id);
     },
     'click .searchItem':function(event,template){
         //event.preventDefault();
@@ -147,35 +155,14 @@ Template.folderList.events({
 });
 
 Template.folderList.onCreated(function () {
-
-    //var fl = Session.get('folderList');
-    var q = Session.get('searchQuery');
-    var f = Session.get('searchField');
-    if(q) {
-        var qMethod = (f) ? 'folderQuery' : 'searchElastic';
-        var qArgs = {};
-        if (f && f != "") {
-            qArgs[f] = q;
-        } else {
-            qArgs['query'] = q;
-        }
-        Meteor.call(qMethod, qArgs, function (err, resp) {
-            Session.set('folderList', resp);
-            console.log(qMethod + ' resp ', resp);
-            console.log('qArgs ', qArgs);
-        });
-    }
+    Deps.autorun(function(){
+        Meteor.subscribe('folderSearch') //this is default home page load or empty folder search
+    })
+    Deps.autorun(function(){
+        Meteor.subscribe('folders') //this is default home page load or empty folder search
+    })
 
 });
-
-function stripHTML(string){
-    if (string) {
-        s = string.replace(/(<([^>]+)>)/ig, '');
-        return s;
-    }
-    return string;
-}
-Template.registerHelper('stripHTML', stripHTML)
 
 Template.folderList.onRendered(function () {
     //Session.set('folderList', false);

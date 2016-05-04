@@ -1,0 +1,1 @@
+RESULTS_PAGE_CT = 9;

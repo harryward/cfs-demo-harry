@@ -2,10 +2,6 @@
 
 <div class="folderList-container">
 
-    {{#if folderList}}
-        <h4>{{folderList.hits.total}} documents found <small>in {{folderList.took}} seconds</small></h4>
-    {{/if}}
-
     <!-- div class="btn btn-default pull-right fileTypeFilter">{{#if showFiles}}Hide{{else}}Show{{/if}} Files</div -->
 
     <div class="row">
@@ -13,7 +9,7 @@
             <thead>
             <th>&nbsp;</th>
             <th data-field="title"><a>Title <i class="material-icons">swap_vertical_circle</i></a></th>
-            <th data-field="name"><a>Name <i class="material-icons">swap_vertical_circle</i></a></th>
+            <th data-field="name"><a>Creator <i class="material-icons">swap_vertical_circle</i></a></th>
             <th data-field="date"><a>Date <i class="material-icons">swap_vertical_circle</i></a></th>
             <th data-field="summary"><a>Summary <i class="material-icons">swap_vertical_circle</i></a></th>
             <th data-field="category"><a>Category <i class="material-icons">swap_vertical_circle</i></a></th>
@@ -23,17 +19,17 @@
             <tbody>
             {{#each folderList.hits.hits}}
                 <tr class="folder">
-                    <td><span class="badge">{{rounder _score}}</span></td>
+                    <td><i class="material-icons">insert_drive_file</i></td>
                     <td class="title" colspan="3">
                         <div>
                             <a class="title searchItem" href="/folder/{{thisFolder._id}}?elasticid={{_id}}">{{thisFolder.title}}</a><br>
-                            <span class="text-muted">{{thisFolder.userObj.profile.name}} | {{formatDate thisFolder.date}}</span>
+                            <b class="pull-right">{{rounder _score}}</b><span class="text-muted">{{thisFolder.userObj.profile.name}} | {{formatDate thisFolder.date}}</span>
                         </div>
                     </td>
                     <td>{{{stripHTML thisFolder.summary}}}</td>
                     <td>{{thisFolder.category}}</td>
                     <td><a class="showfiles"><i class="material-icons">more_vert</i></a></td>
-                    <!-- td class="docStar"><i class="material-icons">star</i> <i class="material-icons">star border</i></td -->
+                    <!-- td class="docStar"><i class="material-icons">star</i> <i class="material-icons">star_border</i></td -->
                 </tr>
                 <tr class="options files-{{thisFolder._id}} hide">
                     <td class="title" colspan="7">
@@ -50,7 +46,7 @@
                         </div>
 
                         <a><i class="material-icons">file_download</i> Download All</a>&nbsp;&nbsp;&nbsp;
-                        <a><i class="material-icons">mode_edit</i> Edit</a>&nbsp;&nbsp;&nbsp;
+                        <a class="editFolder"><i class="material-icons">mode_edit</i> Edit</a>&nbsp;&nbsp;&nbsp;
                         <a><i class="material-icons">delete</i> Remove</a>
                         <a class="list-cancel"><i class="material-icons">cancel</i> Cancel</a>
                     </td>
@@ -60,17 +56,32 @@
         </table>
 
     </div>
+    {{#if folderList}}
+        <h4>{{folderList.hits.total}} documents found <small>in {{folderList.took}} seconds</small></h4>
+    {{/if}}
+
+
+    {{#with folders}}
+        <div class="text-center pagBar">
+            <p class="pagtitle">Pages (not dynamic yet)</p>
+            <!--#todo make dynamic based on data-->
+            <ul class="pagination pagination-sm">
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+            </ul>
+        </div>
+    {{/with}}
 
 
     <!-- end table layout -->
 
     <div class="row ">
         <div class="col-sm-8">
-            <pre>// rawElastic
-                {{rawElastic}}
-            </pre>
-            <pre>// rawFolders
-                {{rawFolders}}
+            <pre>// rawfolderList
+                {{rawfolderList}}
             </pre>
 
         </div>
@@ -93,20 +104,5 @@
         </div>
     </div>
 </div>
-
-
-{{#with folders}}
-    <div class="text-center pagBar">
-        <p class="pagtitle">Pages (not dynamic yet)</p>
-        <!--#todo make dynamic based on data-->
-        <ul class="pagination pagination-sm">
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-        </ul>
-    </div>
-{{/with}}
 
 </template>

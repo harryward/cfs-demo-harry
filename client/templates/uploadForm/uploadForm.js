@@ -25,8 +25,10 @@ Template.uploadForm.helpers({
     },
     'currUser':function(){
         return Meteor.user();
+    },
+    'showCreateFolder':function(){
+        return false;
     }
-
 });
 // test d
 
@@ -167,7 +169,7 @@ Template.uploadForm.events({
         //}else{
             Meteor.call('insertFolder',ticketObj,function(err,resp){
                 if(!err){
-                    console.log('new ticket created',resp);
+                    console.log('new folder created',resp);
                     alert('success!');
                     var clearSessions = ['lastTicket','docId','files','fileArray','tags','totalCats','totalClients','totalTags']
                     _.each(clearSessions,function(e){
@@ -175,7 +177,7 @@ Template.uploadForm.events({
                     })
                     $('input,textarea').val('');
                     Meteor.call('autoCompleteTags');
-                    FlowRouter.go('/search');
+                    FlowRouter.go('/');
                 }else{
                     console.error('error creating ticket',err)
                 }

@@ -90,10 +90,10 @@
             <li class="documents">
                 <ul class="collapsible collapsible-accordion" >
                     <li class="bold">
-                        <a class="collapsible-header waves-effect waves-purple active navigate" href="/"><span class="leftRailIcon material-icons">folder_shared</span> Documents</a>
+                        <a class="collapsible-header waves-effect waves-purple active homeQuery" data-q="" href="/"><span class="leftRailIcon material-icons">folder_shared</span> Documents</a>
                         <div class="collapsible-body show">
                             <ul>
-                                <li><a class="homeQuery searchItem" data-q="{{currUser._id}}" data-f="user" href="/search"><span class="leftRailIcon material-icons">folder_shared</span>My Documents</a></li>
+                                <li><a class="homeQuery" data-q="{{currUser._id}}" data-f="user" href="/search"><span class="leftRailIcon material-icons">folder_shared</span>My Documents</a></li>
                             </ul>
                         </div>
                     </li>
@@ -105,9 +105,9 @@
                         <a class="collapsible-header waves-effect waves-purple active" href="/search"><span class="leftRailIcon material-icons">local_offer</span> Categories</a>
                         <div class="collapsible-body show">
                             <ul>
-                                <li><a class="homeQuery searchItem" data-q="Marketing" data-f="category" href="/search"><span class="leftRailIcon material-icons">local_offer</span>Marketing</a></li>
-                                <li><a class="homeQuery searchItem" data-q="Sales Training" data-f="category" href="/search"><span class="leftRailIcon material-icons">local_offer</span>Sales Training</a></li>
-                                <li><a class="homeQuery searchItem" data-q="Case Studies" data-f="category" href="/search"><span class="leftRailIcon material-icons">local_offer</span>Case Studies</a></li>
+                                {{#each categories}}
+                                <li><a class="homeQuery searchItem" data-q="{{name}}" data-f="category" href="/search"><span class="leftRailIcon material-icons">local_offer</span>{{name}}</a></li>
+                                {{/each}}
                             </ul>
                         </div>
                     </li>
@@ -118,7 +118,7 @@
 
 
         <ul class="docMain">
-            <li class="settings"><a href="#"> <i class="material-icons">settings</i></a></li>
+            <li class="settings"><a href="/settings" class="navigate"> <i href="/settings" class="material-icons">settings</i></a></li>
             <li class="avatar hide-on-small-only">
                 <img src="/icons/TSM.png" class="img-circle circle" alt=""/>
             </li>
@@ -145,9 +145,9 @@
 
     <!-- { { >createFolder } } -->
     {{#if showCreateFolder}}
-    <div id="create-folder" class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <div id="create-folder" class="fixed-action-btn">
         <a href="/upload" class="btn-floating btn-large black navigate">
-            <i class="large material-icons">add</i>
+            <i href="/upload" class="large material-icons">add</i>
         </a>
         <!--<ul>-->
         <!--<li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>-->

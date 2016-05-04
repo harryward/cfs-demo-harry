@@ -62,3 +62,16 @@ FlowRouter.route('/folder/:ticketId', {
         });
     }
 });
+
+FlowRouter.route('/edit/folder/:ticketId', {
+    // do some action for this route
+    action: function(params, queryParams) {
+        Session.set('showCreateFolder',true);
+        console.log("Params:", params);
+        console.log("Query Params:", queryParams);
+        Session.set('params',params);
+        BlazeLayout.render('globalLayout', {
+            main: "uploadForm"
+        });
+    }
+});
