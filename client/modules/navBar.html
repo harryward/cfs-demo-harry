@@ -118,7 +118,7 @@
 
 
         <ul class="docMain">
-            <li class="settings"><a href="/settings" class="navigate"> <i href="/settings" class="material-icons">settings</i></a></li>
+            <li class="settings"><a href="/settings" data-activates="slide-settings" class="button-collapse"> <i href="/settings" class="material-icons">settings</i></a></li>
             <li class="avatar hide-on-small-only">
                 <img src="/icons/TSM.png" class="img-circle circle" alt=""/>
             </li>
@@ -142,6 +142,13 @@
         </ul>
 
     </nav>
+
+        <ul id="slide-settings" class="side-nav">
+            <li class="close-settings"><a href="#!">x</a></li>
+            <li class="logOut"><a href="#!">Log Out</a></li>
+            <li><a href="/settings">Settings</a></li>
+        </ul>
+        <!-- a href="#"><i class="mdi-navigation-menu"></i></a -->
 
     <!-- { { >createFolder } } -->
     {{#if showCreateFolder}}

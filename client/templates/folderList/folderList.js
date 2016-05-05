@@ -55,14 +55,7 @@ Template.folderList.helpers({
         return EJSON.stringify( Session.get('folderSearchQuery'), {'indent':true } );
     },
     'folderList':function(){
-        var q = Session.get('folderList');
-        if (q) {
-            //console.log('folderList q yes');
-            return Session.get('folderList');
-        } else {
-            //console.log('folderList q false');
-            return Folders.find({},{sort:{date:1}}).fetch();
-        }
+        return Session.get('folderList');
     },
     'thisFolder':function(){
         //console.log(this._source.ticketId)

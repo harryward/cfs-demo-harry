@@ -15,7 +15,9 @@ Template.folderLanding.helpers({
         }
     },
     'extension':function(){
-        return Docs.findOne(this.toString()).getExtension()
+        var d = Docs.findOne(this.toString() );
+        if ( d ) return d.getExtension();
+        return '';
     },
     'date':function(){
         return moment(this.date).format('MM/DD/YYYY hh:mm a')
