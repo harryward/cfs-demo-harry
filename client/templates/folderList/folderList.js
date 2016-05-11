@@ -54,9 +54,6 @@ Template.folderList.helpers({
     'rawFilter': function(){
         return EJSON.stringify( Session.get('folderSearchQuery'), {'indent':true } );
     },
-    'folderList':function(){
-        return Session.get('folderList');
-    },
     'thisFolder':function(){
         //console.log(this._source.ticketId)
         return Folders.findOne({'_id':this._source.ticketId});
@@ -76,6 +73,13 @@ Template.folderList.helpers({
         if (this._id === Session.get('lastTicket')) {
             return true
         }
+    },
+    'folderList':function(){
+        //return Template.instance().folderList.get();
+        return Session.get('folderList');
+    },
+    'pagination': function() {
+        return Session.get('pagination');
     }
 });
 
@@ -137,7 +141,7 @@ Template.folderList.events({
             Folders.remove(this._id)
         }
     },
-    'click .pagination li': function (event, template) {
+    'click .paginationd li': function (event, template) {
         event.preventDefault();
         var pagNum = $(event.target).text();
 
@@ -148,17 +152,33 @@ Template.folderList.events({
 });
 
 Template.folderList.onCreated(function () {
+    var self = this;
     Deps.autorun(function(){
-        Meteor.subscribe('folderSearch') //this is default home page load or empty folder search
-    })
-    Deps.autorun(function(){
-        Meteor.subscribe('folders') //this is default home page load or empty folder search
+
+        Meteor.subscribe('folderSearch') //this populates the folder search data
+        //Meteor.subscribe('folders')
+/*      ///cool example with a callback ///http://dweldon.silvrback.com/common-mistakes
+        Meteor.subscribe('posts', function() {
+            console.log(Posts.find().count());
+        });
+        */
     })
 
 });
 
 Template.folderList.onRendered(function () {
     //Session.set('folderList', false);
+    /*
+    Meteor.call('totalFolders',function(err,resp){
+        Session.set('totalFolders',resp)
+    })
+    */
+    /*
+    var page_args = {total_item_ct:22, page_item_limit:RESULTS_PAGE_LIMIT, requested_page_num:1};
+    Meteor.call('makePagination', page_args, function(err,resp){
+        Session.set('totalFolders',resp)
+    })
+    */
 });
 
 Template.folderList.onDestroyed(function () {

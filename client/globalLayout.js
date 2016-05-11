@@ -15,7 +15,7 @@ Template.globalLayout.events({
         event.preventDefault();
         console.log('click .homeQuery');
         //Session.set('searchQuery', $(event.target).attr('data-q') );
-        folderFind( $(event.target).attr('data-q'), $(event.target).attr('data-f') );
+        folderFind( $(event.target).attr('data-q'), $(event.target).attr('data-f'), 1);
         FlowRouter.go('/');
     },
     'submit .folderSearch': function (event, template) {
@@ -23,41 +23,23 @@ Template.globalLayout.events({
         console.log('submit .folderSearch');
         //Session.set('searchQuery', $('#q').val() );
         //Session.set('searchField',false);
-        folderFind( $('#q').val(), false);
+        folderFind( $('#q').val(), false, 1);
         FlowRouter.go('/search');
+    },
+    'click .page_query' : function(event, template){
+        event.preventDefault();
+        //alert("page-query template.data ", template.data); // why doesn't this reference the item in the pagination array?
+        //alert("page-query this ", this.class); // why doesn't this reference the item in the pagination array?
+        var newp = $(event.target).attr('data-page');
+        var p = Session.get('searchPageNum');
+        if ( (newp - 0) !== (p - 0) ) {
+            var q = Session.get('searchQuery');
+            var f = Session.get('searchField');
+            folderFind( q, f, newp);
+            //console.log("!!pagenav to "+ newp+ " old p = "+p);
+        }
     }
 });
-
-var clearSearchParams = function(){
-    console.log('clearSearchParams');
-    Session.set('folderList',false);
-    Session.set('searchQuery',false);
-    Session.set('searchField',false);
-}
-
-var folderFind = function(q, f){
-    //var fl = Session.get('folderList');
-    var q = q.trim();
-    //var f = Session.get('searchField');
-    var qMethod = (f) ? 'folderQuery' : 'searchElastic';
-    var qArgs = {};
-    if (f && f != "") {
-        qArgs[f] = q;
-    } else if (q && q != "") {
-        qArgs['query'] = q;
-    } else {
-        qMethod = 'folderQuery';
-    }
-    Meteor.call(qMethod, qArgs, function (err, resp) {
-        Session.set('folderList', resp);
-        console.log(qMethod + ' resp ', resp);
-        console.log('qArgs ', qArgs);
-    });
-    //Session.set('folderList',false);
-    Session.set('searchQuery', q);
-    Session.set('searchField', f);
-
-}
 
 Template.globalLayout.onCreated(function () {
 
@@ -71,9 +53,6 @@ Template.globalLayout.onCreated(function () {
 
 });
 
-
-
-
 Template.globalLayout.onRendered(function () {
     //add your statement here
 });
@@ -82,3 +61,51 @@ Template.globalLayout.onDestroyed(function () {
     //add your statement here
 });
 
+
+var clearSearchParams = function(){
+    console.log('clearSearchParams');
+    Session.set('folderList',false);
+    Session.set('searchQuery',false);
+    Session.set('searchField',false);
+    Session.set('searchPageNum',false);
+}
+
+var folderFind = function(q, f, p){
+    console.log("folderFind q:"+q+" f:"+f+" p:"+p)
+
+    //var fl = Session.get('folderList');
+    //var f = Session.get('searchField');
+    var q = q.trim();
+    var qMethod = (f) ? 'folderQuery' : 'searchElastic';
+    var p = p || 1;
+    var qArgs = {page:p, limit:RESULTS_PAGE_LIMIT, q:{}};
+    if (f && f != "") {
+        qArgs['q'][f] = q;
+    } else if (q && q != "") {
+        qArgs['q'] = {query:q};
+    } else {
+        qMethod = 'folderQuery';
+    }
+    console.log('qArgs ', JSON.stringify(qArgs));
+    Meteor.call(qMethod, qArgs, function (err, resp) {
+        Session.set('folderList', resp);
+        //Session.set('folderCount', resp.hits.total);
+        console.log(qMethod + ' resp ', resp);
+        //console.log('qArgs ', qArgs);
+        //console.log("resp.hits.total ", resp.hits.total)
+        var page_args = {total_item_ct:resp.hits.total, page_item_limit:RESULTS_PAGE_LIMIT, requested_page_num:p};
+        Meteor.call('makePagination', page_args, function (err2, resp2) {
+            if (err2) {
+                console.log(err2);
+            } else {
+                Session.set('pagination', resp2);
+            }
+        });
+
+    });
+    //Session.set('folderList',false);
+    Session.set('searchQuery', q);
+    Session.set('searchField', f);
+    Session.set('searchPageNum', p);
+
+}

@@ -7,5 +7,5 @@ Meteor.methods({
     },
     'totalTags':function(){
         return Tags.find().count()
-    },
+    }
 })

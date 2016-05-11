@@ -61,16 +61,12 @@
     {{/if}}
 
 
-    {{#with folders}}
+    {{#with pagination}}
         <div class="text-center pagBar">
-            <p class="pagtitle">Pages (not dynamic yet)</p>
-            <!--#todo make dynamic based on data-->
             <ul class="pagination pagination-sm">
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
+                {{#each pagination}}
+                <li class="{{class}}"><a class="page_query" data-page="{{nav}}" href="#">{{name}}</a></li>
+                 {{/each}}
             </ul>
         </div>
     {{/with}}

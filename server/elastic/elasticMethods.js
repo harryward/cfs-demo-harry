@@ -25,6 +25,7 @@
     'searchElastic': function (args) {
         console.log('searchElastic args ', args);
         //var theTerm = args.q;
+        var skip = ((args.page * args.limit) - args.limit);
         var elasticsearch = Npm.require('elasticsearch');
 
         connectionString = 'https://site:91460979a91648185b808a5059cd13e3@bifur-eu-west-1.searchly.com';
@@ -35,7 +36,8 @@
         var searchParams = {
             index: 'labdocs',
             type: 'document',
-            size: RESULTS_PAGE_CT,
+            from: skip,
+            size: args.limit,
             //"more_like_this" : {
             //    "fields" : ["title", "body"],
             //    "like" : theTerm,
@@ -44,7 +46,7 @@
             //},
             body: {
                 query: {
-                    "query_string": args
+                    "query_string": args.q
                 }
             }
         };
@@ -60,12 +62,14 @@
         return theSearch
     },
      'folderQuery': function (args) {
-         //console.log('folderQuery args ', args);
+         console.log('folderQuery args '+JSON.stringify(args));
          //var q = args.q;
          //var f = args.f;
          //var qObj = (q) ? {f:q} : {};
-         var theLatest = Folders.find(args,{skip:0, limit:RESULTS_PAGE_CT, sort:{date:-1}}).fetch();
-         var results = {hits:{total:theLatest.length, hits:[], args:args}};
+         var skip = ((args.page * args.limit) - args.limit);
+         var theLatest = Folders.find(args.q,{skip:skip, limit:args.limit, sort:{date:-1}}).fetch();
+         var totalCount = Folders.find(args.q).count();
+         var results = {hits:{total:totalCount, hits:[], args:args}};
          _.each(theLatest,function(dirtyResult){
              var convertedResult = {};
              convertedResult._source = {};
