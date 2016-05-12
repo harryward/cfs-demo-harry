@@ -19,32 +19,6 @@ Template.navBar.helpers({
 
 
 Template.navBar.events({
-    'click #search-icon': function(event,template){
-        event.preventDefault();
-        $('#q').focus().select();
-    },
-    'click #uploadClick':function(event,template){ ///TODO: remove this
-        event.preventDefault();
-        clearSearchParams();
-        FlowRouter.go('/upload');
-    },
-    'click #sidebar-close':function(event){
-        event.preventDefault();
-        $('.sideBarNav').sideNav('hide');
-    },
-    'click .logOut':function(event,template){///TODO: remove this or add back the logout link
-        event.preventDefault();
-        clearSearchParams();
-        Meteor.logout();
-    },
-    'click li.close-settings':function(event){
-        event.preventDefault(); //navigating away from search results clears search params
-        $('.button-collapse').sideNav('hide');
-    },
-    'click li.settings':function(event){
-        event.preventDefault(); //navigating away from search results clears search params
-        $('.button-collapse').sideNav('show');
-    }
 });
 
 Template.navBar.onCreated(function () {
@@ -58,7 +32,7 @@ Template.navBar.onCreated(function () {
                 closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
             }
         );
-        $('.button-collapse').sideNav('show');
+        //$('.button-collapse').sideNav('show');
 
         $('.sideBarToggle').sideNav({
                 menuWidth: 300, // Default is 240

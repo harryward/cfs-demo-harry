@@ -28,7 +28,15 @@ Template.uploadForm.helpers({
     },
     'showCreateFolder':function(){
         return false;
-    }
+    },
+    'preselected':function (string){
+        //console.log("preselected preselected :: ", string);
+        if (string === Meteor.user().profile.market) {
+            return 'selected';
+        }
+        return '';
+    },
+
 });
 // test d
 

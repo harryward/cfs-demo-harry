@@ -1,5 +1,16 @@
 Template.globalLayout.helpers({
-
+    'main_class': function(){
+        var mu = Meteor.user();
+        console.log('mu', JSON.stringify(mu));
+        if ( mu === null ) {
+            return 'loggedout'
+        } else {
+            return Session.get('mainClass');
+        }
+    },
+    'currUser':function(){
+        return Meteor.user();
+    },
 });
 
 
@@ -38,6 +49,33 @@ Template.globalLayout.events({
             folderFind( q, f, newp);
             //console.log("!!pagenav to "+ newp+ " old p = "+p);
         }
+    },
+    'click #search-icon': function(event,template){
+        event.preventDefault();
+        $('#q').focus().select();
+    },
+    'click #uploadClick':function(event,template){ ///TODO: remove this
+        event.preventDefault();
+        clearSearchParams();
+        FlowRouter.go('/upload');
+    },
+    'click #sidebar-close':function(event){
+        event.preventDefault();
+        $('.sideBarNav').sideNav('hide');
+    },
+    'click .logOut':function(event,template){///TODO: remove this or add back the logout link
+        event.preventDefault();
+        FlowRouter.go('/');
+        Meteor.logout();
+        clearSearchParams();
+    },
+    'click li.close-settings':function(event){
+        event.preventDefault(); //navigating away from search results clears search params
+        $('.button-collapse').sideNav('hide');
+    },
+    'click li.settings':function(event){
+        event.preventDefault(); //navigating away from search results clears search params
+        $('.button-collapse').sideNav('show');
     }
 });
 
@@ -71,7 +109,7 @@ var clearSearchParams = function(){
 }
 
 var folderFind = function(q, f, p){
-    console.log("folderFind q:"+q+" f:"+f+" p:"+p)
+    //console.log("folderFind q:"+q+" f:"+f+" p:"+p)
 
     //var fl = Session.get('folderList');
     //var f = Session.get('searchField');
@@ -86,11 +124,11 @@ var folderFind = function(q, f, p){
     } else {
         qMethod = 'folderQuery';
     }
-    console.log('qArgs ', JSON.stringify(qArgs));
+    //console.log('qArgs ', JSON.stringify(qArgs));
     Meteor.call(qMethod, qArgs, function (err, resp) {
         Session.set('folderList', resp);
         //Session.set('folderCount', resp.hits.total);
-        console.log(qMethod + ' resp ', resp);
+        //console.log(qMethod + ' resp ', resp);
         //console.log('qArgs ', qArgs);
         //console.log("resp.hits.total ", resp.hits.total)
         var page_args = {total_item_ct:resp.hits.total, page_item_limit:RESULTS_PAGE_LIMIT, requested_page_num:p};

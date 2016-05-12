@@ -426,6 +426,14 @@
     /*border-radius: 50%;*/
 
 /*}*/
+body #__blaze-root,
+body #__blaze-root main{
+    height:100vh;
+}
+body #__blaze-root main.loggedout{
+    background:#131313 url('/bg/1.jpg') no-repeat 50% 0;
+    background-size: cover;
+}
 a{
     cursor: pointer;
 }
@@ -642,6 +650,6 @@ nav a.settings{
     font-size: 50px;
     line-height: 65px;
 }
-#at-form {
-    background:url('/bg/1.jpg');
+.pagination li.active{
+    background:transparent;
 }

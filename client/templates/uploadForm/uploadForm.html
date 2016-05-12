@@ -74,11 +74,11 @@
             </div>
 
             <div class="form-group">
-                <label for="market" data-u-mkt="{{currUser.priofile.market}}">Market</label>
-                <select name="market" id="market">
+                <label for="market" data-u-mkt="{{currUser.profile.market}}">Market</label>
+                <select name="market" id="market" style="display:block">
                     <option value="">-- No Market --</option>
                     {{#each markets}}
-                        <option>{{Facility}}</option>
+                        <option {{preselected Facility}}>{{Facility}}</option>
                     {{/each}}
                 </select>
             </div>
