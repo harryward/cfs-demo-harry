@@ -57,9 +57,8 @@
 
     </div>
     {{#if folderList}}
-        <h4>{{folderList.hits.total}} documents found <small>in {{folderList.took}} seconds</small></h4>
+        <small class="search_details">{{folderList.hits.total}} documents found <em>in {{folderList.took}} seconds</em></small>
     {{/if}}
-
 
     {{#with pagination}}
         <div class="text-center pagBar">
@@ -70,7 +69,6 @@
             </ul>
         </div>
     {{/with}}
-
 
     <!-- end table layout -->
 

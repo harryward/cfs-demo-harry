@@ -1,22 +1,26 @@
 <template name="globalLayout">
-    <main class="{{main_class}}">
-        <div class="section" id="index-banner">
+    <div id="index-banner" class="{{main_class}}">
         {{#if currentUser}}
+            <header>
+                {{>navBar}}
+                {{>mobileMenu}}
+                {{>settingsMenu}}
+            </header>
 
-            {{>navBar}}
-
-            <div id="main-div" class="container-fluid">
+            <main id="main-div" class="container-fluid">
 
                 {{> Template.dynamic template=top}}
 
                 {{> Template.dynamic template=main}}
 
-            </div>
+            </main>
+            <footer>
+                <b>this is the footer</b>
+            </footer>
         {{else}}
             <div id="at-form" class="ui container">
                 {{>atForm}}
             </div>
         {{/if}}
-        </div>
-    </main>
+    </div>
 </template>

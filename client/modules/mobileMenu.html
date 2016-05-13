@@ -1,0 +1,37 @@
+<template name="mobileMenu">
+    <ul id="slide-mobile" class="side-nav fixed">
+        <li class="userProfile">
+            <div class="profilePic">
+                <img src="http://fpoimg.com/75x75?text=Profile+Pic" class="circle img-circle" alt=""/>
+            </div>
+            <div class="profileName">{{currentUser.profile.name}}</div>
+            <div id="sidebar-close" class="hide-on-large-only pull-right right"><i class="material-icons">close</i></div>
+        </li>
+        <li class="documents">
+            <ul class="collapsible collapsible-accordion" >
+                <li class="bold">
+                    <a class="collapsible-header waves-effect waves-purple active homeQuery" data-q="" href="/"><span class="leftRailIcon material-icons">folder_shared</span> Documents</a>
+                    <div class="collapsible-body show">
+                        <ul>
+                            <li><a class="homeQuery" data-q="{{currUser._id}}" data-f="user" href="/search"><span class="leftRailIcon material-icons">folder_shared</span>My Documents</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li class="categories">
+            <ul class="collapsible collapsible-accordion" >
+                <li class="bold">
+                    <a class="collapsible-header waves-effect waves-purple active" href="/search"><span class="leftRailIcon material-icons">local_offer</span> Categories</a>
+                    <div class="collapsible-body show">
+                        <ul>
+                            {{#each categories}}
+                                <li><a class="homeQuery searchItem" data-q="{{name}}" data-f="category" href="/search"><span class="leftRailIcon material-icons">local_offer</span>{{name}}</a></li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</template>

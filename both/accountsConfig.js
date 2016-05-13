@@ -9,7 +9,7 @@ var mySubmitFunc = function(error, state){
         if (state === "signUp") {
             // Successfully registered
             //FlowRouter.go('/settings/'+Meteor.user()._id)
-
+            console.log('state == signUp')
 
         }
     }
@@ -71,13 +71,13 @@ AccountsTemplates.configure({
     // Texts
     texts: {
         title: {
-            changePwd: "Password Title",
-            enrollAccount: "Enroll Title",
-            forgotPwd: "Forgot Pwd Title",
-            resetPwd: "Reset Pwd Title",
-            signIn: "Sign In",
+            changePwd: "Change Password",
+            enrollAccount: "Sign Up.",
+            forgotPwd: "Forgot Password?",
+            resetPwd: "Reset Password.",
+            signIn: "Welcome.",
             signUp: "Create Your Account",
-            verifyEmail: "Verify Email Title",
+            verifyEmail: "Verify Email",
 
         },
         errors: {

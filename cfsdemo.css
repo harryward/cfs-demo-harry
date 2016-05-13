@@ -427,10 +427,10 @@
 
 /*}*/
 body #__blaze-root,
-body #__blaze-root main{
+body #__blaze-root > div{
     height:100vh;
 }
-body #__blaze-root main.loggedout{
+body #__blaze-root > div.loggedout{
     background:#131313 url('/bg/1.jpg') no-repeat 50% 0;
     background-size: cover;
 }
@@ -483,6 +483,9 @@ nav {
 }
 .input-field i {
     color: #000!important;
+}
+.mobile_btn_real, .settings_btn_real{
+    height:0; width:0;visibility: hidden;
 }
 li.searchField form {
     position:relative;
@@ -563,8 +566,8 @@ li.userProfile {
 .userProfile i.material-icons {
     font-size: 22px;
     position: absolute;
-    top: -11px;
-    right: -6px;
+    top: 3px;
+    right: 3px;
     color: #FFF;
 }
 .leftRailIcon {
@@ -635,6 +638,9 @@ table.searchResults tr.options{
 table.searchResults tr.options td{
     text-align: right;
 }
+.search_details{
+    float:right
+}
 nav ul.docMain li{
     float:right;
 }
@@ -652,4 +658,56 @@ nav a.settings{
 }
 .pagination li.active{
     background:transparent;
+}
+#at-form{
+    padding-top: 200px;
+}
+#at-form .at-pwd-form,
+#at-form .at-title,
+#at-form .at-error,
+#at-form .at-signup-link{
+    width:65%;
+    margin:0 auto;
+    text-align:left;
+}
+#at-form .at-title h3.header{
+    color:#FFF;
+}
+
+#at-pwd-form input{
+    background-color:#FFF !important;
+    border-bottom:0;
+    box-shadow:0;
+}
+#at-pwd-form div.row {
+    margin-bottom:0;
+}
+#at-pwd-form div.row  div.at-input{
+    margin-top:0;
+    padding:0;
+}
+#at-pwd-form #at-field-email{
+    margin-bottom:2px;
+}
+#at-pwd-form #at-btn{
+    margin-bottom:0;
+    background:#3983c2;
+    border-radius: 5px;
+}
+#at-pwd-form .at-error{
+
+}
+#at-pwd-form .card-panel{
+
+}
+#at-pwd-form #at-field-email{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+#at-pwd-form #at-field-password{
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.at-form {
+     text-align:center;
 }

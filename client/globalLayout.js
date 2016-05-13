@@ -24,7 +24,7 @@ Template.globalLayout.events({
     },
     'click .homeQuery':function(event,template){
         event.preventDefault();
-        console.log('click .homeQuery');
+        //console.log('click .homeQuery');
         //Session.set('searchQuery', $(event.target).attr('data-q') );
         folderFind( $(event.target).attr('data-q'), $(event.target).attr('data-f'), 1);
         FlowRouter.go('/');
@@ -105,6 +105,7 @@ var clearSearchParams = function(){
     Session.set('folderList',false);
     Session.set('searchQuery',false);
     Session.set('searchField',false);
+    Session.set('paginationz',false);
     Session.set('searchPageNum',false);
 }
 
