@@ -3,9 +3,24 @@ Template.mobileMenu.helpers({
         console.log("user:", Meteor.user());
         return Meteor.user();
     },
+    'categories':function(){
+        return Categories.find({},{sort:{'name':1}}).fetch();
+    },
 });
 
 Template.mobileMenu.events({
+    'click .homeQuery':function(event,template){
+        event.preventDefault();
+        //Categories.update({}, {$set: {liclass: ""}});
+        //Categories.update(this._id, {$set: {liclass: "active"}});
+        $('.homeQuery').parent('li').removeClass('active')
+        $(event.target).parent('li').addClass('active')
+        //this.liclass = "active";
+        console.log('click li.categories ul ul a', JSON.stringify(this));
+        //Session.set('searchQuery', $(event.target).attr('data-q') );
+        folderFind( $(event.target).attr('data-q'), $(event.target).attr('data-f'), 1);
+        FlowRouter.go('/');
+    }
 });
 
 Template.mobileMenu.onCreated(function () {

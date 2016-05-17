@@ -92,14 +92,6 @@ Template.folderList.events({
         });
         Session.set('showFiles', !Session.get('showFiles') );
     }, */
-    'click .showfiles' : function(event, template){
-        var classname = ".files-"+this._source.ticketId;
-        console.log('click .showfiles this', EJSON.stringify(this) );
-        console.log('click .showfiles classname', classname );
-        $('.options').addClass('hide');
-        $(classname).removeClass('hide');
-
-    },
     'keyup #q':function(ev,template){
         //console.log("keyup.which: "+ev.which);
         //after a space has been typed, send a query every other keystroke
@@ -115,18 +107,59 @@ Template.folderList.events({
             }
         }
     },
+    'click .actions' : function(event, template){
+        event.preventDefault();
+        var id = this._source.ticketId;
+        var d = Session.get('mobileContextData');
+        if ( d ) {
+            //console.log('click .showfiles this', EJSON.stringify(this) );
+            //console.log('click .showfiles classname', classname);
+            //$('.options').addClass('hide');
+            //$(classname).removeClass('hide');
+            Session.set('mobileContextData', this);
+            //Session.set('mobileContextTpl', 'folderActions');
+            //Session.set('showMobileContext', true);
+            //$('.modal-trigger').openModal();
+            $('#folderActions').openModal();
+        } else {
+            var classname = ".files-" + this._source.ticketId;
+            //console.log('click .showfiles this', EJSON.stringify(this) );
+            console.log('click .showfiles classname', classname);
+            //$('.options').addClass('hide');
+            //$(classname).removeClass('hide');
+            Session.set('mobileContextData', this);
+            //Session.set('mobileContextTpl', 'folderActions');
+            //Session.set('showMobileContext', true);
+            //$('.modal-trigger').openModal();
+            $('#folderActions').openModal();
+        }
+    },
+    'click .editFolder': function (event, template) {
+        event.preventDefault();
+        var d = Session.get('mobileContextData');
+        //console.log('editFolder', d._source.ticketId);
+        //$('.modal-trigger').closeModal();
+        Session.set('mobileContextData', false);
+        $('#folderActions').closeModal();
+        FlowRouter.go('/edit/folder/'+d._source.ticketId);
+    },
+    'click .viewFolder': function (event, template) {
+        event.preventDefault();
+        var d = Session.get('mobileContextData');
+        //console.log('editFolder', d._source.ticketId);
+        //$('.modal-trigger').closeModal();
+        $('#folderActions').closeModal();
+        Session.set('mobileContextData', false);
+        FlowRouter.go('/folder/'+d._source.ticketId);
+    },
     'click .list-cancel' : function(event, template){
         //var tagname = event.target.className;
         var classname = ".files-"+this._source.ticketId;
         //console.log('click .list-cancel this', EJSON.stringify(this) );
         //console.log('click .list-cancel tagname', tagname );
+        Session.set('mobileContextData', false);
         $(classname).addClass('hide');
 
-    },
-    'click .editFolder': function (event, template) {
-        // event.preventDefault();
-        console.log('make this button go to a route that lets you edit the files, title and summary');
-        FlowRouter.go('/edit/folder/'+this._id);
     },
     'click .searchItem':function(event,template){
         //event.preventDefault();
@@ -163,10 +196,12 @@ Template.folderList.onCreated(function () {
         });
         */
     })
-
+    Session.set('mobileContextData', false)
 });
 
 Template.folderList.onRendered(function () {
+    $('.modal-trigger').leanModal();
+
     //Session.set('folderList', false);
     /*
     Meteor.call('totalFolders',function(err,resp){

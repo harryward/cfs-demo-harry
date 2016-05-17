@@ -1,7 +1,4 @@
 Template.settingsMenu.helpers({
-    'categories':function(){
-        return Categories.find({},{sort:{'name':1}}).fetch();
-    },
 });
 
 Template.settingsMenu.events({

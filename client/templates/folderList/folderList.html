@@ -8,11 +8,11 @@
         <table class="searchResults">
             <thead>
             <th>&nbsp;</th>
-            <th data-field="title"><a>Title <i class="material-icons">swap_vertical_circle</i></a></th>
-            <th data-field="name"><a>Creator <i class="material-icons">swap_vertical_circle</i></a></th>
-            <th data-field="date"><a>Date <i class="material-icons">swap_vertical_circle</i></a></th>
-            <th data-field="summary"><a>Summary <i class="material-icons">swap_vertical_circle</i></a></th>
-            <th data-field="category"><a>Category <i class="material-icons">swap_vertical_circle</i></a></th>
+            <th data-field="title"><a>Title</a></th>
+            <th data-field="name"><a>Creator</a></th>
+            <th data-field="date"><a>Date</a></th> <!-- i class="material-icons">swap_vertical_circle</i -->
+            <th data-field="summary"><a>Summary</a></th>
+            <th data-field="category"><a>Category</a></th>
             <th>&nbsp;</th>
             <!-- th data-field="star"><a><i class="material-icons">star</i> <i class="material-icons">swap_vertical_circle</i></a></th -->
             </thead>
@@ -28,7 +28,7 @@
                     </td>
                     <td>{{{stripHTML thisFolder.summary}}}</td>
                     <td>{{thisFolder.category}}</td>
-                    <td><a class="showfiles"><i class="material-icons">more_vert</i></a></td>
+                    <td><a href="#folderActions" class="actions"><i class="material-icons">more_vert</i></a></td>
                     <!-- td class="docStar"><i class="material-icons">star</i> <i class="material-icons">star_border</i></td -->
                 </tr>
                 <tr class="options files-{{thisFolder._id}} hide">
@@ -44,11 +44,12 @@
                             </menu>
 
                         </div>
-
-                        <a><i class="material-icons">file_download</i> Download All</a>&nbsp;&nbsp;&nbsp;
-                        <a class="editFolder"><i class="material-icons">mode_edit</i> Edit</a>&nbsp;&nbsp;&nbsp;
-                        <a><i class="material-icons">delete</i> Remove</a>
-                        <a class="list-cancel"><i class="material-icons">cancel</i> Cancel</a>
+                        <div class="contextmenu">
+                            <a><i class="material-icons">file_download</i> Download All</a>&nbsp;&nbsp;&nbsp;
+                            <a class="editFolder"><i class="material-icons">mode_edit</i> Edit</a>&nbsp;&nbsp;&nbsp;
+                            <a><i class="material-icons">delete</i> Remove</a>
+                            <a class="list-cancel"><i class="material-icons">cancel</i> Cancel</a>
+                        </div>
                     </td>
                 </tr>
             {{/each}}
@@ -98,5 +99,16 @@
         </div>
     </div -->
 </div>
+    <div id="folderActions" class="modal bottom-sheet">
+        <div class="modal-content mobile-actions">
+            <a class="btn-large"><i class="material-icons">file_download</i> Download All</a>
+            <a class="btn-large viewFolder"><i class="material-icons">remove_red_eye</i> View</a>
+            <a class="btn-large editFolder"><i class="material-icons">mode_edit</i> Edit</a>
+            <a class="btn-large"><i class="material-icons">delete</i> Remove</a>
+            <a class="btn-large modal-action modal-close bottom-btn"><i class="material-icons">cancel</i> Cancel</a>
 
+            <a href="{{this._id}}">{{this.title}}</a>
+        </div>
+    </div>
+    <a href="#folderActions" class="modal-trigger">x</a>
 </template>

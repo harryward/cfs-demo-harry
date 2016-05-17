@@ -437,12 +437,16 @@ body #__blaze-root > div.loggedout{
 a{
     cursor: pointer;
 }
-#main-div{
+#main-div,
+header table{
     margin-left:305px;
 }
 @media screen and (max-width: 992px) {
 
     #main-div{
+        margin-left:0px;
+    }
+    header table{
         margin-left:0px;
     }
 }
@@ -478,6 +482,12 @@ nav {
 .nav-wrapper form input {
     background:whitesmoke;
 }
+li.avatar{
+    padding-left: 12px;
+}
+li.settings{
+    padding-top: 5px;
+}
 #create-folder{
     bottom: 45px; right: 24px;
 }
@@ -486,6 +496,9 @@ nav {
 }
 .mobile_btn_real, .settings_btn_real{
     height:0; width:0;visibility: hidden;
+}
+li.searchField{
+    width: 393px;
 }
 li.searchField form {
     position:relative;
@@ -501,7 +514,7 @@ input#q {
     position: relative;
     border: solid 1px #D3D3D3;
     padding:0 44px 5px 6px;
-    width:90%;
+    width:86%;
 }
 nav .brand-logo.left {
     position: absolute;
@@ -628,9 +641,18 @@ table.searchResults tr{
 }
 table.searchResults tr.options {
     border-top:0;
-    -webkit-transition: height 1s;
+    -webkit-transition: height 2s;
     transition: height 2s;
 }
+@media screen and (max-width: 600px) {
+
+    table.searchResults div.contextmenu{
+        position:absolute;
+        bottom:0px;
+        height:50px;
+    }
+}
+
 table.searchResults tr.folder:hover,
 table.searchResults tr.options{
     background: #f3f3f3;
@@ -710,4 +732,44 @@ nav a.settings{
 }
 .at-form {
      text-align:center;
+}
+
+#slide-mobile .documents,
+#slide-mobile .categories{
+
+}
+#slide-mobile .documents li.waves-effect,
+#slide-mobile .categories li.waves-effect{
+    width: 100%
+}
+#slide-mobile li.active{
+    background:transparent;
+}
+#slide-mobile li.active a{
+    color:red;
+}
+.side-nav li {
+    border-top: solid 1px #D3D3D3;
+    border-bottom:0;
+    line-height: 44px;
+}
+.side-nav li a{
+    line-height: 55px;
+    height:55px;
+ }
+div.drag-target{
+    display:none;
+}
+#folderActions,
+.mobile-actions{
+    background:transparent;
+    border:none;
+}
+.mobile-actions .btn-large{
+    display:block;
+    background:white;
+    color:blue;
+}
+.mobile-actions .bottom-btn{
+    margin-top:5px;
 }

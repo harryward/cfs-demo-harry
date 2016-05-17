@@ -1,0 +1,15 @@
+<template name="folderActions">
+    <div id="folderActions" class="modal bottom-sheet">
+        <div class="modal-content">
+                <a><i class="material-icons">file_download</i> Download All</a>
+                <a class="editFolder"><i class="material-icons">mode_edit</i> Edit</a>
+                <a><i class="material-icons">delete</i> Remove</a>
+                <a class="list-cancel modal-action modal-close"><i class="material-icons">cancel</i> Cancel</a>
+
+                <a href="{{this._id}}">{{this.title}}</a>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+    </div>
+</template>

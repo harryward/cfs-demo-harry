@@ -10,7 +10,7 @@ Template.navBar.helpers({
         return Meteor.user();
     },
     'showCreateFolder':function(){
-        return true;
+        return  Session.get('showCreateFolder') || true;
     }
 });
 
@@ -22,6 +22,11 @@ Template.navBar.events({
     'click .mobileBtnProxy':function (event, template) {
         $('.settings_menu_btn').sideNav('hide');
         $('.mobile_menu_btn').sideNav('show');
+    },
+    'click #createFolder':function(event, template){
+        event.preventDefault();
+        Session.set('showCreateFolder', false)
+        FlowRouter.go('/upload');
     }
 });
 

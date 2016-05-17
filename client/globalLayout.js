@@ -11,6 +11,16 @@ Template.globalLayout.helpers({
     'currUser':function(){
         return Meteor.user();
     },
+    'footerWord':function(){
+        return Session.get( "footerWord" ) || 'default val';
+        //return [{a:"wefw", b:"werw"}, {a:"bfgh", b:"dge"}];
+    },
+    'mobileContext':function(){
+        return Session.get( "mobileContextTpl" ) || false;
+    },
+    'showMobileContext':function(){
+        return Session.get( "showMobileContext" ) || false;
+    },
 });
 
 
@@ -21,13 +31,6 @@ Template.globalLayout.events({
         clearSearchParams();
         var href = $(event.target).attr('href');
         FlowRouter.go(href);
-    },
-    'click .homeQuery':function(event,template){
-        event.preventDefault();
-        //console.log('click .homeQuery');
-        //Session.set('searchQuery', $(event.target).attr('data-q') );
-        folderFind( $(event.target).attr('data-q'), $(event.target).attr('data-f'), 1);
-        FlowRouter.go('/');
     },
     'submit .folderSearch': function (event, template) {
         event.preventDefault();
@@ -93,6 +96,7 @@ Template.globalLayout.onCreated(function () {
 
 Template.globalLayout.onRendered(function () {
     //add your statement here
+    $('.modal-trigger').leanModal();
 });
 
 Template.globalLayout.onDestroyed(function () {
@@ -102,14 +106,17 @@ Template.globalLayout.onDestroyed(function () {
 
 var clearSearchParams = function(){
     console.log('clearSearchParams');
+    $('.homeQuery').parent('li').removeClass('active');
     Session.set('folderList',false);
     Session.set('searchQuery',false);
     Session.set('searchField',false);
-    Session.set('paginationz',false);
+    Session.set('pagination',false);
     Session.set('searchPageNum',false);
+    Session.set('mobileContextData',false);
+    Session.set('showMobileContext',false);
 }
 
-var folderFind = function(q, f, p){
+window.folderFind = function(q, f, p){
     //console.log("folderFind q:"+q+" f:"+f+" p:"+p)
 
     //var fl = Session.get('folderList');

@@ -15,6 +15,7 @@ Template.createFolder.onCreated(function () {
 
 Template.createFolder.onRendered(function () {
     //add your statement here
+    Session.set('showCreateFolder', false)
 });
 
 Template.createFolder.onDestroyed(function () {

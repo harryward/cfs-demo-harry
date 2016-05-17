@@ -15,12 +15,13 @@
 
             </main>
             <footer>
-                <b>this is the footer</b>
+                <b>this is the {{footerWord}}</b>
             </footer>
         {{else}}
             <div id="at-form" class="ui container">
                 {{>atForm}}
             </div>
         {{/if}}
+        <!-- { { > Template.dynamic template=mobileContext } } -->
     </div>
 </template>
